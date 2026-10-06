@@ -2,44 +2,69 @@
 
 Official website for **Quant Rush**, the online Kaggle competition hosted by the **Quantitative Finance & Entrepreneurship (QFE) Club** at **Santa Monica College**.
 
-> 🚧 **Status: early planning.** Scope, design, and tech stack are still being decided. This README will grow as the project does.
+> 🚧 **Status: building v1.** The site structure, design, and copy are in place; the dataset, Kaggle page, and registration form are still being prepared. See `docs/` for plans and decisions.
 
 ## About
 
-The QFE Club is organizing a Kaggle competition for SMC students. This site will be the single place for participants to learn about the competition and follow along.
+The QFE Club is organizing a six-week online quant competition for all SMC students (Oct 13 – Nov 22, 2026, wrap-up Dec 1). This site is the single place for participants to learn about the competition and follow along: overview, timeline, weekly workshops, rules and FAQ, awards, and registration.
 
-Planned content (subject to change):
+## Stack
 
-- Competition overview, rules, and eligibility
-- Timeline and key dates
-- Registration / how to join
-- Dataset and evaluation metric description
-- Leaderboard
-- Prizes, sponsors, and organizers
-- FAQ and contact
+- [Astro](https://astro.build) static site, no framework runtime. Interactive bits (ticker, countdown, timeline, nav) are small vanilla scripts.
+- Fonts are self-hosted through `@fontsource` packages.
+- Deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`.
+
+## Getting Started
+
+Requires Node 22.12 or newer (Astro 7's minimum).
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+Then open <http://localhost:4321>. `npm run build` writes the static site to `dist/`; `npm run preview` serves that build.
+
+## Editing Content
+
+| What | Where |
+|---|---|
+| Names, dates, links (form, Kaggle), contact, logo path | `src/config/site.ts` |
+| Schedule: workshops, deadline, wrap-up, materials links | `src/data/schedule.json` |
+| FAQ | `src/data/faq.json` |
+| Awards | `src/data/awards.json` |
+| Ticker jokes | `src/data/ticker.json` |
+| Rules text | `src/pages/rules.astro` |
+| Colors, type, spacing | `src/styles/tokens.css` (spec in `docs/design.md`) |
+
+Every token and component is visible at `/styleguide` (unlinked, not indexed).
 
 ## Repository Layout
 
 ```
 .
-├── assets/              # Engravings, emblem, icon sprite (credits in assets/CREDITS.md)
-├── docs/                # Planning notes, decisions, and the design spec
-│   └── design-preview/  # Static mock of the home page plus a style tile
-├── README.md
-└── .gitignore
+├── .github/workflows/   # GitHub Pages deploy
+├── docs/                # Planning notes, decisions, design spec
+├── public/              # Served as-is (emblem, favicon)
+├── src/
+│   ├── assets/          # Engravings and the icon sprite (processed at build)
+│   ├── components/      # Astro components
+│   ├── config/site.ts   # Site-wide settings
+│   ├── data/            # JSON content
+│   ├── layouts/         # Base layout
+│   ├── lib/             # Small helpers (paths, dates, status)
+│   ├── pages/           # Routes: /, /workshops, /rules, /404, /styleguide
+│   └── styles/          # tokens, base, components, pages
+├── CREDITS.md           # Sources and licenses for every engraving
+└── astro.config.mjs
 ```
 
-To open the design preview, run a static server from the repository root and visit `/docs/design-preview/`:
+## Deploying
 
-```bash
-python3 -m http.server 4173
-```
-
-More directories will be added once the tech stack is chosen.
-
-## Getting Started
-
-Not applicable yet — setup instructions will be added once there is something to run.
+The workflow builds with `SITE_URL=https://<owner>.github.io` and `BASE_PATH=/<repo>`, which fits a project site at `https://<owner>.github.io/<repo>/`. For a custom domain or an `<owner>.github.io` repository, set `BASE_PATH` to `/` and `SITE_URL` to the domain in the workflow. In the repository settings, set Pages → Source to "GitHub Actions".
 
 ## Contributing
 
@@ -47,4 +72,4 @@ This is a club project. If you are a QFE Club member and want to help, reach out
 
 ## License
 
-To be decided.
+To be decided. The engravings are public domain; see `CREDITS.md`.

@@ -29,7 +29,7 @@ Care point: the real Gold Rush history includes harm to Native Californians and 
 
 ## Visual Design
 
-The full visual spec lives in **`design.md`** (concept, color tokens, typography, components, page compositions, motion, engravings, accessibility). A living preview is in `design-preview/`. Summary of what was decided:
+The full visual spec lives in **`design.md`** (concept, color tokens, typography, components, page compositions, motion, engravings, accessibility). Every token and component is visible at `/styleguide` on the site. Summary of what was decided:
 
 - Dark hero and ticker → torn-paper edge → parchment content sections → dark footer.
 - Poster typography (Alfa Slab One, Oswald, Source Serif 4, JetBrains Mono) and line icons built in code, plus duotoned public-domain 19th-century engravings (credits in `assets/CREDITS.md`).
@@ -92,7 +92,7 @@ Embedded on Home. Final decision: Google Form only, no custom backend.
 
 - **Astro** static site. Interactive bits (ticker, countdown, candlesticks, timeline, nav) are small vanilla scripts; React islands stay available if something richer is needed.
 - Deployed to **GitHub Pages** through GitHub Actions. The repository must be public for the free plan.
-- Static assets that are not code (engravings, emblem, icon sprite, the club logo) live in `assets/` and move into `public/` when the Astro project is created.
+- Engravings and the icon sprite live in `src/assets/` (processed at build); the emblem and, later, the club logo live in `public/brand/`. Licenses are in `CREDITS.md`.
 - **One config file** (for example `src/config/site.ts`) holds name, tagline, dates, form URL, Kaggle URL, contact info, and the logo path. Renaming the competition or swapping the form is a one-file change.
 - **Content separate from layout:** timeline, workshops, FAQ, and awards live in Markdown or JSON data files so board members can edit text without touching components.
 - No secrets, no server code, no analytics at first.

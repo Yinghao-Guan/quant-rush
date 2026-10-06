@@ -25,7 +25,9 @@ A running log of what has been decided and what is still open. Newest decisions 
 | Art style | Poster typography and line icons built in code, plus real public-domain 19th-century engravings, always duotoned. Every image is license-checked and listed in `assets/CREDITS.md`. |
 | Fonts | Alfa Slab One (display), Oswald (labels), Source Serif 4 (body), JetBrains Mono (numbers), from Google Fonts. |
 | Scripts | v1 needs no React: ticker, countdown, candlesticks, timeline, and nav are small vanilla scripts. Islands remain an option. |
-| Design preview | `docs/design-preview/` is a static mock of the home page plus a style tile; its three stylesheets are the ones the Astro project will use. |
+| Site build | Astro 7 static site, scaffolded 2026-10-06. Fonts self-hosted via `@fontsource`. Engravings live in `src/assets/engravings/` and are converted to WebP at build; the emblem is in `public/brand/`; licenses in `CREDITS.md` at the repo root. |
+| Style guide | `/styleguide` (unlinked, `noindex`) shows every token and component. It replaced the earlier static `docs/design-preview/`, which was removed once the Astro site existed. |
+| Deployment | GitHub Pages via `.github/workflows/deploy.yml`. The workflow derives `BASE_PATH` from the repository name, so internal links go through `withBase()` in `src/lib/paths.ts`. A GitHub repository has not been created yet. |
 | Platform (proposed) | Kaggle Community Competition for submissions, leaderboard, and teams; this website for information, rules, timeline, and registration guidance. Not yet confirmed. |
 
 ## Team

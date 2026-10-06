@@ -260,15 +260,19 @@ Processing: keep each image ≤ 1800px wide and ≤ 300KB (JPEG or WebP); three 
 - Ticker `aria-hidden` with a visually hidden summary; countdown `aria-live="off"` with a visually hidden date; decorative SVGs `aria-hidden`.
 - Check 375, 640, 900, and 1200px: no horizontal scroll, wordmark on two lines on mobile, timeline vertical below 900, nav collapsed below 900, cards 1 → 2 → 3 columns, footer stacked, form iframe height per breakpoint.
 
-## 11. Preview
+## 11. Implementation
 
-`design-preview/` is a static mock of the home page plus a style tile (swatches, type, buttons, badges, cards). Its three stylesheets are written to be copied as-is into the Astro project:
+The Astro site implements this spec. Where things live:
 
-- `styles/tokens.css` — colors, type, spacing, and the `.on-dark` remap
-- `styles/base.css` — reset, fonts, body text, paper grain, focus, reduced motion
-- `styles/components.css` — every component in §5
+- `src/styles/tokens.css` — colors, type, spacing, and the `.on-dark` remap (§2–§4)
+- `src/styles/base.css` — reset, body text, paper grain, focus, reduced motion
+- `src/styles/components.css` — every component in §5 and the home compositions in §6
+- `src/styles/pages.css` — inner-page header band, workshops grid, rules layout, 404
+- `src/components/` — one component per §5 item (`Ticker`, `Nav`, `Countdown`, `Candles`, `TornEdge`, `Engraving`, `Trail`, …)
+- `src/assets/engravings/` and `CREDITS.md` — the engravings and their licenses
+- `public/brand/emblem.svg`, `src/assets/icons/sprite.svg` — brand assets (§9)
 
-Open it with a static server from the repository root (for example `python3 -m http.server 4173`) and visit `/docs/design-preview/`. `file://` also works, except that the icon sprite loads only over HTTP.
+Every token and component is on one page at `/styleguide` (unlinked, `noindex`). Fonts are self-hosted via `@fontsource` packages; the variable families register as "Oswald Variable", "Source Serif 4 Variable", and "JetBrains Mono Variable".
 
 ## Appendix A — Copy deck (home)
 
