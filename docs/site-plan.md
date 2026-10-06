@@ -1,11 +1,11 @@
 # Site Plan: Quant Rush
 
-Status: **draft for review**. Nothing here is built yet.
+Status: **v1 built** (Astro; see the README). This file records the scope and content decisions behind it. Competition decisions are in the private competition repository.
 
 ## Identity
 
 - **Name:** Quant Rush
-- **Working tagline:** "Strike signal in the noise." (alternatives welcome)
+- **Tagline:** "Strike signal in the noise."
 - **Subtitle:** SMC's first online quant competition
 - **Organizer:** Quantitative Finance & Entrepreneurship (QFE) Club, Santa Monica College
 - **Theme:** Gold Rush, with a stock-market texture (ticker tape, candlesticks, monospaced numbers) layered on top.
@@ -32,7 +32,7 @@ Care point: the real Gold Rush history includes harm to Native Californians and 
 The full visual spec lives in **`design.md`** (concept, color tokens, typography, components, page compositions, motion, engravings, accessibility). Every token and component is visible at `/styleguide` on the site. Summary of what was decided:
 
 - Dark hero and ticker → torn-paper edge → parchment content sections → dark footer.
-- Poster typography (Alfa Slab One, Oswald, Source Serif 4, JetBrains Mono) and line icons built in code, plus duotoned public-domain 19th-century engravings (credits in `assets/CREDITS.md`).
+- Poster typography (Alfa Slab One, Oswald, Source Serif 4, JetBrains Mono) and line icons built in code, plus duotoned public-domain 19th-century engravings (credits in `CREDITS.md`).
 - Mobile first; test at 375px. All motion respects `prefers-reduced-motion`.
 - The QFE logo is not the palette source. Until the real file arrives, the footer shows a circular text badge in the same slot.
 
@@ -45,7 +45,7 @@ The full visual spec lives in **`design.md`** (concept, color tokens, typography
 3. **Hero:** "Quant Rush", tagline, subtitle, key dates, countdown (to the next milestone), primary button "Stake Your Claim" (scrolls to the form), secondary button "How it works".
 4. **About:** 3 to 4 sentences. What it is, who it is for (all SMC students, no experience needed), why it matters.
 5. **Highlights:** three cards: Fully online, Weekly workshops, Prizes.
-6. **Timeline:** the 6-week schedule from `timeline.md`, with the current phase highlighted.
+6. **Timeline:** the 6-week schedule from `src/data/schedule.json`, with the current phase highlighted.
 7. **How it works:** 4 steps: Register, join on Kaggle, build and submit models, watch the leaderboard.
 8. **Awards & prizes:** award cards (names TBD) and a line that prizes exist, details to be announced. No amounts or items listed.
 9. **Register:** embedded Google Form with an "open in new tab" fallback link.
@@ -56,7 +56,7 @@ The full visual spec lives in **`design.md`** (concept, color tokens, typography
 
 - Intro paragraph: every Tuesday, plus how Q&A works.
 - One card per session (10/13 through 12/1): date, title, one-line summary, status badge (Upcoming / Done). Materials links (slides, notebooks) added later.
-- Initial content: dates and titles from `timeline.md`; "Details coming soon" for the rest.
+- Content comes from `src/data/schedule.json`, shared with the home-page timeline. Material links stay empty until each session's slides and notebooks are published.
 
 ### 3. Rules & FAQ (`/rules`)
 
@@ -101,10 +101,10 @@ Embedded on Home. Final decision: Google Form only, no custom backend.
 
 | Item | Placeholder in v1 |
 |---|---|
-| QFE logo | Text lockup in footer |
-| Kaggle competition URL | "Link coming soon" |
-| Google Form URL | Needs the real embed URL before launch |
-| Submission deadline time | Date only (Sun 11/22) |
+| QFE logo | Circular text badge in footer |
+| Kaggle competition URL | "Coming soon" badge |
+| Google Form URL | "Registration opens Oct 13" stamp until the real embed URL is set |
+| Submission deadline time | Countdown assumes 11:59 p.m. Pacific on Sun 11/22 |
 | Prizes | "Prizes exist, details to be announced" |
 | Problem and dataset | "To be announced" |
 | Award names | Fool's Gold and a few generic ones |
@@ -122,6 +122,4 @@ Target: a live v1 around **Tue 10/13** (Kickoff).
 
 - Real Google Form URL (needed by about 10/11)
 - Real QFE logo file
-- Team size rules and submission limits
-- Award list
-- Final tagline
+- Rule details and final award names, once the competition repository decides them

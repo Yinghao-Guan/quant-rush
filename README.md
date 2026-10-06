@@ -8,6 +8,8 @@ Official website for **Quant Rush**, the online Kaggle competition hosted by the
 
 The QFE Club is organizing a six-week online quant competition for all SMC students (Oct 13 – Nov 22, 2026, wrap-up Dec 1). This site is the single place for participants to learn about the competition and follow along: overview, timeline, weekly workshops, rules and FAQ, awards, and registration.
 
+This repository holds only the website. The competition itself (problem design, data, baselines) is maintained separately and privately.
+
 ## Stack
 
 - [Astro](https://astro.build) static site, no framework runtime. Interactive bits (ticker, countdown, timeline, nav) are small vanilla scripts.

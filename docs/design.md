@@ -1,6 +1,6 @@
 # Quant Rush — UI Design Spec
 
-Status: **v1, approved direction.** This is the single source of truth for the look of the site. `site-plan.md` covers scope and content; this file covers how it looks and moves. A living preview of everything here is in `design-preview/` (open it through a local static server, see "Preview" at the end).
+Status: **v1, approved direction.** This is the single source of truth for the look of the site. `site-plan.md` covers scope and content; this file covers how it looks and moves. Every token and component is on one page at `/styleguide` when the site is running (see "Implementation" at the end).
 
 ## 1. Concept
 
@@ -178,7 +178,7 @@ Left-aligned header: eyebrow `SIX WEEKS · OCT 13 → NOV 22`, H2 "The Claim Tra
 
 - **≥ 900px:** an SVG chart (1280×380 viewBox). A polyline rises from bottom-left to top-right through eight nodes with slight jitter, like an uptrend. The area under the line is gold-500 at 8%. A faint dashed horizontal grid in paper-300. The past segment is solid ink-800 at 2.5px; the future segment is dashed gold-700. Nodes are 14px paper-50 circles with a 2.5px ink ring; the current node is gold-500 with a pulsing halo; "The Assay" is a larger rust-500 diamond with a `DEADLINE` stamp. Labels alternate above and below with thin leader lines: date (mono rust-500 `.8125rem`), title (Oswald 600 caps 1rem), one-liner (serif `.9375rem` ink-600, ≤ 22ch). A rotated y-axis joke label `SKILL →` in Oswald ink-400. The line draws in on reveal (stroke-dashoffset, 1.2s) and the nodes pop in staggered.
 - **< 900px:** a vertical rail at x = 20px (3px: solid ink for the past, dashed gold for the future); same nodes; items stacked. The current item gets a gold left bar and a `YOU ARE HERE` stamp.
-- Data lives in `timeline.json` (date, title, blurb, kind: workshop | deadline | wrapup). Current and past states are computed by date in a small script; done items get `✓ DONE`.
+- Data lives in `src/data/schedule.json` (date, title, blurb, kind: kickoff | workshop | deadline | wrapup). Current and past states are computed by date in a small script; done items get `✓ DONE`.
 
 ### How it works — paper-200 band, four steps
 
@@ -191,7 +191,7 @@ Columns at ≥ 900px joined by a dashed gold-700 line behind 56px gold circles h
 
 ### Awards — "The Claims"
 
-A 2×2 grid (one column on mobile) of award cards. Names are placeholders, editable in `awards.json`:
+A 2×2 grid (one column on mobile) of award cards. Names are placeholders, editable in `src/data/awards.json`:
 
 - **Mother Lode** — 1st, 2nd, 3rd on the private leaderboard (three medal dots: gold, silver, bronze).
 - **Greenhorn's Luck** — Best beginner: top finisher among self-declared first-timers.
@@ -238,7 +238,7 @@ Easing `cubic-bezier(.2, .8, .2, 1)`; durations: micro 150ms, standard 300ms, re
 
 ### Engravings
 
-Public domain only. Verify each item's license page before downloading and record title, source URL, date, and the license statement in `assets/CREDITS.md`. Sources:
+Public domain only. Verify each item's license page before downloading and record title, source URL, date, and the license statement in `CREDITS.md` at the repository root. Sources:
 
 - Wikimedia Commons: `Category:California Gold Rush` and its subcategories (`California Gold Rush in art`, `Sailing cards`, `People of the California Gold Rush`, `Ott's Assay Office`).
 - Library of Congress Prints & Photographs, items marked "No known restrictions on publication" (download through a browser; the site blocks scripted fetches).
@@ -248,9 +248,9 @@ Processing: keep each image ≤ 1800px wide and ≤ 300KB (JPEG or WebP); three 
 
 ### Brand assets (SVG)
 
-- `assets/brand/emblem.svg` — a circular stamp: outer ring text `QUANT RUSH · SMC · 2026 ·`, center a pickaxe crossed with a rising candlestick and a nugget at the crossing. Monochrome, so it works in ink or gold. The crossing alone is the favicon.
-- `assets/icons/sprite.svg` — 24px grid, 2px stroke, round caps, `currentColor`: pickaxe, shovel, cart, nugget, claim-stake, lantern, scales, map, candlestick, trophy, calendar, laptop, team, question, envelope, instagram.
-- `assets/brand/og.svg` → a 1200×630 PNG for social previews: dark background, wordmark, tagline, dates, candlestick row.
+- `public/brand/emblem.svg` — a circular stamp: outer ring text `QUANT RUSH · SMC · 2026 ·`, center a pickaxe crossed with a rising candlestick and a nugget at the crossing. Monochrome, so it works in ink or gold. The crossing alone is the favicon.
+- `src/assets/icons/sprite.svg` — 24px grid, 2px stroke, round caps, `currentColor`: pickaxe, shovel, cart, nugget, claim-stake, lantern, scales, map, candlestick, trophy, calendar, laptop, team, question, envelope, instagram.
+- Social preview image (not made yet) → a 1200×630 PNG in `public/brand/`: dark background, wordmark, tagline, dates, candlestick row.
 
 ## 10. Accessibility and responsive rules
 

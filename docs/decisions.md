@@ -1,48 +1,33 @@
-# Decisions
+# Decisions (website)
 
-A running log of what has been decided and what is still open. Newest decisions go at the top of each section.
+Website decisions only. Competition decisions (format, schedule, data, awards, prizes, team) live in the private competition repository at `../quant-rush-competition/docs/`. Nothing about the data source, the anonymization, or the answers belongs in this repository: it is public.
+
+Newest decisions go at the top of each section.
 
 ## Decided
 
 | Topic | Decision |
 |---|---|
-| Organizer | SMC Quantitative Finance & Entrepreneurship (QFE) Club |
-| Edition | First time the club hosts this competition |
-| Theme | Quantitative finance |
-| Audience | All SMC students |
-| Format | Fully online; weekly Tuesday meetings used for workshops and Q&A |
-| Duration | 6 weeks of competition (10/13 – 11/22) plus a 12/1 wrap-up. See `timeline.md`. |
-| Prizes | Yes, with a budget. The specific prizes are not decided; the website may mention that prizes exist without naming them. |
-| Data approach | **Historical data only, no live data.** Data is processed so participants cannot trace it back to the original source and cheat. Two sets: a public set (public leaderboard) and a private set (final ranking). Participants iterate on their models against these. |
-| Tracks | **Single track** (one Kaggle competition, one dataset, one metric). Variety comes from multiple awards instead: overall top places, plus fun and special awards (e.g. a joke award for the biggest public-to-private leaderboard drop). Award list to be designed later. |
-| Site scope | 3 pages: Home, Workshops, Rules & FAQ. English only. Leaderboard, Data & Problem, and Winners pages come later. |
-| Site tech | Astro (static site, deployable to GitHub Pages), with React islands for rich UI where needed. Built mainly by a coding agent for speed of building and updating. |
-| Registration | **Embedded Google Form only.** No custom backend, accounts, or dashboard. Kaggle itself serves as the participant dashboard (submissions, leaderboard). Form should not require Google sign-in; include an "open in new tab" fallback link; do not collect student IDs; collect the Kaggle username. Responses go to a Google Sheet shared only with board members. |
-| Name | **Quant Rush**. A quick web search found no existing competition or company with this name; do a final check on Kaggle before launch. |
-| Visual direction | **Gold Rush theme** with a stock-market texture (ticker tape, candlesticks, monospaced numbers). Not tied to the club logo. Details in `site-plan.md`. Deep-sea sonar was the runner-up. |
-| Logo | The original QFE logo file is not available yet; the site uses a circular text badge in the footer as a temporary stand-in and swaps the real file in later. |
-| Page rhythm | Dark hero and ticker → torn-paper edge → parchment content → dark footer. Full spec in `design.md`. |
-| Art style | Poster typography and line icons built in code, plus real public-domain 19th-century engravings, always duotoned. Every image is license-checked and listed in `assets/CREDITS.md`. |
-| Fonts | Alfa Slab One (display), Oswald (labels), Source Serif 4 (body), JetBrains Mono (numbers), from Google Fonts. |
-| Scripts | v1 needs no React: ticker, countdown, candlesticks, timeline, and nav are small vanilla scripts. Islands remain an option. |
-| Site build | Astro 7 static site, scaffolded 2026-10-06. Fonts self-hosted via `@fontsource`. Engravings live in `src/assets/engravings/` and are converted to WebP at build; the emblem is in `public/brand/`; licenses in `CREDITS.md` at the repo root. |
-| Style guide | `/styleguide` (unlinked, `noindex`) shows every token and component. It replaced the earlier static `docs/design-preview/`, which was removed once the Astro site existed. |
+| Repository split | The website and the competition are separate repositories (decided 2026-10-06). This one is public (GitHub Pages); the competition repository is private. Public facts flow one way, from the competition into `src/config/site.ts`, `src/data/*.json`, and `src/pages/rules.astro`. |
 | Deployment | GitHub Pages via `.github/workflows/deploy.yml`. The workflow derives `BASE_PATH` from the repository name, so internal links go through `withBase()` in `src/lib/paths.ts`. A GitHub repository has not been created yet. |
-| Platform (proposed) | Kaggle Community Competition for submissions, leaderboard, and teams; this website for information, rules, timeline, and registration guidance. Not yet confirmed. |
-
-## Team
-
-- About 3 members (including the project owner) can work on problem design, data preparation, and workshops.
-- Other board members handle non-technical tasks (promotion, registration, logistics, prizes).
+| Style guide | `/styleguide` (unlinked, `noindex`) shows every token and component. It replaced the earlier static `docs/design-preview/`, which was removed once the Astro site existed. |
+| Site build | Astro 7 static site, scaffolded 2026-10-06. Engravings live in `src/assets/engravings/` and are converted to WebP at build; the emblem is in `public/brand/`; licenses in `CREDITS.md` at the repo root. |
+| Site tech | Astro, no UI framework: the ticker, countdown, candlesticks, timeline, and nav are small vanilla scripts. Built mainly by a coding agent for speed of building and updating. |
+| Fonts | Alfa Slab One (display), Oswald (labels), Source Serif 4 (body), JetBrains Mono (numbers), self-hosted via `@fontsource`. |
+| Art style | Poster typography and line icons built in code, plus real public-domain 19th-century engravings, always duotoned. Every image is license-checked and listed in `CREDITS.md`. |
+| Page rhythm | Dark hero and ticker → torn-paper edge → parchment content → dark footer. Full spec in `design.md`. |
+| Logo | The original QFE logo file is not available yet; the footer shows a circular text badge as a stand-in. To swap in the real file, put it at `public/brand/logo-qfe.svg` and set `logoPath` in `src/config/site.ts`. |
+| Visual direction | **Gold Rush theme** with a stock-market texture (ticker tape, candlesticks, monospaced numbers). Not tied to the club logo. Details in `design.md`. Deep-sea sonar was the runner-up. |
+| Name and tagline | **Quant Rush** — "Strike signal in the noise." |
+| Registration | **Embedded Google Form only.** No custom backend, accounts, or dashboard. Kaggle itself serves as the participant dashboard. Form should not require Google sign-in; include an "open in new tab" fallback link; do not collect student IDs; collect the Kaggle username. Responses go to a Google Sheet shared only with board members. |
+| Site scope | 3 pages: Home, Workshops, Rules & FAQ, plus a 404 page. English only. Leaderboard, Data & Problem, and Winners pages come later. |
+| Organizer | SMC Quantitative Finance & Entrepreneurship (QFE) Club |
 
 ## Open
 
-- Final tagline
+- Google Form embed and share URLs (`SITE.links` in `src/config/site.ts`), needed by about 10/11
+- Kaggle competition URL
 - Original QFE logo file
-- Award list and prize allocation
-- Specific problem and dataset
-- How the data is anonymized and how the public/private split is made
-- Evaluation metric
-- Prize details and amounts
-- Team rules (size, submission limits, eligibility verification)
-- Website scope and tech stack
+- GitHub repository and Pages setup
+- Social preview (Open Graph) image
+- Rule details that the competition repository still has to decide (team size, metric, submission limits, AI and external data policies). They show as "To be finalized" until then.
