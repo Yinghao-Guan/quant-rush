@@ -1,6 +1,6 @@
 # SMC QFE Kaggle Competition
 
-Official website for the Kaggle Competition hosted by the **Quantitative Finance & Economics (QFE) Club** at **Santa Monica College**.
+Official website for the Kaggle Competition hosted by the **Quantitative Finance & Entrepreneurship (QFE) Club** at **Santa Monica College**.
 
 > 🚧 **Status: early planning.** Scope, design, and tech stack are still being decided. This README will grow as the project does.
 
