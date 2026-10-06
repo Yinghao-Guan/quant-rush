@@ -249,7 +249,7 @@ Eyebrow `PROSPECTOR'S HANDBOOK`, H2 "Questions from the camp". Six accordions on
 
 Three columns (stacked on mobile):
 
-1. QFE logo slot — until the real file arrives, a 96px circular text badge (paper-50, double ink ring, Oswald "QFE / SMC") — plus "Quantitative Finance & Entrepreneurship Club · Santa Monica College" and a two-line blurb.
+1. The QFE logo (`public/brand/logo-qfe.png`, the club's teal mark on a 96px paper-50 disc with an ink ring; a text badge is the fallback when no logo path is set) plus "Quantitative Finance & Entrepreneurship Club · Santa Monica College" and a two-line blurb.
 2. Contact — `qfec.smc@gmail.com`, Instagram `@qfecsmc`, "Meetings: Tuesdays 11:15–12:15, MSB 207".
 3. Quick links — Workshops, Rules & FAQ, Kaggle page (`COMING SOON` badge), Register.
 

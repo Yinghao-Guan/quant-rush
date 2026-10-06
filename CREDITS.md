@@ -18,6 +18,7 @@ Files were downloaded from Wikimedia Commons on 2026-10-06 at reduced sizes (≤
 | File | Notes |
 |---|---|
 | `emblem.svg` | Quant Rush seal: crossed pickaxe and candlestick with a nugget. Original work, made for this project. |
+| `logo-qfe.png` | The QFE Club's own logo, provided by the club (not public domain). Keyed out of its beige background into a transparent PNG; the mark is the club's teal (#224852). |
 
 ## Icons (`assets/icons/`)
 
@@ -25,6 +26,3 @@ Files were downloaded from Wikimedia Commons on 2026-10-06 at reduced sizes (≤
 |---|---|
 | `sprite.svg` | Line icon set on a 24px grid. Original work, made for this project. |
 
-## Still needed
-
-- The QFE Club's official logo as an SVG or transparent PNG (`assets/brand/logo-qfe.svg`). Provided by the club; not public domain.

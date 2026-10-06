@@ -16,18 +16,17 @@ Newest decisions go at the top of each section.
 | Fonts | Alfa Slab One (display), Oswald (labels), Source Serif 4 (body), JetBrains Mono (numbers), self-hosted via `@fontsource`. |
 | Art style | Poster typography and line icons built in code, plus real public-domain 19th-century engravings, always duotoned. Every image is license-checked and listed in `CREDITS.md`. |
 | Page rhythm | Dark hero and ticker → torn-paper edge → parchment content → dark footer. Full spec in `design.md`. |
-| Logo | The original QFE logo file is not available yet; the footer shows a circular text badge as a stand-in. To swap in the real file, put it at `public/brand/logo-qfe.svg` and set `logoPath` in `src/config/site.ts`. |
+| Logo | The club logo arrived as a raster image on a beige background (2026-10-06). It was keyed out into a transparent PNG (`public/brand/logo-qfe.png`, teal mark only) and is shown in the footer via `logoPath` in `src/config/site.ts`. The emboss and the beige were rendering effects, not part of the mark. |
 | Visual direction | **Gold Rush theme** with a stock-market texture (ticker tape, candlesticks, monospaced numbers). Not tied to the club logo. Details in `design.md`. Deep-sea sonar was the runner-up. |
 | Name and tagline | **Quant Rush** — "Strike signal in the noise." |
-| Registration | **Embedded Google Form only.** No custom backend, accounts, or dashboard. Kaggle itself serves as the participant dashboard. Form should not require Google sign-in; include an "open in new tab" fallback link; do not collect student IDs; collect the Kaggle username. Responses go to a Google Sheet shared only with board members. |
+| Registration | **Embedded Google Form only.** No custom backend, accounts, or dashboard. Kaggle itself serves as the participant dashboard. The form (live since 2026-10-06, URLs in `src/config/site.ts`) does not require Google sign-in, allows editing a response later (so the Kaggle username can be added after registering), collects no student IDs, and has an "open in a new tab" fallback. Responses go to a Google Sheet shared only with board members. |
 | Site scope | 3 pages: Home, Workshops, Rules & FAQ, plus a 404 page. English only. Leaderboard, Data & Problem, and Winners pages come later. |
 | Organizer | SMC Quantitative Finance & Entrepreneurship (QFE) Club |
 
 ## Open
 
-- Google Form embed and share URLs (`SITE.links` in `src/config/site.ts`), needed by about 10/11
 - Kaggle competition URL
-- Original QFE logo file
-- GitHub repository and Pages setup
+- HTTPS on smcqfec.com: certificate pending; tick "Enforce HTTPS" in Settings → Pages once it is issued
+- `www.smcqfec.com`: needs a CNAME record to `yinghao-guan.github.io` if the www address should work
 - Social preview (Open Graph) image
 - Rule details that the competition repository still has to decide (team size, metric, submission limits, AI and external data policies). They show as "To be finalized" until then.

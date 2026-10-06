@@ -29,15 +29,15 @@ export const SITE = {
 
   links: {
     /** Google Form "embed" URL (…/viewform?embedded=true). Empty = show the placeholder. */
-    formEmbedUrl: '',
+    formEmbedUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeJfHn5vExdE1IlgXa7wPINWSvlRPj38gL2LPaqWYdXqkK4rQ/viewform?embedded=true',
     /** Google Form share URL for the "open in a new tab" fallback. */
-    formUrl: '',
+    formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeJfHn5vExdE1IlgXa7wPINWSvlRPj38gL2LPaqWYdXqkK4rQ/viewform',
     /** Kaggle competition page. Empty = "coming soon" badge. */
     kaggleUrl: '',
   },
 
-  /** Path under public/ to the club logo once it arrives, e.g. '/brand/logo-qfe.svg'. Empty = text badge. */
-  logoPath: '',
+  /** Path under public/ to the club logo (transparent PNG, teal mark). Empty = text badge. */
+  logoPath: '/brand/logo-qfe.png',
 
   /** Pinned chip at the front of the ticker. Empty = none. */
   tickerPin: '★ KICKOFF OCT 13 · MSB 207',

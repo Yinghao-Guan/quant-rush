@@ -101,9 +101,9 @@ Embedded on Home. Final decision: Google Form only, no custom backend.
 
 | Item | Placeholder in v1 |
 |---|---|
-| QFE logo | Circular text badge in footer |
+| QFE logo | Done: `public/brand/logo-qfe.png` in the footer |
 | Kaggle competition URL | "Coming soon" badge |
-| Google Form URL | "Registration opens Oct 13" stamp until the real embed URL is set |
+| Google Form URL | Done: embedded on the home page (URLs in `src/config/site.ts`) |
 | Submission deadline time | Countdown assumes 11:59 p.m. Pacific on Sun 11/22 |
 | Prizes | "Prizes exist, details to be announced" |
 | Problem and dataset | "To be announced" |
@@ -120,6 +120,4 @@ Target: a live v1 around **Tue 10/13** (Kickoff).
 
 ## Open Questions
 
-- Real Google Form URL (needed by about 10/11)
-- Real QFE logo file
 - Rule details and final award names, once the competition repository decides them
