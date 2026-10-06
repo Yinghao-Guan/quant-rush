@@ -31,7 +31,7 @@ temp/
 .fseventsd
 .DocumentRevisions-V100
 .TemporaryItems
-Icon?
+# (the usual "Icon?" rule is left out: with core.ignorecase it also hides any "icons" folder)
 
 # ---- Windows ----
 Thumbs.db
@@ -103,6 +103,8 @@ env/
 
 # ---- Competition data (large / not for the repo) ----
 data/
+# Site content (JSON), not competition data
+!src/data/
 *.csv
 !docs/**/*.csv
 !public/**/*.csv
