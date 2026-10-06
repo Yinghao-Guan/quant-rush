@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import Candles from './Candles.astro';
+import Countdown from './Countdown.astro';
+import Engraving from './Engraving.astro';
+import TornEdge from './TornEdge.astro';
+import { SITE } from '../config/site';
+import { withBase } from '../lib/paths';
+import { stamp } from '../lib/dates';
+import sluice from '../assets/engravings/sandham-the-sluice-1883.jpg';
+---
+
+<section class="hero on-dark" id="top">
+  <div class="hero__flecks hero__flecks--a" aria-hidden="true"></div>
+  <div class="hero__flecks hero__flecks--b" aria-hidden="true"></div>
+  <Engraving src={sluice} variant="gold" shape="backdrop" pos="center 40%" opacity={0.34} width={1400} quality={38} eager />
+
+  <div class="hero__inner">
+    <p class="eyebrow hero__eyebrow" style="--i:0">{SITE.organizer.school} · {SITE.organizer.short} presents</p>
+    <h1 class="wordmark" style="--i:1"><span>Quant</span> <span>Rush</span></h1>
+    <p class="hero__tagline" style="--i:2">{SITE.tagline}</p>
+    <p class="hero__sub" style="--i:3">{SITE.subtitle} · open to all SMC students</p>
+    <ul class="facts" style="--i:4">
+      <li class="fact" style="--tilt:-2deg"><Icon name="calendar" />OPENS {stamp(SITE.dates.opens)}</li>
+      <li class="fact" style="--tilt:1.5deg"><Icon name="scales" />THE ASSAY · {stamp(SITE.dates.deadline)}</li>
+      <li class="fact" style="--tilt:-1deg"><Icon name="globe" />100% ONLINE</li>
+    </ul>
+    <div style="--i:5"><Countdown /></div>
+    <div class="hero__actions" style="--i:6">
+      <a class="btn btn--primary" href={withBase('/#register')}>Stake your claim <Icon name="arrow-right" /></a>
+      <a class="btn btn--secondary" href={withBase('/#how')}>How it works</a>
+    </div>
+    <a class="hero__cue" href="#about" style="--i:7">▼ DIG IN</a>
+  </div>
+
+  <Candles class="hero__candles" count={36} seed={1849} />
+  <p class="engraving__credit hero__credit">Engraving: H. Sandham, “The Sluice,” The Century, 1883 · Public domain</p>
+  <TornEdge to="paper" />
+</section>

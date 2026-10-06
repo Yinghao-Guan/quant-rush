@@ -1,0 +1,65 @@
+---
+import Emblem from './Emblem.astro';
+import Icon from './Icon.astro';
+import { SITE } from '../config/site';
+import { withBase, routeOf } from '../lib/paths';
+
+const current = routeOf(Astro.url.pathname);
+const links = [
+  { href: withBase('/'), route: '/', label: 'Home' },
+  { href: withBase('/workshops/'), route: '/workshops', label: 'Workshops' },
+  { href: withBase('/rules/'), route: '/rules', label: 'Rules & FAQ' },
+];
+const registerHref = withBase('/#register');
+---
+
+<header class="nav" data-nav>
+  <div class="container nav__inner">
+    <a class="nav__brand" href={withBase('/')}>
+      <Emblem class="emblem" size={30} />
+      {SITE.name}
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      {links.map((l) => (
+        <a class="nav__link" href={l.href} aria-current={current === l.route ? 'page' : undefined}>{l.label}</a>
+      ))}
+    </nav>
+    <a class="btn btn--primary btn--sm nav__cta" href={registerHref}>Register</a>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" data-nav-toggle>
+      <Icon name="menu" class="i-menu" />
+      <Icon name="close" class="i-close" />
+    </button>
+  </div>
+</header>
+<div class="nav__overlay" id="menu" data-nav-overlay>
+  {links.map((l) => (
+    <a class="big" href={l.href}>{l.label}</a>
+  ))}
+  <a class="btn btn--primary btn--block" href={registerHref}>Stake your claim</a>
+  <p class="contact">{SITE.organizer.email} · @{SITE.organizer.instagram} · {SITE.organizer.meeting}</p>
+</div>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const overlay = document.querySelector<HTMLElement>('[data-nav-overlay]');
+
+  if (nav) {
+    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  if (toggle && overlay) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      overlay.classList.toggle('is-open', open);
+      document.body.classList.toggle('nav-open', open);
+    };
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    overlay.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  }
+</script>

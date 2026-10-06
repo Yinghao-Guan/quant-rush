@@ -1,0 +1,32 @@
+---
+/**
+ * Inlines one symbol from src/assets/icons/sprite.svg at build time.
+ * <Icon name="pickaxe" /> renders <svg class="icon">…</svg>; extra props go on the svg.
+ */
+import sprite from '../assets/icons/sprite.svg?raw';
+
+interface Props {
+  name: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { name, class: className = '', ...rest } = Astro.props;
+const match = sprite.match(new RegExp(`<symbol id="i-${name}"([^>]*)>([\\s\\S]*?)</symbol>`));
+if (!match) throw new Error(`Icon "${name}" is not defined in src/assets/icons/sprite.svg`);
+const [, attrs, inner] = match;
+const attr = (key: string, fallback: string) => attrs.match(new RegExp(`${key}="([^"]+)"`))?.[1] ?? fallback;
+---
+
+<svg
+  class={`icon ${className}`.trim()}
+  viewBox={attr('viewBox', '0 0 24 24')}
+  fill="none"
+  stroke="currentColor"
+  stroke-width={attr('stroke-width', '2')}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  {...rest}
+  set:html={inner.trim()}
+/>

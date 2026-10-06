@@ -1,0 +1,31 @@
+---
+import Engraving from './Engraving.astro';
+import { SITE } from '../config/site';
+import { stamp } from '../lib/dates';
+import hunter from '../assets/engravings/independent-gold-hunter-c1849.jpg';
+
+const { formEmbedUrl, formUrl } = SITE.links;
+---
+
+<div class="wanted reveal">
+  <i class="wanted__nail"></i><i class="wanted__nail"></i><i class="wanted__nail"></i><i class="wanted__nail"></i>
+  <div class="wanted__title">Wanted</div>
+  <div class="wanted__sub">Prospectors</div>
+  <div class="wanted__art">
+    <Engraving src={hunter} variant="ink" shape="medallion" pos="50% 36%" width={400} alt="Lithograph of a prospector loaded with gear, about 1849" />
+  </div>
+  <p class="wanted__reward">Reward: prizes, bragging rights, and a project for your résumé.</p>
+  <div class="rule-double"></div>
+  {formEmbedUrl ? (
+    <iframe src={formEmbedUrl} title="Quant Rush registration form" loading="lazy"></iframe>
+  ) : (
+    <div class="wanted__form">
+      <span class="badge badge--stamp badge--tbd" style="--tilt:-3deg">Registration opens {stamp(SITE.dates.opens)}</span>
+      <p class="small">The registration form goes live at Kickoff. Name, SMC email, Kaggle username, experience level, team preference.</p>
+    </div>
+  )}
+  <p class="wanted__fallback">
+    Form not loading? <a class="link" href={formUrl || '#register'} target={formUrl ? '_blank' : undefined} rel={formUrl ? 'noopener' : undefined}>Open it in a new tab →</a>
+  </p>
+</div>
+<p class="engraving__credit center" style="margin-top:16px">N. Currier, “The Independent Gold Hunter on His Way to California,” c. 1849 · Missouri History Museum · Public domain</p>

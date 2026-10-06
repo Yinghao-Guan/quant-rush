@@ -1,0 +1,24 @@
+---
+/** The Quant Rush seal, inlined from public/brand/emblem.svg so it follows currentColor. */
+import file from '../../public/brand/emblem.svg?raw';
+
+interface Props {
+  size?: number;
+  class?: string;
+  title?: string;
+}
+
+const { size = 30, class: className = '', title } = Astro.props;
+const inner = file.match(/<symbol id="emblem"[^>]*>([\s\S]*?)<\/symbol>/)?.[1] ?? '';
+const html = (title ? `<title>${title}</title>` : '') + inner;
+---
+
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 120 120"
+  role={title ? 'img' : undefined}
+  aria-hidden={title ? undefined : 'true'}
+  set:html={html}
+/>

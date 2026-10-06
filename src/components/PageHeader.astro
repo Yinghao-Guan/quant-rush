@@ -1,0 +1,27 @@
+---
+/** Dark header band for inner pages, with an optional gold-masked engraving on the right. */
+import Engraving from './Engraving.astro';
+import TornEdge from './TornEdge.astro';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  image?: ImageMetadata;
+  pos?: string;
+  credit?: string;
+}
+const { eyebrow, title, lead, image, pos = 'center', credit } = Astro.props;
+---
+
+<section class="page-head on-dark">
+  {image && <Engraving src={image} variant="gold" shape="backdrop" pos={pos} opacity={0.3} width={1100} quality={38} eager class="page-head__art" />}
+  <div class="container page-head__inner">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+  </div>
+  {credit && <p class="engraving__credit page-head__credit">{credit}</p>}
+  <TornEdge to="paper" />
+</section>

@@ -1,0 +1,64 @@
+---
+import Icon from './Icon.astro';
+import Candles from './Candles.astro';
+import Engraving from './Engraving.astro';
+import { SITE } from '../config/site';
+import { withBase } from '../lib/paths';
+import harbor from '../assets/engravings/san-francisco-harbor-1849.jpg';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer on-dark">
+  <Engraving
+    src={harbor}
+    variant="gold"
+    shape="backdrop"
+    pos="center 32%"
+    opacity={0.12}
+    width={1400}
+    quality={50}
+    style="height:100%;-webkit-mask-image:linear-gradient(to top,#000 20%,transparent 75%);mask-image:linear-gradient(to top,#000 20%,transparent 75%)"
+  />
+  <div class="container footer__inner">
+    <div class="footer__grid">
+      <div class="footer__org">
+        {SITE.logoPath ? (
+          <img class="logo-img" src={withBase(SITE.logoPath)} alt={`${SITE.organizer.name} logo`} width="96" height="96" />
+        ) : (
+          <div class="logo-slot" aria-label={`${SITE.organizer.short} logo placeholder`}>QFE<br />SMC</div>
+        )}
+        <strong>{SITE.organizer.name} · {SITE.organizer.school}</strong>
+        <p>{SITE.organizer.blurb}</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a class="contact" href={`mailto:${SITE.organizer.email}`}><Icon name="envelope" />{SITE.organizer.email}</a></li>
+          <li><a class="contact" href={`https://instagram.com/${SITE.organizer.instagram}`} rel="noopener"><Icon name="instagram" />@{SITE.organizer.instagram}</a></li>
+          <li><span class="contact"><Icon name="calendar" />{SITE.organizer.meeting}</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Quick links</h3>
+        <ul>
+          <li><a href={withBase('/workshops/')}>Workshops</a></li>
+          <li><a href={withBase('/rules/')}>Rules &amp; FAQ</a></li>
+          <li>
+            {SITE.links.kaggleUrl ? (
+              <a href={SITE.links.kaggleUrl} rel="noopener">Kaggle page</a>
+            ) : (
+              <span>Kaggle page <span class="badge badge--soon" style="margin-left:6px">Coming soon</span></span>
+            )}
+          </li>
+          <li><a href={withBase('/#register')}>Register</a></li>
+        </ul>
+      </div>
+    </div>
+    <Candles class="footer__candles" count={36} seed={1856} />
+    <div class="footer__legal">
+      <span>© {year} {SITE.organizer.short} · {SITE.organizer.school}</span>
+      <span>{SITE.name} is student-run and not affiliated with Kaggle. Engravings are public domain; see CREDITS.md.</span>
+    </div>
+  </div>
+</footer>

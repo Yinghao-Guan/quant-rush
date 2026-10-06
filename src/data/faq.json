@@ -1,0 +1,50 @@
+[
+  {
+    "q": "Do I need experience?",
+    "a": "No. The first two workshops take you from zero to a submitted baseline. Experienced folks can skip ahead; beginners have their own award.",
+    "home": true
+  },
+  {
+    "q": "Is it free?",
+    "a": "Yes. Registration, Kaggle, and the workshops are all free.",
+    "home": true
+  },
+  {
+    "q": "Can I team up?",
+    "a": "Yes, in teams of up to N. Solo is fine too. Need teammates? Say so on the form and we'll match you at Kickoff.",
+    "tbd": true,
+    "home": true
+  },
+  {
+    "q": "Do I need to be a finance major?",
+    "a": "No. If you can run a Python notebook, or want to learn, you're in.",
+    "home": true
+  },
+  {
+    "q": "What is Kaggle?",
+    "a": "A free platform for data-science competitions. You upload predictions, it scores them and ranks everyone on a leaderboard. We walk you through it at Kickoff.",
+    "home": true
+  },
+  {
+    "q": "What do I win?",
+    "a": "Prizes for the top of the private leaderboard, the best beginner, the best write-up, and one joke award. The actual prizes are announced at Kickoff.",
+    "home": true
+  },
+  {
+    "q": "What if I can't make it on Tuesdays?",
+    "a": "The competition itself is fully online. Workshop materials are posted on the Workshops page after each session, and you can email us questions any time."
+  },
+  {
+    "q": "Do I need a powerful computer?",
+    "a": "No. Kaggle Notebooks run in the cloud for free, so any laptop that opens a browser is enough."
+  },
+  {
+    "q": "Can I use AI tools like ChatGPT?",
+    "a": "The policy is being finalized and will be announced at Kickoff. Whatever the answer, your write-up must explain what your model does in your own words.",
+    "tbd": true
+  },
+  {
+    "q": "When are the results announced?",
+    "a": "The private leaderboard appears on Kaggle right after the deadline on Sunday, Nov 22. Awards and prizes are handed out at the wrap-up on Tuesday, Dec 1."
+  }
+]

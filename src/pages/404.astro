@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Engraving from '../components/Engraving.astro';
+import Icon from '../components/Icon.astro';
+import { withBase } from '../lib/paths';
+import hunter from '../assets/engravings/independent-gold-hunter-c1849.jpg';
+---
+
+<Base title="Not found" noindex>
+  <section class="nf on-dark">
+    <div class="nf__inner">
+      <Engraving src={hunter} variant="ink" shape="medallion" pos="50% 36%" width={400} alt="A prospector loaded with gear, walking across the plains" />
+      <p class="mono">404 · CLAIM NOT FOUND</p>
+      <h1>No gold here.</h1>
+      <p class="lead" style="color:var(--paper-200)">This claim was never staked, or it has been abandoned. Head back to camp and try again.</p>
+      <a class="btn btn--primary" href={withBase('/')}>Back to camp <Icon name="arrow-right" /></a>
+      <p class="engraving__credit">N. Currier, “The Independent Gold Hunter on His Way to California,” c. 1849 · Public domain</p>
+    </div>
+  </section>
+</Base>

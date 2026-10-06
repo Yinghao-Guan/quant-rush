@@ -1,0 +1,19 @@
+---
+/**
+ * Torn-paper edge. Place it as the last child of a `position: relative` section.
+ * `to="paper"` tears paper over a dark section; `to="dark"` lets dark rise into paper.
+ */
+interface Props {
+  to: 'paper' | 'dark';
+}
+const { to } = Astro.props;
+const d =
+  'M0 14 48 8 95 18 140 6 188 16 236 10 290 20 335 7 380 15 430 4 478 17 520 9 570 19 615 6 660 14 705 21 750 8 800 16 845 5 890 18 935 11 985 20 1030 7 1080 15 1130 10 1200 17V28H0Z';
+---
+
+<div class={`tear tear--${to}`} aria-hidden="true">
+  <svg viewBox="0 0 1200 28" preserveAspectRatio="none">
+    <path class="tear__shadow" transform="translate(0 -3)" d={d}></path>
+    <path class="tear__fill" d={d}></path>
+  </svg>
+</div>

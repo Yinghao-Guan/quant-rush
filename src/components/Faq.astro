@@ -1,0 +1,25 @@
+---
+interface Item {
+  q: string;
+  a: string;
+  tbd?: boolean;
+  home?: boolean;
+}
+interface Props {
+  items: Item[];
+  openFirst?: boolean;
+}
+const { items, openFirst = false } = Astro.props;
+---
+
+<div class="faq reveal">
+  {items.map((item, i) => (
+    <details open={openFirst && i === 0}>
+      <summary>{item.q}</summary>
+      <div class="faq__body">
+        {item.a}
+        {item.tbd && <span class="badge badge--tbd" style="--tilt:-2deg;margin-left:6px">To be finalized</span>}
+      </div>
+    </details>
+  ))}
+</div>

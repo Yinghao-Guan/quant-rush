@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import Engraving from '../components/Engraving.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Trail from '../components/Trail.astro';
+import Steps from '../components/Steps.astro';
+import Awards from '../components/Awards.astro';
+import Register from '../components/Register.astro';
+import Faq from '../components/Faq.astro';
+import TornEdge from '../components/TornEdge.astro';
+import faq from '../data/faq.json';
+import { SITE } from '../config/site';
+import { withBase } from '../lib/paths';
+import diggers from '../assets/engravings/california-gold-diggers-c1850.jpg';
+
+const highlights = [
+  { icon: 'laptop', title: '100% Online', text: 'Compete from anywhere. Submissions and the leaderboard live on Kaggle.' },
+  { icon: 'pickaxe', title: 'Picks & Shovels', text: `Every Tuesday, 11:15–12:15 in MSB 207: a workshop, then office hours. We teach the tools; you dig.` },
+  { icon: 'nugget', title: 'Real Prizes', text: 'For the top of the private leaderboard, the best beginner, and a few surprises. Details at Kickoff.' },
+];
+const homeFaq = faq.filter((f) => f.home);
+---
+
+<Base>
+  <Hero />
+
+  <section class="paper section" id="about">
+    <div class="container">
+      <div class="dispatch reveal">
+        <div class="prose">
+          <p class="eyebrow" style="margin-bottom:12px">✦ From the {SITE.organizer.short}</p>
+          <p class="dropcap">
+            Quant Rush is a six-week online competition where SMC students build models on a disguised, historical financial dataset.
+            Every submission updates a public leaderboard; a private one, revealed at the end, decides the winners. No finance background
+            and no Kaggle experience needed. Bring curiosity, a laptop, and a willingness to be wrong a few hundred times before you're right.
+            The {SITE.organizer.name} runs the show and teaches the tools every Tuesday.
+          </p>
+          <p style="margin-top:16px"><a class="link" href={withBase('/rules/')}>Read the rules &amp; FAQ →</a></p>
+        </div>
+        <div class="dispatch__art">
+          <Engraving src={diggers} variant="ink" shape="medallion" pos="42% 55%" width={480} alt="Lithograph of gold diggers working a river bank, about 1850" />
+          <p class="engraving__credit">Kellogg &amp; Comstock, c. 1850 · Yale Beinecke · Public domain</p>
+        </div>
+      </div>
+
+      <div class="grid grid--3" style="margin-top:64px">
+        {highlights.map((h, i) => (
+          <article class="card reveal" style={`--reveal-delay:${i * 100}ms`}>
+            <div class="card__stamp"><Icon name={h.icon} /></div>
+            <h3>{h.title}</h3>
+            <p>{h.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="paper section" id="timeline">
+    <div class="container container--wide">
+      <SectionHead eyebrow="Six weeks · Oct 13 → Nov 22" title="The Claim Trail" lead="Every Tuesday is a workshop. One Sunday is the Assay — the submission deadline." />
+      <Trail />
+    </div>
+  </section>
+
+  <section class="paper paper--alt" id="how">
+    <div class="rule-double"></div>
+    <div class="container section">
+      <SectionHead center eyebrow="How it works" title="From greenhorn to prospector in four steps" />
+      <Steps />
+    </div>
+    <div class="rule-double"></div>
+  </section>
+
+  <section class="paper section" id="awards">
+    <div class="container">
+      <SectionHead eyebrow="Awards" title="The Claims" lead="One leaderboard, several ways to win. Names below are placeholders until the board settles them." />
+      <Awards />
+    </div>
+  </section>
+
+  <section class="paper paper--alt section" id="register">
+    <div class="container">
+      <SectionHead center eyebrow="Registration" title="Stake Your Claim" lead="Free, open to all SMC students, two minutes." />
+      <Register />
+    </div>
+  </section>
+
+  <section class="paper section" id="faq">
+    <div class="container container--narrow">
+      <SectionHead eyebrow="Prospector's handbook" title="Questions from the camp" />
+      <Faq items={homeFaq} openFirst />
+      <p style="margin-top:24px"><a class="link" href={withBase('/rules/')}>Read the full rules &amp; FAQ →</a></p>
+    </div>
+    <TornEdge to="dark" />
+  </section>
+</Base>

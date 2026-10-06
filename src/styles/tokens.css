@@ -1,0 +1,131 @@
+/* ==========================================================================
+   Quant Rush — design tokens
+   Source of truth: docs/design.md (§2–§4, §8).
+   Written to be copied as-is into the Astro project's src/styles/.
+   ========================================================================== */
+
+:root {
+  /* ---- Palette ------------------------------------------------------- */
+  --paper-50:  #FBF6EA;
+  --paper-100: #F4E9D3;
+  --paper-200: #E9DAB9;
+  --paper-300: #D9C397;
+
+  --ink-900: #1C1208;
+  --ink-800: #2B1D10;
+  --ink-600: #5A4632;
+  --ink-400: #8C7A62;
+  --surface-dark: #2A1C10;
+
+  --gold-300: #E8C45A;
+  --gold-500: #D4A017;
+  --gold-700: #A67C0E;
+  --gold-800: #7A5A08;
+
+  --rust-500: #A63D2F;
+  --rust-300: #E0634C;
+
+  --green-700: #256B42;
+  --green-400: #5FBF7A;
+
+  /* ---- Semantic aliases (paper is the default context) -------------- */
+  --bg:           var(--paper-100);
+  --bg-alt:       var(--paper-200);
+  --surface:      var(--paper-50);
+  --fg:           var(--ink-800);
+  --fg-muted:     var(--ink-600);
+  --fg-faint:     var(--ink-400);
+  --border:       var(--ink-800);
+  --hairline:     var(--paper-300);
+  --accent:       var(--gold-500);
+  --accent-text:  var(--gold-800);   /* the only gold allowed as text on paper */
+  --accent-hover: var(--gold-300);
+  --extrude:      var(--ink-800);    /* hard-shadow color */
+  --up:           var(--green-700);
+  --down:         var(--rust-500);
+  --stamp:        var(--rust-500);
+  --focus:        var(--ink-800);
+  --shadow-hard:    4px 4px 0 var(--extrude);
+  --shadow-hard-lg: 6px 6px 0 var(--extrude);
+
+  /* ---- Type ----------------------------------------------------------- */
+  --font-display: "Alfa Slab One", Georgia, "Times New Roman", serif;
+  --font-label:   "Oswald Variable", "Oswald", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "Source Serif 4 Variable", "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono:    "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --fs-display:   clamp(3.25rem, 2rem + 9vw, 8.5rem);
+  --fs-h1:        clamp(2.5rem, 1.8rem + 3.5vw, 4.25rem);
+  --fs-h2:        clamp(2rem, 1.5rem + 2.2vw, 2.875rem);
+  --fs-h3:        1.25rem;
+  --fs-eyebrow:   .8125rem;
+  --fs-lead:      clamp(1.125rem, 1rem + .5vw, 1.375rem);
+  --fs-body:      1.0625rem;
+  --fs-small:     .875rem;
+  --fs-mono:      .9375rem;
+  --fs-countdown: clamp(2.25rem, 1rem + 6vw, 5rem);
+
+  --lh-tight:   .95;
+  --lh-heading: 1.1;
+  --lh-body:    1.65;
+
+  --track-label:   .12em;
+  --track-eyebrow: .18em;
+
+  /* ---- Space & layout ------------------------------------------------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;  --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;  --s-10: 128px;
+
+  --container:      1120px;
+  --container-wide: 1280px;
+  --gutter:         24px;
+  --section-y:      96px;
+
+  --ticker-h: 36px;
+  --nav-h:    64px;
+
+  /* ---- Shape ---------------------------------------------------------- */
+  --r-sm:   4px;
+  --r-md:   6px;
+  --r-pill: 999px;
+  --border-poster: 2px;
+
+  /* ---- Motion --------------------------------------------------------- */
+  --ease:     cubic-bezier(.2, .8, .2, 1);
+  --t-micro:  150ms;
+  --t-std:    300ms;
+  --t-reveal: 500ms;
+}
+
+@media (max-width: 639px) {
+  :root {
+    --fs-body:   1rem;
+    --gutter:    16px;
+    --section-y: 64px;
+    --ticker-h:  32px;
+    --nav-h:     56px;
+  }
+}
+
+/* Any section flips to the dark context with one class. */
+.on-dark {
+  --bg:           var(--ink-900);
+  --bg-alt:       var(--surface-dark);
+  --surface:      var(--surface-dark);
+  --fg:           var(--paper-100);
+  --fg-muted:     var(--paper-200);
+  --fg-faint:     var(--ink-400);
+  --border:       var(--paper-100);
+  --hairline:     color-mix(in srgb, var(--gold-700) 40%, transparent);
+  --accent:       var(--gold-500);
+  --accent-text:  var(--gold-300);
+  --accent-hover: var(--gold-300);
+  --extrude:      var(--gold-700);
+  --up:           var(--green-400);
+  --down:         var(--rust-300);
+  --stamp:        var(--rust-300);
+  --focus:        var(--gold-300);
+
+  color: var(--fg);
+  background-color: var(--bg);
+}

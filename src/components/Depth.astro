@@ -1,0 +1,16 @@
+---
+/** Desktop-only easter egg: scroll depth in feet (design.md §5.13). Hidden by CSS below 900px and under reduced motion. */
+---
+
+<div class="depth" aria-hidden="true" data-depth>DEPTH 0000 FT</div>
+
+<script>
+  const el = document.querySelector<HTMLElement>('[data-depth]');
+  if (el) {
+    const update = () => {
+      el.textContent = `DEPTH ${String(Math.round(window.scrollY / 10)).padStart(4, '0')} FT`;
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+</script>

@@ -1,0 +1,99 @@
+---
+/** Unlinked, noindex. Every token and component on one page, for the board and for future edits. */
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Emblem from '../components/Emblem.astro';
+import TornEdge from '../components/TornEdge.astro';
+import sprite from '../assets/icons/sprite.svg?raw';
+
+const swatches = [
+  ['paper-50', '#FBF6EA', 'cards'], ['paper-100', '#F4E9D3', 'page bg'], ['paper-200', '#E9DAB9', 'bands'], ['paper-300', '#D9C397', 'hairlines'],
+  ['ink-900', '#1C1208', 'dark bg'], ['ink-800', '#2B1D10', 'text'], ['ink-600', '#5A4632', 'muted'], ['ink-400', '#8C7A62', 'decorative'], ['surface-dark', '#2A1C10', 'tiles'],
+  ['gold-300', '#E8C45A', 'hover, text on dark'], ['gold-500', '#D4A017', 'accent fills'], ['gold-700', '#A67C0E', 'extrusions'], ['gold-800', '#7A5A08', 'gold text on paper'],
+  ['rust-500', '#A63D2F', 'stamps'], ['rust-300', '#E0634C', 'down on dark'], ['green-700', '#256B42', 'up on paper'], ['green-400', '#5FBF7A', 'up on dark'],
+];
+const icons = Array.from(sprite.matchAll(/<symbol id="i-([a-z-]+)"/g), (m) => m[1]);
+---
+
+<Base title="Style guide" noindex>
+  <section class="paper section">
+    <div class="container tile">
+      <header class="section-head">
+        <p class="eyebrow">Internal</p>
+        <h2>Style guide</h2>
+        <p class="lead">Tokens and components, side by side. Source of truth: docs/design.md.</p>
+      </header>
+
+      <div>
+        <h2>Palette</h2>
+        <div class="swatches" style="margin-top:16px">
+          {swatches.map(([name, hex, use]) => (
+            <div class="swatch"><div class="swatch__color" style={`background:${hex}`}></div><div class="swatch__meta"><b>{name}</b>{hex} · {use}</div></div>
+          ))}
+        </div>
+      </div>
+
+      <div class="specimen">
+        <h2>Type</h2>
+        <p class="caption">Alfa Slab One · display</p>
+        <p class="display" style="font-size:var(--fs-h1)">Strike signal in the noise</p>
+        <p class="caption">Oswald 600 · labels &amp; card titles</p>
+        <h3>Picks &amp; Shovels · Every Tuesday</h3>
+        <p class="caption">Oswald 500 · eyebrow</p>
+        <p class="eyebrow">✦ Prospector's handbook</p>
+        <p class="caption">Source Serif 4 · body, 17px / 1.65</p>
+        <p class="prose">Bring curiosity, a laptop, and a willingness to be wrong a few hundred times before you're right. <em>The private leaderboard decides.</em> <a class="link" href="#">A text link looks like this.</a></p>
+        <p class="caption">JetBrains Mono · numbers, dates, ticker</p>
+        <p class="mono">TUE OCT 13 · 11:15 · MSB 207 · QNTR ▲ 18.49</p>
+      </div>
+
+      <div class="specimen">
+        <h2>Buttons &amp; badges</h2>
+        <p class="caption">On paper</p>
+        <div class="cluster">
+          <a class="btn btn--primary" href="#">Stake your claim <Icon name="arrow-right" /></a>
+          <a class="btn btn--secondary" href="#">How it works</a>
+          <a class="btn btn--primary btn--sm" href="#">Register</a>
+        </div>
+        <p class="caption">On dark</p>
+        <div class="demo-dark on-dark cluster">
+          <a class="btn btn--primary" href="#">Stake your claim</a>
+          <a class="btn btn--secondary" href="#">How it works</a>
+          <span class="badge badge--done">✓ Done</span>
+          <span class="badge badge--tbd">To be finalized</span>
+        </div>
+        <p class="caption">Badges &amp; stamps</p>
+        <div class="cluster">
+          <span class="badge badge--upcoming" style="--tilt:-2deg">Upcoming</span>
+          <span class="badge badge--today" style="--tilt:1deg">Today</span>
+          <span class="badge badge--done" style="--tilt:-1deg">✓ Done</span>
+          <span class="badge badge--tbd" style="--tilt:2deg">To be finalized</span>
+          <span class="badge badge--joke" style="--tilt:-2deg">Joke award</span>
+          <span class="badge badge--soon">Coming soon</span>
+          <span class="badge badge--stamp badge--tbd" style="--tilt:-3deg">Registration opens Oct 13</span>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <h2>Cards &amp; boxes</h2>
+        <div class="grid grid--2" style="margin-top:16px">
+          <article class="card"><div class="card__stamp"><Icon name="laptop" /></div><h3>Highlight card</h3><p>Paper-50, 2px ink border, hard shadow. Lifts on hover.</p></article>
+          <article class="card card--award card--joke"><div class="card__strip">Public → private drop</div><span class="badge badge--joke card__corner">Joke award</span><h3>Fool's Gold</h3><p>Rust treatment for the joke award.</p></article>
+        </div>
+        <div class="notice" style="margin-top:16px"><span class="notice__label">Notice box</span>Used for "prizes are real" and for rules that are still to be finalized.</div>
+      </div>
+
+      <div class="specimen">
+        <h2>Emblem &amp; icons</h2>
+        <div class="cluster" style="gap:24px;margin-top:16px">
+          <Emblem size={120} />
+          <div class="demo-dark on-dark" style="color:var(--gold-500)"><Emblem size={120} /></div>
+          <div class="cluster" style="gap:14px;font-size:28px;color:var(--ink-800)">
+            {icons.map((name) => <Icon name={name} />)}
+          </div>
+        </div>
+      </div>
+    </div>
+    <TornEdge to="dark" />
+  </section>
+</Base>

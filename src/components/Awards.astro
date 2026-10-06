@@ -1,0 +1,19 @@
+---
+import awards from '../data/awards.json';
+---
+
+<div class="grid grid--2">
+  {awards.map((a, i) => (
+    <article class={`card card--award ${a.joke ? 'card--joke' : ''} reveal`} style={`--reveal-delay:${i * 80}ms`}>
+      <div class="card__strip">{a.category}</div>
+      {a.joke && <span class="badge badge--joke card__corner">Joke award</span>}
+      <h3>{a.name}</h3>
+      <p>{a.blurb}</p>
+      {a.medals && <div class="medals" aria-hidden="true"><i></i><i></i><i></i></div>}
+    </article>
+  ))}
+</div>
+<div class="notice reveal" style="margin-top:32px">
+  <span class="notice__label">On the record</span>
+  Prizes are real. We'll announce what they are at Kickoff.
+</div>

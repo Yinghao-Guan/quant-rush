@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import TornEdge from '../components/TornEdge.astro';
+import schedule from '../data/schedule.json';
+import { computeStatus, workshopBadgeHTML } from '../lib/status';
+import { dateBlock } from '../lib/dates';
+import { SITE } from '../config/site';
+import diggers from '../assets/engravings/california-gold-diggers-c1850.jpg';
+
+const status = computeStatus(schedule.map((m) => m.date));
+const materials = (m: (typeof schedule)[number]) =>
+  (['slides', 'notebook', 'recording'] as const).map((k) => ({ key: k, label: k[0].toUpperCase() + k.slice(1), url: m.materials[k] }));
+---
+
+<Base title="Workshops" description="Every Tuesday during Quant Rush: a workshop, then office hours. Slides and notebooks are posted here after each session.">
+  <PageHeader
+    eyebrow={`Workshops · every Tuesday · ${SITE.organizer.meeting.split('·').pop()?.trim()}`}
+    title="Picks & Shovels"
+    lead="Every Tuesday, 11:15–12:15, a workshop and then office hours. Can't make it? Materials land here after each session."
+    image={diggers}
+    pos="40% 50%"
+    credit="Kellogg & Comstock, “California Gold Diggers,” c. 1850 · Yale Beinecke · Public domain"
+  />
+
+  <section class="paper section" id="sessions">
+    <div class="container">
+      <div class="workshops" data-workshops>
+        {schedule.map((m, i) => {
+          const d = dateBlock(m.date);
+          return (
+            <article class={`card card--workshop reveal ${status[i].past ? 'is-done' : ''}`} data-date={m.date} data-kind={m.kind} style={`--reveal-delay:${(i % 2) * 80}ms`}>
+              <div class="dateblock" aria-hidden="true">
+                <div class="dateblock__month">{d.month}</div>
+                <div class="dateblock__day">{d.day}</div>
+                <div class="dateblock__dow">{d.dow}</div>
+              </div>
+              <div>
+                <div class="card__head">
+                  <h3>{m.title}</h3>
+                  <span class="card__sub">{m.sub}</span>
+                  <span class="trail__badge" data-badge set:html={workshopBadgeHTML(status[i], m.kind)} />
+                </div>
+                <p>{m.summary}</p>
+                <div class="materials">
+                  {materials(m).map((x) =>
+                    x.url ? <a class="link" href={x.url} rel="noopener">{x.label}</a> : <span class="is-empty" title="Coming soon">{x.label}</span>,
+                  )}
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+    <TornEdge to="dark" />
+  </section>
+</Base>
+
+<script>
+  import { computeStatus, workshopBadgeHTML } from '../lib/status';
+
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-workshops] [data-date]'));
+  const status = computeStatus(cards.map((c) => c.dataset.date ?? ''));
+  cards.forEach((c, i) => {
+    c.classList.toggle('is-done', status[i].past);
+    const slot = c.querySelector('[data-badge]');
+    if (slot) slot.innerHTML = workshopBadgeHTML(status[i], c.dataset.kind ?? '');
+  });
+</script>

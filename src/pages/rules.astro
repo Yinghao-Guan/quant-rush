@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Faq from '../components/Faq.astro';
+import TornEdge from '../components/TornEdge.astro';
+import faq from '../data/faq.json';
+import awards from '../data/awards.json';
+import { SITE } from '../config/site';
+import { withBase } from '../lib/paths';
+import sluice from '../assets/engravings/sandham-the-sluice-1883.jpg';
+
+const sections = [
+  { id: 'eligibility', n: '§1', title: 'Eligibility' },
+  { id: 'teams', n: '§2', title: 'Teams' },
+  { id: 'data', n: '§3', title: 'Data & evaluation' },
+  { id: 'awards', n: '§4', title: 'Awards' },
+  { id: 'code', n: '§5', title: "The Miner's Code" },
+  { id: 'faq', n: '§6', title: 'FAQ' },
+];
+---
+
+<Base title="Rules & FAQ" description="Eligibility, teams, data and evaluation, awards, and the code of conduct for Quant Rush, plus every question we have been asked so far.">
+  <PageHeader
+    eyebrow="Rules · eligibility · FAQ"
+    title="The Miner's Code"
+    lead="Everything you need to know before you dig. Lines marked “to be finalized” are decided before Kickoff."
+    image={sluice}
+    pos="center 30%"
+    credit="H. Sandham, “The Sluice,” The Century, 1883 · Public domain"
+  />
+
+  <section class="paper section">
+    <div class="container rules">
+      <nav class="rules__toc" aria-label="On this page" data-toc>
+        {sections.map((s) => (
+          <a href={`#${s.id}`}><span class="mono">{s.n}</span>{s.title}</a>
+        ))}
+      </nav>
+
+      <div class="rules__body">
+        <section id="eligibility">
+          <h2><span class="sect">§1</span>Eligibility</h2>
+          <p>Quant Rush is open to every student currently enrolled at Santa Monica College, in any major, at any level of experience.</p>
+          <ul class="list">
+            <li>Register with your SMC student email. We verify eligibility against the registration list before prizes are awarded, by matching Kaggle usernames to registered emails.</li>
+            <li>Anyone can play on Kaggle, but only registered SMC students are eligible for awards and prizes.</li>
+            <li>Board members who help design the problem or prepare the data cannot compete.</li>
+          </ul>
+        </section>
+
+        <section id="teams">
+          <h2><span class="sect">§2</span>Teams</h2>
+          <p>Compete solo or in a team. Teams are formed on Kaggle; you can merge with another team until the merge deadline shown on the competition page.</p>
+          <ul class="list">
+            <li>Maximum team size: N <span class="badge badge--tbd" style="--tilt:-2deg">To be finalized</span></li>
+            <li>One Kaggle account per person. Multiple accounts lead to disqualification, on Kaggle and here.</li>
+            <li>Need teammates? Say so on the registration form and we match people up at Kickoff.</li>
+            <li>Private sharing of code or predictions between teams is not allowed. Sharing publicly with everyone, in a Kaggle discussion or notebook, is fine and encouraged.</li>
+          </ul>
+        </section>
+
+        <section id="data">
+          <h2><span class="sect">§3</span>Data &amp; evaluation</h2>
+          <p>The dataset is historical financial data that has been transformed so that it cannot be matched back to its source. Column names are anonymized and dates are replaced with a sequence index. Trying to reverse this is against the rules (see the Code below) and, more to the point, will not help you.</p>
+          <h3>Public and private leaderboards</h3>
+          <p>Your submissions are scored on two parts of the test set. The <strong>public leaderboard</strong> updates after every submission and shows how you are doing on one part. The <strong>private leaderboard</strong> is computed on the other part and stays hidden until the deadline. Final rankings use the private leaderboard only. A model that chases the public score tends to fall on the private one; that is the whole lesson of Workshop 4.</p>
+          <h3>Still to be announced</h3>
+          <ul class="list">
+            <li>Evaluation metric <span class="badge badge--tbd" style="--tilt:1deg">To be finalized</span></li>
+            <li>Daily submission limit <span class="badge badge--tbd" style="--tilt:-1deg">To be finalized</span></li>
+            <li>How many final submissions each team selects for the private leaderboard <span class="badge badge--tbd" style="--tilt:2deg">To be finalized</span></li>
+            <li>External data policy <span class="badge badge--tbd" style="--tilt:-2deg">To be finalized</span></li>
+          </ul>
+          <div class="notice">
+            <span class="notice__label">On the record</span>
+            The competition page on Kaggle is the authority on metric, limits, and deadlines. If this page and Kaggle ever disagree, Kaggle wins.
+          </div>
+        </section>
+
+        <section id="awards">
+          <h2><span class="sect">§4</span>Awards</h2>
+          <p>One leaderboard, several ways to win. Award names are placeholders until the board settles them; prizes are real and are announced at Kickoff.</p>
+          <ul class="list">
+            {awards.map((a) => (
+              <li><strong>{a.name}</strong> — {a.category}. {a.blurb}</li>
+            ))}
+          </ul>
+          <h3>How the joke award is decided</h3>
+          <p>Among the teams finishing in the top N of the public leaderboard, Fool's Gold goes to the team with the largest drop in rank on the private leaderboard. N is announced with the metric <span class="badge badge--tbd" style="--tilt:-2deg">To be finalized</span>. It comes with a prize and, if you want it, thirty seconds at the wrap-up to explain what happened.</p>
+        </section>
+
+        <section id="code">
+          <h2><span class="sect">§5</span>The Miner's Code</h2>
+          <div class="code-box">
+            <div class="code-box__title">Rules of the camp</div>
+            <ol>
+              <li><div><strong>Dig your own claim.</strong><p>One account per person. Your team's work is your team's work.</p></div></li>
+              <li><div><strong>Don't salt the mine.</strong><p>No attempts to de-anonymize the data, recover the original source, or look up the answers.</p></div></li>
+              <li><div><strong>Share at the campfire, not in the dark.</strong><p>Public sharing on Kaggle is welcome. Private sharing between teams is not.</p></div></li>
+              <li><div><strong>Be good to the other prospectors.</strong><p>Help beginners. Be kind in discussions. Organizers can remove anyone who isn't.</p></div></li>
+              <li><div><strong>Ask for a lantern.</strong><p>Stuck? Come Tuesdays, or email <a class="link" href={`mailto:${SITE.organizer.email}`}>{SITE.organizer.email}</a>. Nobody mines alone.</p></div></li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq">
+          <h2><span class="sect">§6</span>FAQ</h2>
+          <Faq items={faq} />
+          <p style="margin-top:24px">Something missing? <a class="link" href={`mailto:${SITE.organizer.email}`}>Email us</a> or ask on Tuesday. <a class="link" href={withBase('/#register')}>Back to registration →</a></p>
+        </section>
+      </div>
+    </div>
+    <TornEdge to="dark" />
+  </section>
+</Base>
+
+<script>
+  // Highlight the current section in the sticky table of contents.
+  const toc = document.querySelector<HTMLElement>('[data-toc]');
+  if (toc) {
+    const links = Array.from(toc.querySelectorAll<HTMLAnchorElement>('a'));
+    const targets = links.map((a) => document.querySelector<HTMLElement>(a.getAttribute('href') ?? '')).filter(Boolean) as HTMLElement[];
+    const setActive = (id: string) => links.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === `#${id}`));
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0 },
+    );
+    targets.forEach((t) => io.observe(t));
+  }
+</script>

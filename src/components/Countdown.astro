@@ -1,0 +1,65 @@
+---
+import { SITE } from '../config/site';
+
+const { opens, deadline, results } = SITE.dates;
+const now = Date.now();
+const label =
+  now < Date.parse(opens) ? 'Claim staking opens in'
+  : now < Date.parse(deadline) ? 'The Assay closes in'
+  : now < Date.parse(results) ? 'Results Dec 1'
+  : 'See you next rush';
+---
+
+<div data-countdown data-opens={opens} data-deadline={deadline} data-results={results}>
+  <span class="eyebrow countdown__title" data-countdown-title>{label}</span>
+  <div class="countdown" aria-hidden="true">
+    {['Days', 'Hrs', 'Min', 'Sec'].map((l) => (
+      <div class="countdown__tile">
+        <div class="countdown__num" data-countdown-num>--</div>
+        <div class="countdown__label">{l}</div>
+      </div>
+    ))}
+  </div>
+  <span class="sr-only">Opens Tuesday, October 13, 2026. Submissions close Sunday, November 22, 2026.</span>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-countdown]');
+  if (root) {
+    const title = root.querySelector<HTMLElement>('[data-countdown-title]')!;
+    const nums = root.querySelectorAll<HTMLElement>('[data-countdown-num]');
+    const opens = Date.parse(root.dataset.opens ?? '');
+    const deadline = Date.parse(root.dataset.deadline ?? '');
+    const results = Date.parse(root.dataset.results ?? '');
+    const pad = (n: number) => String(n).padStart(2, '0');
+
+    const phase = () => {
+      const t = Date.now();
+      if (t < opens) return { label: 'Claim staking opens in', target: opens };
+      if (t < deadline) return { label: 'The Assay closes in', target: deadline };
+      if (t < results) return { label: 'Results Dec 1', target: 0 };
+      return { label: 'See you next rush', target: 0 };
+    };
+
+    const tick = () => {
+      const p = phase();
+      title.textContent = p.label;
+      if (!p.target) {
+        nums.forEach((n) => (n.textContent = '--'));
+        return;
+      }
+      let d = Math.max(0, p.target - Date.now());
+      const days = Math.floor(d / 864e5); d -= days * 864e5;
+      const hrs = Math.floor(d / 36e5); d -= hrs * 36e5;
+      const min = Math.floor(d / 6e4); d -= min * 6e4;
+      const sec = Math.floor(d / 1e3);
+      [days, hrs, min, sec].forEach((v, i) => {
+        const s = pad(v);
+        if (nums[i].textContent !== s) nums[i].textContent = s;
+      });
+    };
+
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>

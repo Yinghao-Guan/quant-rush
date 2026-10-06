@@ -1,0 +1,102 @@
+---
+/**
+ * "The Claim Trail": the schedule drawn as a rising stock line (desktop) and a
+ * vertical rail (mobile). Rendered at build time; a small script re-applies
+ * past/current states with the visitor's clock.
+ */
+import schedule from '../data/schedule.json';
+import { computeStatus, badgeHTML } from '../lib/status';
+
+const items = schedule;
+const n = items.length;
+const status = computeStatus(items.map((m) => m.date));
+
+const xs = items.map((_, i) => 8 + i * (84 / (n - 1)));
+const jitter = [0, 4, -3, 5, -2, 3, -6, 0];
+const ys = items.map((_, i) => 80 - i * (58 / (n - 1)) + (jitter[i] ?? 0));
+const points = items.map((_, i) => [Number(xs[i].toFixed(2)), Number(ys[i].toFixed(2))]);
+
+const seg = (a: number, b: number) => 'M ' + points.slice(a, b + 1).map((p) => `${p[0]} ${p[1]}`).join(' L ');
+const curIdx = status.findIndex((s) => s.current);
+const cur = curIdx < 0 ? n - 1 : curIdx;
+const area = `${seg(0, n - 1)} L ${points[n - 1][0]} 100 L ${points[0][0]} 100 Z`;
+
+const classes = (i: number, extra = '') =>
+  [extra, status[i].past ? 'is-past' : '', status[i].current ? 'is-current' : '', items[i].kind === 'deadline' ? 'is-deadline' : '']
+    .filter(Boolean)
+    .join(' ');
+---
+
+<div class="trail reveal" data-trail data-points={JSON.stringify(points)} data-dates={JSON.stringify(items.map((m) => m.date))}>
+  <div class="trail__chart">
+    <span class="trail__axis">Skill →</span>
+    <svg class="trail__svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <g class="trail__draw">
+        {[20, 40, 60, 80].map((y) => <line class="trail__grid" x1="0" y1={y} x2="100" y2={y}></line>)}
+        <path class="trail__area" d={area}></path>
+        <path class="trail__past" d={seg(0, cur)} data-trail-past></path>
+        <path class="trail__future" d={seg(cur, n - 1)} data-trail-future></path>
+      </g>
+    </svg>
+    {items.map((m, i) => (
+      <div
+        class={classes(i, `trail__node trail__node--${i % 2 ? 'above' : 'below'}`)}
+        data-date={m.date}
+        data-kind={m.kind}
+        style={`--i:${i};left:${points[i][0]}%;top:calc(90px + (100% - 180px) * ${(points[i][1] / 100).toFixed(4)})`}
+      >
+        <div class="trail__dot"></div>
+        <div class="trail__label">
+          <div class="trail__date">{m.label}</div>
+          <div class="trail__title">{m.title}</div>
+          <p class="trail__blurb">{m.sub} · {m.blurb}</p>
+          <span class="trail__badge" data-badge set:html={badgeHTML(status[i], m.kind)} />
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <ol class="trail__list" data-trail-list>
+    {items.map((m, i) => (
+      <li class={classes(i, 'trail__item')} data-date={m.date} data-kind={m.kind}>
+        <div class="trail__date">{m.label}</div>
+        <div class="trail__title">
+          {m.title} <span class="trail__sub">— {m.sub}</span>
+          <span class="trail__badge" data-badge set:html={badgeHTML(status[i], m.kind)} />
+        </div>
+        <p class="trail__blurb">{m.blurb}</p>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<script>
+  import { computeStatus, badgeHTML } from '../lib/status';
+
+  const root = document.querySelector<HTMLElement>('[data-trail]');
+  if (root) {
+    const points: [number, number][] = JSON.parse(root.dataset.points ?? '[]');
+    const dates: string[] = JSON.parse(root.dataset.dates ?? '[]');
+    const status = computeStatus(dates);
+
+    root.querySelectorAll<HTMLElement>('[data-date]').forEach((el) => {
+      const i = dates.indexOf(el.dataset.date ?? '');
+      if (i < 0) return;
+      const s = status[i];
+      el.classList.toggle('is-past', s.past);
+      el.classList.toggle('is-current', s.current);
+      const slot = el.querySelector('[data-badge]');
+      if (slot) slot.innerHTML = badgeHTML(s, el.dataset.kind ?? '');
+    });
+
+    const curIdx = status.findIndex((s) => s.current);
+    const cur = curIdx < 0 ? points.length - 1 : curIdx;
+    const seg = (a: number, b: number) => 'M ' + points.slice(a, b + 1).map((p) => `${p[0]} ${p[1]}`).join(' L ');
+    root.querySelector('[data-trail-past]')?.setAttribute('d', seg(0, cur));
+    root.querySelector('[data-trail-future]')?.setAttribute('d', seg(cur, points.length - 1));
+
+    const list = root.querySelector<HTMLElement>('[data-trail-list]');
+    const current = list?.querySelector<HTMLElement>('.is-current');
+    list?.style.setProperty('--past', current ? `${current.offsetTop + 4}px` : '100%');
+  }
+</script>
