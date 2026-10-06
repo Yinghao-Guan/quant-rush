@@ -8,18 +8,33 @@ interface Item {
 interface Props {
   items: Item[];
   openFirst?: boolean;
+  /** Render on a ruled ledger page with numbered questions in the margin. */
+  ledger?: boolean;
+  page?: string;
 }
-const { items, openFirst = false } = Astro.props;
+const { items, openFirst = false, ledger = false, page = 'p. 12' } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, '0');
 ---
 
-<div class="faq reveal">
-  {items.map((item, i) => (
-    <details open={openFirst && i === 0}>
-      <summary>{item.q}</summary>
-      <div class="faq__body">
-        {item.a}
-        {item.tbd && <span class="badge badge--tbd" style="--tilt:-2deg;margin-left:6px">To be finalized</span>}
-      </div>
-    </details>
-  ))}
+<div class={ledger ? 'ledger reveal' : 'reveal'}>
+  {ledger && (
+    <div class="ledger__head" aria-hidden="true">
+      <span>Prospector's ledger<span class="ledger__opt"> · Q &amp; A</span></span>
+      <span>{page}</span>
+    </div>
+  )}
+  <div class="faq">
+    {items.map((item, i) => (
+      <details open={openFirst && i === 0}>
+        <summary>
+          {ledger && <span class="faq__num" aria-hidden="true">Q.{pad(i + 1)}</span>}
+          {item.q}
+        </summary>
+        <div class="faq__body">
+          {item.a}
+          {item.tbd && <span class="badge badge--tbd" style="--tilt:-2deg;margin-left:6px">To be finalized</span>}
+        </div>
+      </details>
+    ))}
+  </div>
 </div>

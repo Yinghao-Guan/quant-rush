@@ -1,0 +1,39 @@
+---
+/** The About block as a torn newspaper clipping: masthead, headline, two columns, an engraved cut. */
+import Engraving from './Engraving.astro';
+import { SITE } from '../config/site';
+import { withBase } from '../lib/paths';
+import diggers from '../assets/engravings/california-gold-diggers-c1850.jpg';
+---
+
+<div class="clipping-wrap reveal">
+  <i class="tape tape--l" aria-hidden="true"></i>
+  <i class="tape tape--r" aria-hidden="true"></i>
+  <article class="clipping">
+    <span class="badge badge--stamp badge--tbd clipping__stamp" aria-hidden="true">First edition</span>
+    <header class="clipping__masthead">
+      <span class="clipping__meta">Vol. I · No. 1</span>
+      <span class="clipping__name">The Quant Rush Dispatch</span>
+      <span class="clipping__meta">Santa Monica · Fall 2026</span>
+    </header>
+    <div class="rule-double"></div>
+    <h3 class="clipping__headline">Gold in the Data: Every SMC Student Invited to Dig</h3>
+    <p class="clipping__deck">Six weeks, one leaderboard, no experience required. Tools taught every Tuesday.</p>
+    <div class="clipping__columns">
+      <div class="clipping__cut">
+        <Engraving src={diggers} variant="ink" shape="plain" pos="42% 55%" width={720} alt="Lithograph of gold diggers working a river bank, about 1850" />
+        <p class="clipping__caption">Mining operations on the Sacramento. Kellogg &amp; Comstock, c. 1850 · Public domain</p>
+      </div>
+      <p class="clipping__dateline">Santa Monica, Oct. 13 —</p>
+      <p class="dropcap">
+        Quant Rush is a six-week online competition where SMC students build models on a disguised, historical financial dataset.
+        Every submission updates a public leaderboard; a private one, revealed at the end, decides the winners.
+      </p>
+      <p>
+        No finance background and no Kaggle experience needed. Bring curiosity, a laptop, and a willingness to be wrong a few hundred
+        times before you're right. The {SITE.organizer.name} runs the show and teaches the tools every Tuesday.
+      </p>
+      <p class="clipping__more"><a class="link" href={withBase('/rules/')}>Full rules &amp; FAQ →</a></p>
+    </div>
+  </article>
+</div>

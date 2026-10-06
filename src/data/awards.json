@@ -3,22 +3,30 @@
     "category": "Overall · Private leaderboard",
     "name": "Mother Lode",
     "blurb": "1st, 2nd and 3rd place on the private leaderboard.",
-    "medals": true
+    "medals": true,
+    "tone": "gold",
+    "icon": "trophy"
   },
   {
     "category": "Best beginner",
     "name": "Greenhorn's Luck",
-    "blurb": "Top finisher among self-declared first-timers."
+    "blurb": "Top finisher among self-declared first-timers.",
+    "tone": "green",
+    "icon": "shovel"
   },
   {
     "category": "Best write-up",
     "name": "Assayer's Choice",
-    "blurb": "The clearest explanation of a method, judged by the board."
+    "blurb": "The clearest explanation of a method, judged by the board.",
+    "tone": "rust",
+    "icon": "scales"
   },
   {
     "category": "Public → private drop",
     "name": "Fool's Gold",
     "blurb": "Biggest fall from the public to the private leaderboard. A joke award with written rules.",
-    "joke": true
+    "joke": true,
+    "tone": "tarnish",
+    "icon": "nugget"
   }
 ]

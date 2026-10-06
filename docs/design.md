@@ -172,6 +172,18 @@ Cork brown (`#7E5633`) with two speckle patterns and a noise overlay, framed by 
 
 The Claim Trail sits on a paper-50 sheet with the poster double border and hard shadow. Behind the desktop chart: contour lines and a river (SVG, 1px ink-400 at 40%, river in green-700), three tracked-caps place labels (`SIERRA NEVADA`, `AMERICAN RIVER`, `SUTTER'S MILL`), a compass rose top-right, and a legend box top-left. Positions are chosen so nothing collides with the node labels. The mobile rail sits inside the same sheet.
 
+### 5.18 Newspaper clipping (about)
+
+The About copy is a torn clipping from *The Quant Rush Dispatch*: a masthead (mono volume/date flanking the name in Alfa Slab One) over a double rule, a headline, an italic deck, and two columns with a column rule. The engraved cut sits at the top of the first column with a mono caption; the body opens with a dateline in Oswald caps and a drop cap. The clipping is paper-50, rotated −0.6°, with jagged top and bottom edges (`clip-path` polygon; the hard shadow comes from a `filter` on the wrapper so it follows the tear), two translucent tape strips on the top corners, and a rotated `FIRST EDITION` stamp.
+
+### 5.19 Medal shelf (awards)
+
+Each award is a rosette (16-scallop SVG outline, two concentric discs, an icon in the center) with two striped ribbon tails, hung above a brass name plate that stands on a wooden shelf. Tones come from `awards.json`: gold, green (greenhorn), rust, and a tarnished brass for Fool's Gold, whose plate is also tarnished and which carries a rotated `JOKE AWARD` badge. The shelf is a CSS grid with subgrid rows (rosette, plate, board, blurb); the board is a pseudo-element spanning all columns. Four across on desktop, two across on two shelves on mobile.
+
+### 5.20 Ledger page (FAQ)
+
+The accordion sits on a ruled ledger sheet: paper-50 with horizontal rules every 28px, a double rust margin line on the left, a mono header line ("Prospector's ledger · Q & A", page number), and a mono question number (`Q.01`) in the margin for each row. Summary and answer line heights are 28px so the text sits on the rules. Used on the home page and on the full FAQ in the rules page.
+
 ## 6. Home page composition
 
 ### Hero (`.on-dark`)
@@ -187,7 +199,7 @@ The Claim Trail sits on a paper-50 sheet with the poster double border and hard 
 
 ### About ("Dispatch") — paper-100, directly under the tear
 
-Two columns at ≥ 900px. Left: eyebrow `FROM THE QFE CLUB`, one paragraph with a drop cap (what it is, who it is for, no experience needed, why it matters), and a text link to the rules. Right: a 160px engraving medallion (a prospector) with credit. Stacks on mobile, medallion first at 120px.
+The newspaper clipping (§5.18), max 920px, centered, over the bleeding Sluice engraving. Headline "Gold in the Data: Every SMC Student Invited to Dig"; two paragraphs (what it is, who it is for, no experience needed, who runs it) and a link to the rules.
 
 ### Highlights — three artifacts (§5.14)
 
@@ -216,7 +228,7 @@ Header "From greenhorn to prospector, four levels down" on the paper-colored sur
 
 ### Awards — "The Claims"
 
-A 2×2 grid (one column on mobile) of award cards. Names are placeholders, editable in `src/data/awards.json`:
+The medal shelf (§5.19). Names are placeholders, editable in `src/data/awards.json` (which also sets each medal's tone and icon):
 
 - **Mother Lode** — 1st, 2nd, 3rd on the private leaderboard (three medal dots: gold, silver, bronze).
 - **Greenhorn's Luck** — Best beginner: top finisher among self-declared first-timers.
@@ -231,7 +243,7 @@ A poster, max 760px, on paper-50: outer 3px ink-800 border, inner 1px border ins
 
 ### FAQ (short) — paper-100
 
-Eyebrow `PROSPECTOR'S HANDBOOK`, H2 "Questions from the camp". Six accordions, then the link "Read the full rules & FAQ →".
+Eyebrow `PROSPECTOR'S HANDBOOK`, H2 "Questions from the camp". Six accordions on the ledger page (§5.20), then the link "Read the full rules & FAQ →". The harbor engraving bleeds in from the right.
 
 ### Footer (`.on-dark`, after the flipped tear)
 
