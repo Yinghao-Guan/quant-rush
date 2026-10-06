@@ -1,0 +1,47 @@
+---
+/** The three highlights as physical artifacts: a ticket, a tool tag, and an assay certificate. */
+import Icon from './Icon.astro';
+import Emblem from './Emblem.astro';
+import { SITE } from '../config/site';
+---
+
+<div class="artifacts reveal">
+  <article class="artifact ticket">
+    <div class="ticket__inner">
+      <div class="ticket__main">
+        <i class="pin" aria-hidden="true"></i>
+        <span class="artifact__kicker">Admit all · no travel required</span>
+        <h3 class="artifact__title"><Icon name="laptop" />100% Online</h3>
+        <p>Compete from anywhere. Submissions and the leaderboard live on Kaggle.</p>
+        <div class="artifact__mono">VALID OCT 13 – NOV 22 · ANY DEVICE WITH A BROWSER</div>
+      </div>
+      <div class="ticket__stub" aria-hidden="true">QNTR · 2026 · No. 001849</div>
+    </div>
+  </article>
+
+  <article class="artifact tag">
+    <svg class="tag__string" viewBox="0 0 90 80" aria-hidden="true">
+      <path d="M78 76 C 70 50, 40 40, 12 4"></path>
+    </svg>
+    <div class="tag__inner">
+      <i class="tag__hole" aria-hidden="true"></i>
+      <span class="artifact__kicker">Tool issue</span>
+      <h3 class="artifact__title">Picks &amp; Shovels</h3>
+      <div class="artifact__mono">{SITE.organizer.meeting.toUpperCase()}</div>
+      <p>Every Tuesday: a workshop, then office hours. We teach the tools; you dig.</p>
+      <span class="badge badge--tbd" aria-hidden="true">Issued</span>
+    </div>
+  </article>
+
+  <article class="artifact cert">
+    <span class="cert__corner" aria-hidden="true">✦</span>
+    <span class="cert__corner" aria-hidden="true">✦</span>
+    <span class="cert__corner" aria-hidden="true">✦</span>
+    <span class="cert__corner" aria-hidden="true">✦</span>
+    <span class="artifact__kicker">Assay Office · Santa Monica</span>
+    <h3 class="artifact__title">Certificate of Reward</h3>
+    <p>Real prizes for the top of the private leaderboard, the best beginner, and a few surprises.</p>
+    <span class="badge badge--stamp badge--tbd cert__stamp">To be announced</span>
+    <div class="cert__seal" aria-hidden="true"><Emblem size={56} /></div>
+  </article>
+</div>

@@ -1,0 +1,455 @@
+/* ==========================================================================
+   Quant Rush — middle-of-page sections
+   Artifacts (ticket, tag, certificate), the mine cross-section, the corkboard,
+   the map behind the Claim Trail, and bleeding engravings. Loaded after
+   components.css so it can override the generic card/section rules.
+   ========================================================================== */
+
+/* ---- Bleeding engraving: a large, faint fragment behind a paper section --- */
+.engraving--bleed {
+  position: absolute;
+  z-index: 0;
+  width: var(--w, 560px);
+  max-width: 70vw;
+  aspect-ratio: var(--ar, 4 / 3);
+  top: var(--y, auto);
+  bottom: var(--b, auto);
+  left: var(--x, auto);
+  right: var(--r, auto);
+  opacity: var(--opacity, .12);
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 25%, transparent 72%);
+  mask-image: radial-gradient(ellipse at center, #000 25%, transparent 72%);
+}
+@media (max-width: 639px) {
+  .engraving--bleed { opacity: calc(var(--opacity, .12) * .7); }
+}
+
+/* ---- Pushpin ------------------------------------------------------------- */
+.pin {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #E0634C, #8A2E22 72%);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, .45);
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Highlights as artifacts
+   ========================================================================== */
+.artifacts {
+  display: grid;
+  gap: var(--s-7) var(--s-5);
+  align-items: start;
+  margin-top: var(--s-8);
+}
+.artifact {
+  position: relative;
+  color: var(--ink-800);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform var(--t-std) var(--ease);
+}
+.artifact:hover { transform: rotate(0deg) translateY(-4px); }
+.artifact p { margin-top: var(--s-3); color: var(--ink-600); font-size: .9375rem; }
+.artifact__kicker {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: .75rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--rust-500);
+}
+.artifact__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.05;
+  margin-top: 4px;
+}
+.artifact__mono {
+  margin-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  color: var(--ink-600);
+}
+@media (min-width: 900px) {
+  .artifacts { grid-template-columns: 1.2fr .8fr 1fr; gap: var(--s-5); }
+  .tag { margin-top: 44px; }
+  .cert { margin-top: 10px; }
+}
+
+/* Ticket: notched edges, a perforated stub */
+.ticket { --tilt: -1.5deg; filter: drop-shadow(4px 4px 0 var(--ink-800)); }
+.ticket__inner {
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  background: var(--paper-50);
+  outline: 1px solid var(--ink-800);
+  outline-offset: -8px;
+  -webkit-mask:
+    radial-gradient(circle at 0 50%, transparent 11px, #000 11.5px) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, transparent 11px, #000 11.5px) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle at 0 50%, transparent 11px, #000 11.5px) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, transparent 11px, #000 11.5px) right / 51% 100% no-repeat;
+}
+.ticket__main { padding: 26px 24px 26px 32px; border-right: 2px dashed var(--ink-400); }
+.ticket__stub {
+  display: grid;
+  place-items: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .18em;
+  color: var(--ink-600);
+  text-transform: uppercase;
+}
+.ticket .artifact__title { display: flex; align-items: center; gap: .4em; }
+.ticket .icon { color: var(--gold-800); width: .9em; height: .9em; }
+
+/* Tag: kraft paper, pointed top, a hole and a string */
+.tag { --tilt: 2.5deg; filter: drop-shadow(4px 4px 0 var(--ink-800)); }
+.tag__inner {
+  position: relative;
+  padding: 64px 22px 28px;
+  background: #D9BC8C;
+  clip-path: polygon(50% 0, 100% 20%, 100% 100%, 0 100%, 0 20%);
+}
+.tag__inner::before {
+  content: "";
+  position: absolute;
+  inset: 44px 8px 8px;
+  border: 1px solid rgba(43, 29, 16, .55);
+  pointer-events: none;
+}
+.tag__hole {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: var(--paper-100);
+  box-shadow: 0 0 0 3px #B5945E, 0 0 0 4px rgba(43, 29, 16, .5);
+}
+.tag__string {
+  position: absolute;
+  left: 50%;
+  top: -58px;
+  width: 90px;
+  height: 80px;
+  margin-left: -78px;
+  pointer-events: none;
+}
+.tag__string path { fill: none; stroke: var(--ink-600); stroke-width: 1.5; stroke-linecap: round; }
+.tag .artifact__title { font-family: var(--font-label); font-weight: 600; font-size: 1.25rem; letter-spacing: .06em; text-transform: uppercase; }
+.tag .badge { position: absolute; right: 14px; bottom: 14px; --tilt: -6deg; }
+
+/* Certificate: ornamental border, a wax-gold seal, a stamp */
+.cert {
+  --tilt: -1deg;
+  padding: 28px 28px 72px;
+  background: var(--paper-50);
+  border: 3px solid var(--ink-800);
+  outline: 1px solid var(--ink-800);
+  outline-offset: -9px;
+  box-shadow: var(--shadow-hard);
+}
+.cert__corner {
+  position: absolute;
+  font-size: .75rem;
+  color: var(--gold-800);
+  line-height: 1;
+}
+.cert__corner:nth-of-type(1) { top: 10px; left: 11px; }
+.cert__corner:nth-of-type(2) { top: 10px; right: 11px; }
+.cert__corner:nth-of-type(3) { bottom: 10px; left: 11px; }
+.cert__corner:nth-of-type(4) { bottom: 10px; right: 11px; }
+.cert .artifact__kicker { text-align: center; display: block; }
+.cert .artifact__title { text-align: center; font-size: 1.375rem; }
+.cert__seal {
+  position: absolute;
+  right: 18px;
+  bottom: -16px;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--gold-500);
+  color: var(--ink-800);
+  border: 2px solid var(--ink-800);
+  box-shadow: 2px 2px 0 var(--ink-800);
+  transform: rotate(-8deg);
+}
+.cert__stamp { position: absolute; left: 22px; bottom: 18px; --tilt: -7deg; }
+
+/* ==========================================================================
+   How it works: a mine cross-section
+   ========================================================================== */
+.mine {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--ink-800);
+  padding-bottom: calc(var(--s-9) + 28px);
+  background: linear-gradient(
+    to bottom,
+    var(--paper-100) 0 18%,
+    var(--paper-200) 18% 34%,
+    #CDB488 34% 50%,
+    #9A7A50 50% 66%,
+    #5A3E22 66% 82%,
+    var(--ink-900) 82% 100%
+  );
+}
+.mine__hatch {
+  position: absolute;
+  inset: 46% 0 0;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(135deg, rgba(0, 0, 0, .09) 0 2px, transparent 2px 11px);
+  mix-blend-mode: multiply;
+}
+.mine__strata { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+.mine__strata path { fill: none; stroke: rgba(43, 29, 16, .4); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.mine__vein { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 0; height: 90px; pointer-events: none; }
+.mine__vein path {
+  fill: none;
+  stroke: var(--gold-500);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 6px rgba(212, 160, 23, .85));
+}
+.mine__vein .thin { stroke: var(--gold-300); stroke-width: 1.5; opacity: .8; }
+.mine .section-head { position: relative; z-index: 1; margin-bottom: var(--s-8); }
+
+.shaft { position: relative; z-index: 1; display: grid; gap: var(--s-7); padding-left: 60px; }
+.shaft::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: -24px;
+  bottom: -40px;
+  width: 28px;
+  --rail: color-mix(in srgb, var(--gold-700) 85%, transparent);
+  background:
+    linear-gradient(var(--rail), var(--rail)) left / 3px 100% no-repeat,
+    linear-gradient(var(--rail), var(--rail)) right / 3px 100% no-repeat,
+    repeating-linear-gradient(to bottom, transparent 0 16px, var(--rail) 16px 19px) center / 16px 100% no-repeat;
+}
+.level { position: relative; }
+.level__lamp {
+  position: absolute;
+  left: -60px;
+  top: 10px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gold-500);
+  color: var(--ink-900);
+  border: 2px solid var(--ink-900);
+  box-shadow: 3px 3px 0 var(--ink-800);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+.level__chamber {
+  padding: var(--s-5) var(--s-6);
+  background: var(--paper-50);
+  border: 2px solid var(--ink-800);
+  box-shadow: var(--shadow-hard);
+}
+.level__depth {
+  margin-bottom: 6px;
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-600);
+}
+.level h3 { display: flex; align-items: center; gap: .5em; margin-bottom: var(--s-2); }
+.level h3 .icon { color: var(--gold-800); }
+.level p { color: var(--ink-600); }
+
+.level--3 .level__lamp,
+.level--4 .level__lamp { box-shadow: 3px 3px 0 var(--ink-900), 0 0 44px 12px rgba(212, 160, 23, .35); }
+.level--3 .level__chamber {
+  background: var(--surface-dark);
+  color: var(--paper-100);
+  border-color: var(--gold-700);
+  box-shadow: 4px 4px 0 var(--gold-700);
+}
+.level--4 .level__chamber {
+  background: var(--ink-900);
+  color: var(--paper-50);
+  border-color: var(--gold-500);
+  box-shadow: 4px 4px 0 var(--gold-700), 0 0 70px rgba(212, 160, 23, .22);
+}
+.level--3 .level__depth, .level--4 .level__depth { color: var(--gold-300); }
+.level--3 p, .level--4 p { color: var(--paper-200); }
+.level--3 h3 .icon, .level--4 h3 .icon { color: var(--gold-300); }
+
+@media (min-width: 900px) {
+  .shaft { grid-template-columns: 1fr 120px 1fr; padding-left: 0; row-gap: var(--s-5); }
+  .shaft::before { left: 50%; transform: translateX(-50%); top: -40px; }
+  .level { grid-column: 1; grid-row: var(--row); }
+  .level:nth-child(even) { grid-column: 3; }
+  .level__lamp { left: auto; right: -88px; top: 14px; }
+  .level:nth-child(even) .level__lamp { right: auto; left: -88px; }
+  .level:nth-child(odd) .level__chamber { text-align: right; }
+  .level:nth-child(odd) h3 { flex-direction: row-reverse; justify-content: flex-start; }
+}
+
+/* ==========================================================================
+   Register: a corkboard
+   ========================================================================== */
+.board {
+  position: relative;
+  isolation: isolate;
+  color: var(--paper-100);
+  background-color: #7E5633;
+  background-image:
+    radial-gradient(circle, rgba(0, 0, 0, .16) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(255, 255, 255, .06) 0 1px, transparent 1.6px);
+  background-size: 7px 9px, 11px 13px;
+  background-position: 0 0, 3px 5px;
+  box-shadow:
+    inset 0 0 0 14px #4A2F17,
+    inset 0 0 0 16px #2B1D10,
+    inset 0 0 90px rgba(0, 0, 0, .4);
+  padding: calc(var(--section-y) + 16px) 0;
+}
+.board::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+.board > * { position: relative; z-index: 1; }
+.board .section-head .eyebrow { color: var(--gold-300); }
+.board .section-head h2 { color: var(--paper-50); text-shadow: 3px 3px 0 var(--ink-900); }
+.board .lead { color: var(--paper-200); }
+.board__stage { position: relative; }
+.board .wanted {
+  transform: rotate(-1.2deg);
+  box-shadow: 4px 4px 0 var(--ink-900), 12px 16px 28px rgba(0, 0, 0, .45);
+}
+.board .wanted__nail {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle at 35% 35%, #E0634C, #8A2E22 72%);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, .5);
+}
+.board .engraving__credit { color: color-mix(in srgb, var(--paper-200) 70%, transparent); }
+
+.scrap {
+  position: absolute;
+  display: none;
+  max-width: 220px;
+  padding: 16px 18px;
+  color: var(--ink-800);
+  transform: rotate(var(--tilt, 0deg));
+  box-shadow: 2px 3px 0 var(--ink-900), 8px 12px 20px rgba(0, 0, 0, .4);
+}
+.scrap--note {
+  background: #F2E3AE;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 23px, rgba(43, 29, 16, .14) 23px 24px);
+  font-style: italic;
+  font-size: .9375rem;
+  line-height: 24px;
+}
+.scrap--ticket {
+  background: var(--paper-50);
+  border: 1px dashed var(--ink-400);
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-600);
+  max-width: 180px;
+}
+.scrap--ticket b { display: block; font-size: .875rem; color: var(--ink-800); margin-bottom: 4px; }
+@media (min-width: 1200px) {
+  .scrap { display: block; }
+  .scrap--note { left: -36px; top: 150px; --tilt: -4deg; }
+  .scrap--ticket { right: -10px; top: 70px; --tilt: 3deg; }
+}
+@media (max-width: 639px) {
+  .board { box-shadow: inset 0 0 0 8px #4A2F17, inset 0 0 0 10px #2B1D10, inset 0 0 60px rgba(0, 0, 0, .4); }
+  .board .wanted { transform: rotate(-.8deg); }
+}
+
+/* ==========================================================================
+   Claim Trail as a map sheet
+   ========================================================================== */
+.trail {
+  padding: var(--s-5) var(--s-4);
+  background: var(--paper-50);
+  border: 2px solid var(--ink-800);
+  outline: 1px solid var(--ink-800);
+  outline-offset: -8px;
+  box-shadow: var(--shadow-hard);
+}
+.trail__list { padding-top: var(--s-2); }
+@media (min-width: 900px) {
+  .trail { padding: var(--s-5) var(--s-6); }
+  .trail__chart { margin-top: 0; }
+}
+.map { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.map__contours { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map__contours path { fill: none; stroke: var(--ink-400); stroke-width: 1; opacity: .4; vector-effect: non-scaling-stroke; }
+.map__contours .map__river { stroke: var(--green-700); stroke-width: 2; opacity: .3; }
+.map__label {
+  position: absolute;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: .6875rem;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+  opacity: .8;
+  white-space: nowrap;
+}
+.map__compass { position: absolute; top: 8px; right: 10px; width: 64px; height: 64px; color: var(--ink-600); opacity: .75; }
+.map__legend {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 14px;
+  padding: 7px 12px;
+  border: 1px solid var(--ink-400);
+  background: color-mix(in srgb, var(--paper-50) 88%, transparent);
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .06em;
+  color: var(--ink-600);
+}
+.map__legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  border: 2px solid var(--ink-800);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.map__legend i.current { background: var(--gold-500); }
+.map__legend i.deadline { border-radius: 2px; transform: rotate(45deg); background: var(--rust-500); border-color: var(--rust-500); }

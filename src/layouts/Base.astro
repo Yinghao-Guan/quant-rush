@@ -8,6 +8,7 @@ import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components.css';
 import '../styles/pages.css';
+import '../styles/sections.css';
 
 import Ticker from '../components/Ticker.astro';
 import Nav from '../components/Nav.astro';
@@ -55,6 +56,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
     </main>
     <Footer />
     <Depth />
+    <div class="vignette" aria-hidden="true"></div>
     <script>
       // Scroll reveals (design.md §8). Everything is visible immediately under reduced motion.
       const els = document.querySelectorAll<HTMLElement>('.reveal');

@@ -1,0 +1,44 @@
+---
+/**
+ * "How it works" as a mine cross-section: four levels down a shaft, from the
+ * paper-colored surface to bedrock, where the gold vein (the Assay) glows.
+ * Use inside <section class="mine">; the strata, hatch, and vein are rendered here.
+ */
+import Icon from './Icon.astro';
+import { longDay } from '../lib/dates';
+import { SITE } from '../config/site';
+
+const levels = [
+  { depth: 'Level 01 · Surface', icon: 'stake', title: 'Stake your claim', text: 'Fill in the form below. Two minutes.' },
+  { depth: 'Level 02 · 50 ft', icon: 'shovel', title: 'Get your gear', text: 'Make a free Kaggle account and join the Quant Rush competition page.' },
+  { depth: 'Level 03 · 120 ft', icon: 'cart', title: 'Dig', text: 'Download the data, train models, submit predictions. Come Tuesdays for workshops and office hours.' },
+  { depth: 'Level 04 · Bedrock', icon: 'scales', title: 'The Assay', text: `${longDay(SITE.dates.deadline)}: submissions close. The private leaderboard shows who struck real gold.` },
+];
+---
+
+<svg class="mine__strata" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 18 C 120 14, 240 23, 360 18 S 600 13, 720 19 S 900 24, 1000 17"></path>
+  <path d="M0 34 C 100 38, 260 30, 380 35 S 620 39, 760 33 S 920 30, 1000 36"></path>
+  <path d="M0 50 C 140 46, 220 55, 340 50 S 580 45, 700 51 S 880 56, 1000 49"></path>
+  <path d="M0 66 C 90 70, 250 62, 400 67 S 640 71, 780 65 S 930 62, 1000 68"></path>
+  <path d="M0 82 C 130 78, 230 86, 350 82 S 560 77, 690 83 S 900 87, 1000 81"></path>
+</svg>
+<div class="mine__hatch" aria-hidden="true"></div>
+
+<ol class="shaft reveal">
+  {levels.map((l, i) => (
+    <li class={`level level--${i + 1}`} style={`--row:${i + 1}`}>
+      <div class="level__lamp" aria-hidden="true">{String(i + 1).padStart(2, '0')}</div>
+      <div class="level__chamber">
+        <div class="level__depth">{l.depth}</div>
+        <h3><Icon name={l.icon} />{l.title}</h3>
+        <p>{l.text}</p>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<svg class="mine__vein" viewBox="0 0 1000 90" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 60 L80 52 L140 66 L220 48 L300 58 L360 40 L440 55 L520 44 L600 62 L680 50 L760 64 L840 46 L920 58 L1000 50"></path>
+  <path class="thin" d="M0 72 L90 64 L150 76 L230 58 L310 68 L370 52 L450 66 L530 56 L610 72 L690 60 L770 74 L850 58 L930 68 L1000 62"></path>
+</svg>

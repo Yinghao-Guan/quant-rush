@@ -426,7 +426,7 @@
 }
 .tear svg { width: 100%; height: 100%; display: block; }
 .tear--paper .tear__shadow { fill: var(--gold-700); opacity: .55; }
-.tear--paper .tear__fill { fill: var(--paper-100); }
+.tear--paper .tear__fill { fill: var(--tear-fill, var(--paper-100)); }
 .tear--dark .tear__shadow { fill: var(--ink-900); opacity: .25; }
 .tear--dark .tear__fill { fill: var(--ink-900); }
 

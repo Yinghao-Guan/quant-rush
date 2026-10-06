@@ -85,8 +85,11 @@ Newspaper detail: the About paragraph opens with a three-line drop cap in Alfa S
 - Radius: 4px for buttons and badges, 6px for cards, pill for stamps.
 - Poster borders: 2px ink-800. Hairlines: 1px paper-300. Newspaper double rule: 1px line, 3px gap, 3px line.
 - Hard shadows (no blur): `4px 4px 0 ink-800` on paper, `4px 4px 0 gold-700` on dark. Hover 6px, press 0.
-- Paper grain: an SVG `feTurbulence` noise data-URI tiled at 300px, opacity .06, `mix-blend-mode: multiply`, on every `.paper` section.
-- Home band order: Hero (dark) → tear → About + Highlights (paper-100) → Timeline (paper-100) → How it works (paper-200 band with double rules) → Awards (paper-100) → Register (paper-200 band) → FAQ (paper-100) → flipped tear → Footer (dark).
+- Paper grain: an SVG `feTurbulence` noise data-URI tiled at 300px, opacity .10, `mix-blend-mode: multiply`, on every `.paper` section.
+- Foxing: every `.paper` section also carries four faint brown age spots (large radial gradients, multiply), mirrored on alternate sections.
+- Vignette: a fixed, full-viewport radial darkening of the page edges (multiply, ~16% at the corners) so the page reads as a sheet rather than a screen color.
+- Bleeding engravings: a large ink-variant engraving fragment (10–12% opacity, radial-masked) sits behind the About and FAQ sections. Paper sections clip horizontal overflow.
+- Home band order: Hero (dark) → tear → About + Highlights (paper) → Timeline map (paper) → How it works (the Mine: paper darkening to ink) → tear → Awards (paper) → Register (corkboard) → FAQ (paper) → flipped tear → Footer (dark). The middle of the page therefore gets two dark bands of its own.
 
 ## 5. Components
 
@@ -149,6 +152,26 @@ Inline SVG at the bottom of the hero and, smaller at 12% opacity, above the foot
 
 A fixed bottom-left mono label `DEPTH 0 FT` that increases with scroll (1 ft per 10px). Hidden below 900px and under reduced motion.
 
+### 5.14 Artifacts (ticket, tag, certificate)
+
+Highlights are three physical objects instead of three identical cards, each rotated 1–2.5° and pinned, straightening on hover. All CSS, no images.
+
+- **Ticket:** paper-50, semicircular notches at the left and right mid-edges (two radial-gradient masks on an inner element; the hard drop shadow is applied by `filter` on the wrapper so it follows the notches), an inner hairline, a dashed perforation, and a vertical mono stub (`QNTR · 2026 · No. 001849`).
+- **Tag:** kraft paper (`#D9BC8C`), pointed top via `clip-path`, a reinforced hole, an SVG string, an inner hairline, and a rust `ISSUED` badge.
+- **Certificate:** paper-50 with the WANTED-poster double border, `✦` corner ornaments, a gold seal (the emblem on a gold disc, rotated) overlapping the bottom edge, and a rotated `TO BE ANNOUNCED` stamp.
+
+### 5.15 The Mine (how it works)
+
+A cross-section. The section background is six hard-stopped strata from paper-100 down to ink-900, with wavy SVG boundary lines, a diagonal hatch on the lower half, and a glowing gold vein (two jagged SVG paths with a gold drop shadow) at bedrock. A ladder (two rails and rungs, gold-700) runs down the center on desktop and down the left on mobile. The four steps are chambers hung on the ladder, zig-zagging left/right by row; each has a mono depth label (`LEVEL 03 · 120 FT`) and a numbered lamp. Chambers 3 and 4 flip to dark surfaces with gold borders and a lamp glow. The section ends with a paper tear.
+
+### 5.16 Corkboard (register)
+
+Cork brown (`#7E5633`) with two speckle patterns and a noise overlay, framed by a wooden border drawn with inset box-shadows. Headings use paper-50 with an ink text-shadow; the WANTED poster is rotated −1.2° with a soft shadow in addition to the hard one, and its nails become pushpins. At ≥ 1200px two extra scraps are pinned beside the poster: a ruled index card ("Need a team?") and a dashed ticket for the Kaggle page.
+
+### 5.17 Map sheet (timeline)
+
+The Claim Trail sits on a paper-50 sheet with the poster double border and hard shadow. Behind the desktop chart: contour lines and a river (SVG, 1px ink-400 at 40%, river in green-700), three tracked-caps place labels (`SIERRA NEVADA`, `AMERICAN RIVER`, `SUTTER'S MILL`), a compass rose top-right, and a legend box top-left. Positions are chosen so nothing collides with the node labels. The mobile rail sits inside the same sheet.
+
 ## 6. Home page composition
 
 ### Hero (`.on-dark`)
@@ -166,7 +189,9 @@ A fixed bottom-left mono label `DEPTH 0 FT` that increases with scroll (1 ft per
 
 Two columns at ≥ 900px. Left: eyebrow `FROM THE QFE CLUB`, one paragraph with a drop cap (what it is, who it is for, no experience needed, why it matters), and a text link to the rules. Right: a 160px engraving medallion (a prospector) with credit. Stacks on mobile, medallion first at 120px.
 
-### Highlights — three poster cards
+### Highlights — three artifacts (§5.14)
+
+A ticket, a tag, and a certificate in a 1.2 / 0.8 / 1 column grid, the tag hanging lower than its neighbors. Copy:
 
 1. **100% Online** (laptop icon) — "Compete from anywhere. Submissions and the leaderboard live on Kaggle."
 2. **Picks & Shovels** (pickaxe and shovel) — "Every Tuesday, 11:15–12:15 in MSB 207: a workshop, then office hours. We teach the tools; you dig."
@@ -180,9 +205,9 @@ Left-aligned header: eyebrow `SIX WEEKS · OCT 13 → NOV 22`, H2 "The Claim Tra
 - **< 900px:** a vertical rail at x = 20px (3px: solid ink for the past, dashed gold for the future); same nodes; items stacked. The current item gets a gold left bar and a `YOU ARE HERE` stamp.
 - Data lives in `src/data/schedule.json` (date, title, blurb, kind: kickoff | workshop | deadline | wrapup). Current and past states are computed by date in a small script; done items get `✓ DONE`.
 
-### How it works — paper-200 band, four steps
+### How it works — the Mine (§5.15)
 
-Columns at ≥ 900px joined by a dashed gold-700 line behind 56px gold circles holding Alfa numerals 01–04; icon + Oswald title + serif text. Vertical with a left rail on mobile.
+Header "From greenhorn to prospector, four levels down" on the paper-colored surface, then four chambers down the shaft:
 
 1. **Stake your claim** — Fill in the form below. Two minutes.
 2. **Get your gear** — Make a free Kaggle account and join the Quant Rush competition page.
@@ -200,7 +225,7 @@ A 2×2 grid (one column on mobile) of award cards. Names are placeholders, edita
 
 Notice box below: "Prizes are real. We'll announce what they are at Kickoff."
 
-### Register — "Stake Your Claim" WANTED poster (paper-200 band)
+### Register — "Stake Your Claim" WANTED poster on the corkboard (§5.16)
 
 A poster, max 760px, on paper-50: outer 3px ink-800 border, inner 1px border inset 8px, four small rust-500 "nail" dots in the corners, shadow `8px 8px 0 ink-800`. Inside, top to bottom: "WANTED" (Alfa, `clamp(3rem, 8vw, 5rem)`, tracking .04em) → "PROSPECTORS" (Oswald 600, tracking .3em, rust-500) → a 96px engraving medallion → the italic line "Reward: prizes, bragging rights, and a project for your résumé." → double rule → the Google Form iframe (100% width; height 1400px desktop / 1700px mobile, tuned against the real form; `loading="lazy"`; `title="Quant Rush registration form"`) → mono link "Form not loading? Open it in a new tab →". When no form URL is configured: a dashed placeholder box with a `REGISTRATION OPENS OCT 13` stamp.
 

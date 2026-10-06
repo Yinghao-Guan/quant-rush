@@ -29,6 +29,32 @@ const classes = (i: number, extra = '') =>
 
 <div class="trail reveal" data-trail data-points={JSON.stringify(points)} data-dates={JSON.stringify(items.map((m) => m.date))}>
   <div class="trail__chart">
+    <div class="map" aria-hidden="true">
+      <svg class="map__contours" viewBox="0 0 1000 400" preserveAspectRatio="none">
+        <path d="M-20 150 C 80 90, 200 70, 300 120 S 420 220, 330 290 S 120 330, 40 260 S -40 190, -20 150 Z"></path>
+        <path d="M30 150 C 110 110, 200 100, 270 140 S 360 220, 290 265 S 150 290, 90 240 S 10 185, 30 150 Z"></path>
+        <path d="M80 155 C 140 130, 200 130, 240 160 S 300 220, 250 245 S 170 255, 130 225 S 60 185, 80 155 Z"></path>
+        <path d="M700 420 C 720 330, 820 280, 920 300 S 1060 380, 1020 440 Z"></path>
+        <path d="M750 420 C 770 350, 840 320, 920 335 S 1010 400, 990 430 Z"></path>
+        <path d="M500 410 C 520 360, 600 340, 660 370 S 700 420, 690 430 Z"></path>
+        <path d="M560 -10 C 580 40, 660 60, 720 30 S 820 -20, 860 -10 Z"></path>
+        <path class="map__river" d="M-10 330 C 120 300, 180 360, 300 340 S 480 300, 600 330 S 760 390, 1010 350"></path>
+      </svg>
+      <span class="map__label" style="left:13%;top:16%">Sierra Nevada</span>
+      <span class="map__label" style="left:60%;top:91%">American River</span>
+      <span class="map__label" style="left:45%;top:80%">Sutter's Mill</span>
+      <svg class="map__compass" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="25" fill="none" stroke="currentColor" stroke-width="1"></circle>
+        <path d="M32 9l5 21 21 2-21 2-5 21-5-21-21-2 21-2z" fill="currentColor" opacity=".75"></path>
+        <path d="M32 9l5 21-5-2z" fill="#A63D2F"></path>
+        <text x="32" y="7" font-size="7" text-anchor="middle" font-family="Oswald Variable, Arial Narrow, sans-serif" fill="currentColor">N</text>
+      </svg>
+      <div class="map__legend">
+        <span><i></i>Workshop</span>
+        <span><i class="current"></i>Next up</span>
+        <span><i class="deadline"></i>The Assay</span>
+      </div>
+    </div>
     <span class="trail__axis">Skill →</span>
     <svg class="trail__svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
       <g class="trail__draw">
