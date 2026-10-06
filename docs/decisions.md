@@ -9,7 +9,7 @@ Newest decisions go at the top of each section.
 | Topic | Decision |
 |---|---|
 | Repository split | The website and the competition are separate repositories (decided 2026-10-06). This one is public (GitHub Pages); the competition repository is private. Public facts flow one way, from the competition into `src/config/site.ts`, `src/data/*.json`, and `src/pages/rules.astro`. |
-| Deployment | GitHub Pages via `.github/workflows/deploy.yml`. The workflow derives `BASE_PATH` from the repository name, so internal links go through `withBase()` in `src/lib/paths.ts`. A GitHub repository has not been created yet. |
+| Deployment | GitHub Pages via `.github/workflows/deploy.yml` from the public repository `Yinghao-Guan/quant-rush`, served on the custom domain **smcqfec.com** (so `BASE_PATH` is `/`). Internal links still go through `withBase()` in `src/lib/paths.ts` in case the site ever moves back under a sub-path. |
 | Style guide | `/styleguide` (unlinked, `noindex`) shows every token and component. It replaced the earlier static `docs/design-preview/`, which was removed once the Astro site existed. |
 | Site build | Astro 7 static site, scaffolded 2026-10-06. Engravings live in `src/assets/engravings/` and are converted to WebP at build; the emblem is in `public/brand/`; licenses in `CREDITS.md` at the repo root. |
 | Site tech | Astro, no UI framework: the ticker, countdown, candlesticks, timeline, and nav are small vanilla scripts. Built mainly by a coding agent for speed of building and updating. |

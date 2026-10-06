@@ -66,7 +66,7 @@ Every token and component is visible at `/styleguide` (unlinked, not indexed).
 
 ## Deploying
 
-The workflow builds with `SITE_URL=https://<owner>.github.io` and `BASE_PATH=/<repo>`, which fits a project site at `https://<owner>.github.io/<repo>/`. For a custom domain or an `<owner>.github.io` repository, set `BASE_PATH` to `/` and `SITE_URL` to the domain in the workflow. In the repository settings, set Pages → Source to "GitHub Actions".
+The site is live at <https://smcqfec.com> (GitHub Pages with a custom domain; Settings → Pages → Source is "GitHub Actions"). The workflow builds with `SITE_URL=https://smcqfec.com` and `BASE_PATH=/`. If the custom domain is ever removed, switch the workflow back to `SITE_URL=https://<owner>.github.io` and `BASE_PATH=/<repo>` so asset paths get the `/<repo>/` prefix; the commented lines in `deploy.yml` show the values.
 
 ## Contributing
 

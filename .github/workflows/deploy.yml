@@ -24,10 +24,12 @@ jobs:
         with:
           node-version: 22
         env:
-          # Project site: https://<owner>.github.io/<repo>/
-          # For a custom domain or a <owner>.github.io repo, set SITE_URL to the domain and BASE_PATH to "/".
-          SITE_URL: https://${{ github.repository_owner }}.github.io
-          BASE_PATH: /${{ github.event.repository.name }}
+          # The site is served from the custom domain set in Settings → Pages, so it lives at the root.
+          # Without a custom domain, a project site needs:
+          #   SITE_URL: https://${{ github.repository_owner }}.github.io
+          #   BASE_PATH: /${{ github.event.repository.name }}
+          SITE_URL: https://smcqfec.com
+          BASE_PATH: /
 
   deploy:
     needs: build
