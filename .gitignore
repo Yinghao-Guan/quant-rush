@@ -1,0 +1,112 @@
+# ---- AI assistants / personal tooling ----
+AGENTS.md
+CLAUDE.md
+.claude/
+
+# ---- Scratch space ----
+temp/
+
+# ---- JetBrains ----
+.idea/
+*.iml
+
+# ---- VS Code ----
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+*.code-workspace
+.history/
+*.vsix
+
+# ---- macOS ----
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+Icon?
+
+# ---- Windows ----
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+*.stackdump
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+kaggle.json
+
+# ---- Node.js / frontend ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+.npm/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+.parcel-cache/
+.cache/
+.turbo/
+
+# ---- Build output / framework caches ----
+dist/
+build/
+out/
+coverage/
+.next/
+.nuxt/
+.output/
+.svelte-kit/
+.astro/
+.vite/
+.vercel/
+.netlify/
+.wrangler/
+.docusaurus/
+.vitepress/cache/
+.vitepress/dist/
+
+# ---- Python (data / Kaggle tooling) ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ---- Competition data (large / not for the repo) ----
+data/
+*.csv
+!docs/**/*.csv
+!public/**/*.csv
+
+# ---- Logs ----
+*.log
+logs/
