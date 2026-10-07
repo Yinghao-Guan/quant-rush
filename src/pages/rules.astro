@@ -23,7 +23,7 @@ const sections = [
   <PageHeader
     eyebrow="Rules · eligibility · FAQ"
     title="The Miner's Code"
-    lead="Everything you need to know before you dig. Lines marked “to be finalized” are decided before Kickoff."
+    lead="Everything you need to know before you dig. Lines marked “to be finalized” are decided before the competition opens."
     image={sluice}
     pos="center 30%"
     credit="H. Sandham, “The Sluice,” The Century, 1883 · Public domain"
@@ -40,10 +40,10 @@ const sections = [
       <div class="rules__body">
         <section id="eligibility">
           <h2><span class="sect">§1</span>Eligibility</h2>
-          <p>Quant Rush is open to every student currently enrolled at Santa Monica College, in any major, at any level of experience.</p>
+          <p>Quant Rush is open to every student currently enrolled at a California community college, in any major, at any level of experience.</p>
           <ul class="list">
-            <li>Register with your SMC student email. Before prizes are awarded, we match Kaggle usernames against the registration list.</li>
-            <li>Anyone with the link can join the competition on Kaggle, but only registered SMC students are eligible for awards and prizes.</li>
+            <li>Register with your college email. Before prizes are awarded, we match Kaggle usernames against the registration list.</li>
+            <li>Anyone with the link can join the competition on Kaggle, but only registered California community college students are eligible for awards and prizes.</li>
             <li>Members of the QFE Club board and anyone who helps design the problem cannot compete.</li>
           </ul>
         </section>
@@ -53,16 +53,16 @@ const sections = [
           <p>Compete solo or in a team of up to 4. Teams are formed on Kaggle, and teams can merge until <strong>Sunday, Nov 15, 11:59 p.m. Pacific</strong>.</p>
           <ul class="list">
             <li>One Kaggle account per person. Multiple accounts lead to disqualification, on Kaggle and here.</li>
-            <li>Need teammates? Say so on the registration form or ask on Discord, and we match people up at Kickoff.</li>
+            <li>Need teammates? Say so on the registration form or ask on Discord.</li>
             <li>Private sharing of code or predictions between teams is not allowed. Sharing publicly with everyone, in a Kaggle discussion or notebook, is fine and encouraged.</li>
           </ul>
         </section>
 
         <section id="data">
           <h2><span class="sect">§3</span>Data &amp; evaluation</h2>
-          <p>The dataset is historical financial data that has been transformed so that it cannot be matched back to its source. Column names are anonymized and dates are replaced with a sequence index. Trying to reverse this is against the rules (see the Code below) and, more to the point, will not help you.</p>
+          <p>The dataset comes from a legitimate, lawful source. Trying to trace it back to the original data is against the rules (see <a class="link" href="#code">the Code</a> below).</p>
           <h3>Public and private leaderboards</h3>
-          <p>Your submissions are scored on two parts of the test set. The <strong>public leaderboard</strong> updates after every submission and shows how you are doing on one part. The <strong>private leaderboard</strong> is computed on the other part and stays hidden until the deadline. Final rankings use the private leaderboard only. A model that chases the public score tends to fall on the private one; that is the whole lesson of Workshop 4.</p>
+          <p>Your submissions are scored on two parts of the test set. The <strong>public leaderboard</strong> updates after every submission and shows how you are doing on one part. The <strong>private leaderboard</strong> is computed on the other part and stays hidden until the deadline. Final rankings use the private leaderboard only. A model that chases the public score tends to fall on the private one.</p>
           <h3>Submissions</h3>
           <ul class="list">
             <li><strong>5 submissions a day per team.</strong> The count resets at midnight UTC: 5 p.m. Pacific until Nov 1, 4 p.m. after.</li>
@@ -82,7 +82,7 @@ const sections = [
 
         <section id="awards">
           <h2><span class="sect">§4</span>Awards</h2>
-          <p>One leaderboard, several ways to win. The prizes are real; we announce what they are at Kickoff.</p>
+          <p>One leaderboard, several ways to win. The prizes are real; we announce what they are here and on Discord.</p>
           <ul class="list">
             {awards.map((a) => (
               <li><strong>{a.name}</strong> — {a.category}. {a.blurb}</li>
@@ -91,9 +91,9 @@ const sections = [
           <h3>Who counts as a greenhorn</h3>
           <p>Greenhorn's Luck goes to the best-placed team on the private leaderboard in which every member chose “None yet” for experience on the registration form.</p>
           <h3>The Prospector's Report</h3>
-          <p>Optional, open to every registered team. Email a one-to-two-page memo to <a class="link" href={`mailto:${SITE.organizer.email}`}>{SITE.organizer.email}</a> by <strong>Wednesday, Nov 25, 11:59 p.m. Pacific</strong>, with your team name in the subject line. Tell us what you tried, what worked and what didn't, how you checked that you weren't overfitting, and what you learned. The board judges clarity and reasoning; your rank doesn't matter. AI tools can help with wording, but the ideas must be yours: end the memo with one line on how you used AI.</p>
+          <p>The award for sharp thinking, open to every registered participant or team, whether or not you submit to the leaderboard. Email a one-to-two-page memo to <a class="link" href={`mailto:${SITE.organizer.email}`}>{SITE.organizer.email}</a> by <strong>Wednesday, Nov 25, 11:59 p.m. Pacific</strong>, with your name or team name in the subject line. Tell us how you would attack the problem and why: what the data suggests, which approaches you tried or would try, how you would tell a real signal from luck, and what you learned. The board judges insight and clarity; leaderboard rank doesn't count. AI tools can help with wording, but the ideas must be yours: end the memo with one line on how you used AI.</p>
           <h3>How the joke award is decided</h3>
-          <p>Among the teams finishing in the top 10 of the public leaderboard, Fool's Gold goes to the team with the largest drop in rank on the private leaderboard. It comes with a prize and, if you want it, thirty seconds at the wrap-up to explain what happened.</p>
+          <p>Among the teams finishing in the top 10 of the public leaderboard, Fool's Gold goes to the team with the largest drop in rank on the private leaderboard. It comes with a real prize.</p>
           <h3>Claiming a prize</h3>
           <p>After the deadline we contact the winners of Mother Lode and Greenhorn's Luck. To claim the prize, send the board the code that produced your two final submissions within 5 days. If the code is missing or breaks the rules, the award goes to the next eligible team.</p>
         </section>
@@ -104,10 +104,10 @@ const sections = [
             <div class="code-box__title">Rules of the camp</div>
             <ol>
               <li><div><strong>Dig your own claim.</strong><p>One account per person. Your team's work is your team's work.</p></div></li>
-              <li><div><strong>Don't salt the mine.</strong><p>Use only the data we give you. No outside data, no attempts to de-anonymize it, recover the original source, or look up the answers.</p></div></li>
+              <li><div><strong>Don't salt the mine.</strong><p>Use only the data we give you. No outside data, no attempts to trace it back to its original source, and no looking up the answers.</p></div></li>
               <li><div><strong>Share at the campfire, not in the dark.</strong><p>Public sharing on Kaggle is welcome. Private sharing between teams is not.</p></div></li>
               <li><div><strong>Be good to the other prospectors.</strong><p>Help beginners. Be kind in discussions. Organizers can remove anyone who isn't.</p></div></li>
-              <li><div><strong>Ask for a lantern.</strong><p>Stuck? Ask on {SITE.links.discord ? <a class="link" href={SITE.links.discord} target="_blank" rel="noopener">Discord</a> : 'Discord'}, come Tuesdays, or email <a class="link" href={`mailto:${SITE.organizer.email}`}>{SITE.organizer.email}</a>. Nobody mines alone.</p></div></li>
+              <li><div><strong>Ask for a lantern.</strong><p>Stuck? Ask on {SITE.links.discord ? <a class="link" href={SITE.links.discord} target="_blank" rel="noopener">Discord</a> : 'Discord'} or email <a class="link" href={`mailto:${SITE.organizer.email}`}>{SITE.organizer.email}</a>. Nobody mines alone.</p></div></li>
             </ol>
           </div>
         </section>
@@ -115,7 +115,7 @@ const sections = [
         <section id="faq">
           <h2><span class="sect">§6</span>FAQ</h2>
           <Faq items={faq} ledger page="p. 6" />
-          <p style="margin-top:24px">Something missing? Ask on {SITE.links.discord ? <a class="link" href={SITE.links.discord} target="_blank" rel="noopener">Discord</a> : 'Discord'}, <a class="link" href={`mailto:${SITE.organizer.email}`}>email us</a>, or ask on Tuesday. <a class="link" href={withBase('/#register')}>Back to registration →</a></p>
+          <p style="margin-top:24px">Something missing? Ask on {SITE.links.discord ? <a class="link" href={SITE.links.discord} target="_blank" rel="noopener">Discord</a> : 'Discord'} or <a class="link" href={`mailto:${SITE.organizer.email}`}>email us</a>. <a class="link" href={withBase('/#register')}>Back to registration →</a></p>
         </section>
       </div>
     </div>

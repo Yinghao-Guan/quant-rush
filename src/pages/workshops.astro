@@ -10,14 +10,14 @@ import diggers from '../assets/engravings/california-gold-diggers-c1850.jpg';
 
 const status = computeStatus(schedule.map((m) => m.date));
 const materials = (m: (typeof schedule)[number]) =>
-  (['slides', 'notebook', 'recording'] as const).map((k) => ({ key: k, label: k[0].toUpperCase() + k.slice(1), url: m.materials[k] }));
+  (['slides', 'notebook'] as const).map((k) => ({ key: k, label: k[0].toUpperCase() + k.slice(1), url: m.materials[k] }));
 ---
 
-<Base title="Workshops" description="Every Tuesday during Quant Rush: a workshop, then office hours. Slides and notebooks are posted here after each session.">
+<Base title="Workshops" description="Every Tuesday during Quant Rush, SMC students meet for a workshop, then Q&A. Slides and notebooks are posted here after each session.">
   <PageHeader
     eyebrow={`Workshops · every Tuesday · ${SITE.organizer.meeting.split('·').pop()?.trim()}`}
     title="Picks & Shovels"
-    lead="Every Tuesday, 11:15–12:15, a workshop and then office hours. Can't make it? Materials land here after each session."
+    lead="Every Tuesday, 11:15–12:15 in MSB 207: a workshop, then Q&A. In person, for SMC students. You don't need them to compete; slides and notebooks land here after each session."
     image={diggers}
     pos="40% 50%"
     credit="Kellogg & Comstock, “California Gold Diggers,” c. 1850 · Yale Beinecke · Public domain"

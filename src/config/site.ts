@@ -7,7 +7,7 @@ export const SITE = {
   tagline: 'Strike signal in the noise.',
   subtitle: "SMC's first online quant competition",
   description:
-    'Quant Rush is a six-week online quant competition open to all Santa Monica College students, hosted by the Quantitative Finance & Entrepreneurship Club. No experience needed.',
+    'Quant Rush is a six-week online quant competition open to all California community college students, hosted by the Quantitative Finance & Entrepreneurship Club at Santa Monica College. No experience needed.',
 
   organizer: {
     name: 'Quantitative Finance & Entrepreneurship Club',
@@ -17,7 +17,7 @@ export const SITE = {
     instagram: 'qfecsmc',
     meeting: 'Tuesdays 11:15–12:15 · MSB 207',
     blurb:
-      'A student club for people who like markets, math, and building things. Meetings every Tuesday; everyone is welcome.',
+      'A student club for people who like markets, math, and building things. Meetings every Tuesday; all SMC students are welcome.',
   },
 
   /** ISO timestamps with explicit Pacific offsets (PDT until Nov 1, 2026, then PST). */
@@ -40,11 +40,11 @@ export const SITE = {
 
   /** Social share image (1200×630) under public/. Regenerate with `npm run og`. */
   ogImage: '/brand/og.jpg',
-  ogImageAlt: 'Quant Rush: Strike signal in the noise. An online quant competition for SMC students, Oct 13 to Nov 22, 2026.',
+  ogImageAlt: 'Quant Rush: Strike signal in the noise. An online quant competition for California community college students, Oct 13 to Nov 22, 2026.',
 
   /** Path under public/ to the club logo (transparent PNG, teal mark). Empty = text badge. */
   logoPath: '/brand/logo-qfe.png',
 
   /** Pinned chip at the front of the ticker. Empty = none. */
-  tickerPin: '★ KICKOFF OCT 13 · MSB 207',
+  tickerPin: '★ OPENS OCT 13 · 100% ONLINE',
 } as const;

@@ -43,7 +43,7 @@ The full visual spec lives in **`design.md`** (concept, color tokens, typography
 1. **Header / nav:** wordmark, links (Home, Workshops, Rules & FAQ), a gold "Register" button.
 2. **Ticker tape** (see above).
 3. **Hero:** "Quant Rush", tagline, subtitle, key dates, countdown (to the next milestone), primary button "Stake Your Claim" (scrolls to the form), secondary button "How it works".
-4. **About:** 3 to 4 sentences. What it is, who it is for (all SMC students, no experience needed), why it matters.
+4. **About:** 3 to 4 sentences. What it is, who it is for (all California community college students, no experience needed), why it matters.
 5. **Highlights:** three cards: Fully online, Weekly workshops, Prizes.
 6. **Timeline:** the 6-week schedule from `src/data/schedule.json`, with the current phase highlighted.
 7. **How it works:** 4 steps: Register, join on Kaggle, build and submit models, watch the leaderboard.
@@ -60,7 +60,7 @@ The full visual spec lives in **`design.md`** (concept, color tokens, typography
 
 ### 3. Rules & FAQ (`/rules`)
 
-- **Eligibility:** all SMC students; verified at prize time against the registration list.
+- **Eligibility:** all California community college students; verified at prize time against the registration list. The Tuesday workshops are separate and for SMC students.
 - **Team rules:** size and submission limits are TBD.
 - **Data and evaluation:** high-level only until the dataset is set; public vs. private leaderboard explanation.
 - **Prizes and awards:** how winners are chosen, including exact criteria for joke awards.

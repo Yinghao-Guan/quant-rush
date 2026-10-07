@@ -17,7 +17,7 @@
   {
     "category": "Best memo · judged by the board",
     "name": "The Prospector's Report",
-    "blurb": "Optional. Send us a one-to-two-page memo on how you attacked the problem. The board picks the clearest, most thoughtful one. Your rank doesn't matter.",
+    "blurb": "The award for sharp thinking, not code. Write a one-to-two-page memo on how you'd attack the problem and why. The board picks the most insightful one; your leaderboard rank doesn't count.",
     "tone": "rust",
     "icon": "map"
   },

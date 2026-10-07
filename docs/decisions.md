@@ -8,6 +8,8 @@ Newest decisions go at the top of each section.
 
 | Topic | Decision |
 |---|---|
+| Audience | **All California community college students** (changed from SMC-only on 2026-10-07, limited to California the same day). The competition is fully online; the Tuesday workshops are separate, in person, and for SMC students. Competition copy (rules, FAQ, how it works) never depends on attending a workshop or a meeting, and announcements go to the site and Discord. |
+| Dataset wording | The site never describes how the dataset was prepared. It says only that the data comes from a legitimate, lawful source and that tracing it back to the original is against the rules. |
 | Branches and previews | `main` is production (GitHub Pages, smcqfec.com); day-to-day work happens on `dev` and is merged into `main` to go live. Cloudflare Pages (project `quant-rush`) builds previews of every other branch and of pull requests; its production auto-deploys are off. Preview builds are detected through `CF_PAGES`, show a "Preview build" bar, and are `noindex`. GitHub Pages has no public preview-deployment feature (the `preview` input of `actions/deploy-pages` is private alpha as of 2026-10). |
 | Community | A Discord server ("QFEC") is linked from the nav, the mobile menu, the footer, the FAQ, and the rules page. The invite URL lives in `SITE.links.discord`; it must be an invite set to never expire. |
 | Share image | `public/brand/og.jpg` (1200×630), rendered from the unlisted `/og/` page by `npm run og`. Pages declare it with Open Graph and `summary_large_image` Twitter tags. |

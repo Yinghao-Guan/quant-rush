@@ -126,11 +126,11 @@ paper-50, 2px ink-800 border, 6px radius, hard shadow 4px, padding 24–32px. Op
 
 ### 5.7 Notice box
 
-paper-200 background, 4px gold-500 left border, mono eyebrow ("ON THE RECORD"), serif text. Used for "Prizes are real; details at Kickoff" and for rules marked TBD.
+paper-200 background, 4px gold-500 left border, mono eyebrow ("ON THE RECORD"), serif text. Used for "Prizes are real; we'll announce them here and on Discord" and for rules marked TBD.
 
 ### 5.8 Accordion (FAQ)
 
-Native `<details>`. Each row has a bottom hairline; the summary is Oswald 600 `1.0625rem` ink-800 with a `+` in gold-800 on the right that rotates 45° when open; content is serif ink-600. Max width 760px.
+Native `<details>`. Opening and closing animate the height between the question and the full answer (Web Animations API, 300ms open / 240ms close, with a timer fallback so the state always settles) while the answer fades and the `+` rotates; under reduced motion it toggles natively. Each row has a bottom hairline; the summary is Oswald 600 `1.0625rem` ink-800 with a `+` in gold-800 on the right that rotates 45° when open; content is serif ink-600. Max width 760px.
 
 ### 5.9 Torn edge
 
@@ -202,7 +202,7 @@ A full-bleed `<canvas>` (`GoldDust.astro`) between the hero engraving and the co
 - Background stack: ink-900 → radial gold glow (ellipse at 50% 70%, gold-500 at 10% to transparent) → engraving backdrop (miners at a long tom), gold-masked, bottom-anchored, faded out above 40% height → gold dust (§5.21) → candlestick row along the bottom edge.
 - Content, top to bottom, with an 80ms staggered reveal: eyebrow `SANTA MONICA COLLEGE · QFE CLUB PRESENTS` (gold-300, with `— ◆ —` ornaments) → wordmark → tagline → facts stamps → countdown → buttons → scroll cue → engraving credit (bottom-right, mono `.6875rem`, paper at 60%).
 - **Wordmark:** "QUANT RUSH", Alfa, `--fs-display`, fill paper-50, `-webkit-text-stroke: 1.5px gold-500`, block extrusion via a `::before` duplicate (`attr(data-text)`) in gold-700 offset 6px/6px (4px on mobile). Breaks to two lines below 640px. Nice-to-have: a diagonal glint sweep every 7s.
-- **Tagline:** "Strike signal in the noise." in Source Serif italic, `--fs-lead`, paper-200. Below it, Oswald caps `.8125rem` paper-200 at 80%: `SMC'S FIRST ONLINE QUANT COMPETITION · OPEN TO ALL SMC STUDENTS`.
+- **Tagline:** "Strike signal in the noise." in Source Serif italic, `--fs-lead`, paper-200. Below it, Oswald caps `.8125rem` paper-200 at 80%: `SMC'S FIRST ONLINE QUANT COMPETITION · OPEN TO ALL CALIFORNIA COMMUNITY COLLEGE STUDENTS`.
 - **Facts stamps:** three mono pills (`OPENS OCT 13` · `THE ASSAY NOV 22` · `100% ONLINE`), 1.5px paper-300 at 60% border, rotated −2°, 1.5°, −1°; wrap on mobile.
 - **Buttons:** primary `STAKE YOUR CLAIM →` (scrolls to Register), secondary `HOW IT WORKS`. Full width and stacked below 640px.
 - **Scroll cue:** mono `▼ DIG IN`, bouncing on a 2s loop (off under reduced motion).
@@ -216,8 +216,8 @@ The newspaper clipping (§5.18), max 920px, centered, over the bleeding Sluice e
 A ticket, a tag, and a certificate in a 1.2 / 0.8 / 1 column grid, the tag hanging lower than its neighbors. Copy:
 
 1. **100% Online** (laptop icon) — "Compete from anywhere. Submissions and the leaderboard live on Kaggle."
-2. **Picks & Shovels** (pickaxe and shovel) — "Every Tuesday, 11:15–12:15 in MSB 207: a workshop, then office hours. We teach the tools; you dig."
-3. **Real Prizes** (nugget) — "For the top of the private leaderboard, the best beginner, and a few surprises. Details at Kickoff."
+2. **Picks & Shovels** (pickaxe and shovel) — "For SMC students: every Tuesday, a workshop, then Q&A. We teach the tools; you dig."
+3. **Real Prizes** (nugget) — "Real prizes for the top of the private leaderboard, the best beginner, and a few surprises."
 
 ### Timeline — "The Claim Trail" (rising stock line)
 
@@ -233,7 +233,7 @@ Header "From greenhorn to prospector, four levels down" on the paper-colored sur
 
 1. **Stake your claim** — Fill in the form below. Two minutes.
 2. **Get your gear** — Make a free Kaggle account and join the Quant Rush competition page.
-3. **Dig** — Download the data, train models, submit predictions. Come Tuesdays for workshops and office hours.
+3. **Dig** — Download the data, train models, submit predictions. Questions go to our Discord, any time.
 4. **The Assay** — Sunday, Nov 22: submissions close. The private leaderboard shows who struck real gold.
 
 ### Awards — "The Claims"
@@ -242,10 +242,10 @@ The medal shelf (§5.19). Names are placeholders, editable in `src/data/awards.j
 
 - **Mother Lode** — 1st, 2nd, 3rd on the private leaderboard (three medal dots: gold, silver, bronze).
 - **Greenhorn's Luck** — Best beginner team: the best-placed team whose members are all first-timers.
-- **The Prospector's Report** — Best memo, judged by the board: an optional one-to-two-page memo on how the team attacked the problem; rank doesn't matter.
+- **The Prospector's Report** — Best memo, judged by the board: the award for thinking rather than code. A one-to-two-page memo on how you'd attack the problem and why; open to anyone registered, with or without leaderboard submissions.
 - **Fool's Gold** (`award--joke`) — Biggest drop from the public to the private leaderboard among the public top 10.
 
-Notice box below: "Prizes are real. We'll announce what they are at Kickoff."
+Notice box below: "Prizes are real. We'll announce what they are here and on Discord."
 
 ### Register — "Stake Your Claim" WANTED poster on the corkboard (§5.16)
 
@@ -267,7 +267,7 @@ Below: a faint candlestick strip, a hairline, then mono `.75rem`: "© 2026 QFE C
 
 ## 7. Other pages
 
-- **Workshops (`/workshops`)** — a dark header band: eyebrow `WORKSHOPS · EVERY TUESDAY · MSB 207`, H1 "Picks & Shovels", lead, an engraving (miners with tools) gold-masked on the right, then a torn edge. Then a two-column grid (one on mobile) of `workshop` cards: a tear-off date block on the left (rust month strip, Alfa day numeral 2.5rem, mono weekday) and, on the right, title, summary, status badge (UPCOMING / TODAY / DONE), and a materials row (`SLIDES · NOTEBOOK · RECORDING`, dashed "coming soon" when empty). DONE cards sit at 80% opacity.
+- **Workshops (`/workshops`)** — a dark header band: eyebrow `WORKSHOPS · EVERY TUESDAY · MSB 207`, H1 "Picks & Shovels", lead, an engraving (miners with tools) gold-masked on the right, then a torn edge. Then a two-column grid (one on mobile) of `workshop` cards: a tear-off date block on the left (rust month strip, Alfa day numeral 2.5rem, mono weekday) and, on the right, title, summary, status badge (UPCOMING / TODAY / DONE), and a materials row (`SLIDES · NOTEBOOK`, dashed "coming soon" when empty). DONE cards sit at 80% opacity.
 - **Rules & FAQ (`/rules`)** — a dark header band: eyebrow `RULES · ELIGIBILITY · FAQ`, H1 "The Miner's Code", an engraving (assay office or scales). Body at ≥ 900px: a sticky left table of contents (Oswald caps, § numbers, current item gold) and content at ≤ 70ch on the right: §1 Eligibility, §2 Teams, §3 Data & Evaluation (public vs. private explained), §4 Awards, §5 Code of Conduct (a double-bordered poster box with five rules), §6 FAQ (full). Undecided lines carry the `TO BE FINALIZED` stamp.
 - **404** — dark, H1 "No gold here.", mono `404 · CLAIM NOT FOUND`, button "Back to camp", and an engraving if a suitable public-domain one is found.
 
@@ -321,39 +321,20 @@ The Astro site implements this spec. Where things live:
 
 Every token and component is on one page at `/styleguide` (unlinked, `noindex`). Fonts are self-hosted via `@fontsource` packages; the variable families register as "Oswald Variable", "Source Serif 4 Variable", and "JetBrains Mono Variable".
 
-## Appendix A — Copy deck (home)
+## Appendix A — Where the copy lives
 
-**Hero**
-- Eyebrow: SANTA MONICA COLLEGE · QFE CLUB PRESENTS
-- Wordmark: QUANT RUSH
-- Tagline: Strike signal in the noise.
-- Subline: SMC'S FIRST ONLINE QUANT COMPETITION · OPEN TO ALL SMC STUDENTS
-- Stamps: OPENS OCT 13 · THE ASSAY NOV 22 · 100% ONLINE
-- Countdown label: CLAIM STAKING OPENS IN
-- Buttons: STAKE YOUR CLAIM → / HOW IT WORKS
+The words on the site are not duplicated here, so they cannot drift. Edit them at the source:
 
-**About**
-Quant Rush is a six-week online competition where SMC students build models on a disguised, historical financial dataset. Every submission updates a public leaderboard; a private one, revealed at the end, decides the winners. No finance background and no Kaggle experience needed. Bring curiosity, a laptop, and a willingness to be wrong a few hundred times before you're right. The Quantitative Finance & Entrepreneurship Club runs the show and teaches the tools every Tuesday.
+| Copy | File |
+|---|---|
+| Name, tagline, subtitle, meta description, ticker pin, club blurb | `src/config/site.ts` |
+| Hero lines | `src/components/Hero.astro` |
+| About clipping | `src/components/Dispatch.astro` |
+| Highlights (ticket, tag, certificate) | `src/components/Highlights.astro` |
+| Timeline and workshop cards | `src/data/schedule.json` |
+| How it works | `src/components/Mine.astro` |
+| Awards | `src/data/awards.json` |
+| FAQ | `src/data/faq.json` |
+| Rules | `src/pages/rules.astro` |
 
-**Timeline**
-| Date | Title | Blurb |
-|---|---|---|
-| Tue Oct 13 | Stake Your Claim — Kickoff | Rules, Kaggle setup, team formation. The competition opens. |
-| Tue Oct 20 | Picks & Shovels I | Python, pandas, your first Kaggle notebook. Leave with a baseline submitted. |
-| Tue Oct 27 | Reading the Vein | Exploring the data and understanding the metric. |
-| Tue Nov 3 | Refining the Ore | Feature engineering and baseline models. |
-| Tue Nov 10 | What Glitters | Validation and overfitting: why the public leaderboard lies. |
-| Tue Nov 17 | The Last Dig | Office hours, ensembling, final submissions. |
-| Sun Nov 22 | The Assay — Deadline | Submissions close. The private leaderboard decides. |
-| Tue Dec 1 | Paydirt — Wrap-up | Winners announced. Top teams walk through their solutions. |
-
-**FAQ**
-- Do I need experience? — No. The first two workshops take you from zero to a submitted baseline. Experienced folks can skip ahead; beginners have their own award.
-- Is it free? — Yes. Registration, Kaggle, and the workshops are all free.
-- Can I team up? — Yes, in teams of up to N (to be finalized). Solo is fine too. Need teammates? Say so on the form and we'll match you at Kickoff.
-- Do I need to be a finance major? — No. If you can run a Python notebook, or want to learn, you're in.
-- What is Kaggle? — A free platform for data-science competitions. You upload predictions, it scores them and ranks everyone on a leaderboard. We walk you through it at Kickoff.
-- What do I win? — Prizes for the top three on the private leaderboard, the best beginner team, the best memo, and one joke award. The actual prizes are announced at Kickoff.
-
-**Footer blurb**
-A student club at Santa Monica College for people who like markets, math, and building things. Meetings every Tuesday; everyone is welcome.
+Copy rules: the competition is open to all California community college students and is fully online; the Tuesday workshops are separate, in person, and for SMC students, so competition copy (rules, FAQ, how it works) never depends on them. The site never describes how the dataset was prepared; it only says the data comes from a legitimate, lawful source and must not be traced back.

@@ -7,7 +7,10 @@
     "kind": "kickoff",
     "blurb": "Rules, Kaggle setup, team formation. The competition opens.",
     "summary": "What the competition is, how Kaggle works, and how to register. Bring a laptop: we make Kaggle accounts together and form teams on the spot. The dataset and the competition page go live.",
-    "materials": { "slides": null, "notebook": null, "recording": null }
+    "materials": {
+      "slides": null,
+      "notebook": null
+    }
   },
   {
     "date": "2026-10-20",
@@ -17,7 +20,10 @@
     "kind": "workshop",
     "blurb": "Python, pandas, your first Kaggle notebook. Leave with a baseline submitted.",
     "summary": "Zero to a submitted baseline. Loading the data with pandas, a first look at the columns, a trivial model, and the exact clicks to submit on Kaggle.",
-    "materials": { "slides": null, "notebook": null, "recording": null }
+    "materials": {
+      "slides": null,
+      "notebook": null
+    }
   },
   {
     "date": "2026-10-27",
@@ -27,7 +33,10 @@
     "kind": "workshop",
     "blurb": "Exploring the data and understanding the metric.",
     "summary": "Exploratory analysis: distributions, missing values, what the target actually measures, and what the evaluation metric rewards and punishes.",
-    "materials": { "slides": null, "notebook": null, "recording": null }
+    "materials": {
+      "slides": null,
+      "notebook": null
+    }
   },
   {
     "date": "2026-11-03",
@@ -37,7 +46,10 @@
     "kind": "workshop",
     "blurb": "Feature engineering and baseline models.",
     "summary": "Turning raw columns into useful features, then fitting the classic baselines: linear models and gradient-boosted trees.",
-    "materials": { "slides": null, "notebook": null, "recording": null }
+    "materials": {
+      "slides": null,
+      "notebook": null
+    }
   },
   {
     "date": "2026-11-10",
@@ -47,7 +59,10 @@
     "kind": "workshop",
     "blurb": "Validation and overfitting: why the public leaderboard lies.",
     "summary": "The most important hour of the competition. Cross-validation, leakage, why your public score is not your private score, and how to pick final submissions.",
-    "materials": { "slides": null, "notebook": null, "recording": null }
+    "materials": {
+      "slides": null,
+      "notebook": null
+    }
   },
   {
     "date": "2026-11-17",
@@ -55,9 +70,12 @@
     "title": "The Last Dig",
     "sub": "Final sprint",
     "kind": "workshop",
-    "blurb": "Office hours, ensembling, final submissions.",
-    "summary": "No lecture. Office hours, ensembling tricks, and help choosing which submissions to lock in before the Assay.",
-    "materials": { "slides": null, "notebook": null, "recording": null }
+    "blurb": "Ensembling, Q&A, and choosing final submissions.",
+    "summary": "A short session on ensembling, then Q&A and help choosing which submissions to lock in before the Assay.",
+    "materials": {
+      "slides": null,
+      "notebook": null
+    }
   },
   {
     "date": "2026-11-22",
@@ -67,7 +85,10 @@
     "kind": "deadline",
     "blurb": "Submissions close. The private leaderboard decides.",
     "summary": "Submissions close at the end of the day, Pacific time. The private leaderboard is revealed on Kaggle once the deadline passes.",
-    "materials": { "slides": null, "notebook": null, "recording": null }
+    "materials": {
+      "slides": null,
+      "notebook": null
+    }
   },
   {
     "date": "2026-12-01",
@@ -77,6 +98,9 @@
     "kind": "wrapup",
     "blurb": "Winners announced. Top teams walk through their solutions.",
     "summary": "Awards, prizes, and short talks from the top teams about what worked and what did not.",
-    "materials": { "slides": null, "notebook": null, "recording": null }
+    "materials": {
+      "slides": null,
+      "notebook": null
+    }
   }
 ]

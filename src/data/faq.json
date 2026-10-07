@@ -1,43 +1,52 @@
 [
   {
+    "q": "Who can enter?",
+    "a": "Any student currently enrolled at a California community college, in any major. Register with your college email.",
+    "home": true
+  },
+  {
     "q": "Do I need experience?",
-    "a": "No. The first two workshops take you from zero to a submitted baseline. Experienced folks can skip ahead; beginners have their own award.",
+    "a": "No. Beginners have their own award, Greenhorn's Luck, and you can ask anything on our Discord.",
     "home": true
   },
   {
     "q": "Is it free?",
-    "a": "Yes. Registration, Kaggle, and the workshops are all free.",
+    "a": "Yes. Registration and Kaggle are both free.",
     "home": true
   },
   {
     "q": "Can I team up?",
-    "a": "Yes, in teams of up to 4, and solo is fine too. Teams can merge on Kaggle until Nov 15. Need teammates? Say so on the form or ask on Discord, and we'll match you at Kickoff.",
+    "a": "Yes, in teams of up to 4, and solo is fine too. Teams can merge on Kaggle until Nov 15. Need teammates? Say so on the form or ask on Discord.",
+    "home": true
+  },
+  {
+    "q": "Do I need to know how to code?",
+    "a": "Not necessarily. The leaderboard rewards models, which takes some code, but The Prospector's Report is judged on a written memo: your thinking, not your code.",
     "home": true
   },
   {
     "q": "Do I need to be a finance major?",
-    "a": "No. If you can run a Python notebook, or want to learn, you're in.",
-    "home": true
+    "a": "No. Any major is welcome, on the leaderboard and in The Prospector's Report."
   },
   {
     "q": "What is Kaggle?",
-    "a": "A free platform for data-science competitions. You upload predictions, it scores them and ranks everyone on a leaderboard. We walk you through it at Kickoff.",
+    "a": "A free platform for data-science competitions. You upload predictions, it scores them and ranks everyone on a leaderboard. Making an account takes two minutes.",
     "home": true
   },
   {
     "q": "What do I win?",
-    "a": "Prizes for the top three on the private leaderboard, the best beginner team, the best memo, and one joke award. The actual prizes are announced at Kickoff.",
+    "a": "Prizes for the top three on the private leaderboard, the best beginner team, the best memo, and one joke award. We'll announce the actual prizes here and on Discord.",
     "home": true
   },
   {
     "q": "Where do I ask questions?",
-    "a": "On our Discord, any time, or in person on Tuesdays. You can also email qfec.smc@gmail.com.",
+    "a": "On our Discord, any time. You can also email qfec.smc@gmail.com.",
     "cta": "discord",
     "home": true
   },
   {
-    "q": "What if I can't make it on Tuesdays?",
-    "a": "The competition itself is fully online. Workshop materials are posted on the Workshops page after each session, and you can email us questions any time."
+    "q": "Do I have to attend anything in person?",
+    "a": "No. The competition is fully online. The club's Tuesday workshops are separate: they're in person at SMC, for SMC students, and optional. Slides and notebooks are posted on the Workshops page."
   },
   {
     "q": "Do I need a powerful computer?",
@@ -57,6 +66,6 @@
   },
   {
     "q": "When are the results announced?",
-    "a": "The private leaderboard appears on Kaggle right after the deadline on Sunday, Nov 22. Awards and prizes are handed out at the wrap-up on Tuesday, Dec 1."
+    "a": "The private leaderboard appears on Kaggle right after the deadline on Sunday, Nov 22. We announce the award winners on Tuesday, Dec 1, here and on Discord."
   }
 ]
