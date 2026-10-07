@@ -45,3 +45,68 @@ const pad = (n: number) => String(n).padStart(2, '0');
     ))}
   </div>
 </div>
+
+<script>
+  // Animate <details> open and close: the height eases between the summary and the full
+  // answer while the answer fades. Native toggling is kept under reduced motion.
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.querySelectorAll<HTMLDetailsElement>('.faq details').forEach((details) => {
+    const summary = details.querySelector('summary');
+    const body = details.querySelector<HTMLElement>('.faq__body');
+    if (!summary || !body) return;
+
+    let anim: Animation | null = null;
+    let closing = false;
+    let runId = 0;
+    const borders = () => details.offsetHeight - details.clientHeight;
+
+    const finish = (open: boolean) => {
+      runId++;
+      anim?.cancel();
+      anim = null;
+      closing = false;
+      details.open = open;
+      details.classList.remove('is-closing');
+      details.style.height = '';
+      details.style.overflow = '';
+    };
+
+    const run = (from: number, to: number, open: boolean, duration: number) => {
+      anim?.cancel();
+      const id = ++runId;
+      const end = () => {
+        if (id === runId) finish(open);
+      };
+      anim = details.animate({ height: [`${from}px`, `${to}px`] }, { duration, easing: 'cubic-bezier(.2, .8, .2, 1)' });
+      anim.onfinish = end;
+      // Fallback for when no frame renders the finish event (a throttled or hidden page).
+      window.setTimeout(end, duration + 80);
+    };
+
+    const expand = () => {
+      const from = details.offsetHeight;
+      details.classList.remove('is-closing');
+      details.style.overflow = 'hidden';
+      details.style.height = `${from}px`;
+      details.open = true;
+      closing = false;
+      // Reading offsetHeight forces layout, so the answer can be measured right after opening.
+      run(from, summary.offsetHeight + body.offsetHeight + borders(), true, 300);
+    };
+
+    const collapse = () => {
+      closing = true;
+      details.classList.add('is-closing');
+      details.style.overflow = 'hidden';
+      run(details.offsetHeight, summary.offsetHeight + borders(), false, 240);
+    };
+
+    summary.addEventListener('click', (e) => {
+      if (reduced.matches) return;
+      e.preventDefault();
+      if (!details.open || closing) expand();
+      else collapse();
+    });
+  });
+</script>
