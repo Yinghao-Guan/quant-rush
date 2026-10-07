@@ -76,6 +76,14 @@ This needs Google Chrome or Chromium installed; set `CHROME_PATH` if it is somew
 
 The site is live at <https://smcqfec.com> (GitHub Pages with a custom domain; Settings → Pages → Source is "GitHub Actions"). The workflow builds with `SITE_URL=https://smcqfec.com` and `BASE_PATH=/`. If the custom domain is ever removed, switch the workflow back to `SITE_URL=https://<owner>.github.io` and `BASE_PATH=/<repo>` so asset paths get the `/<repo>/` prefix; the commented lines in `deploy.yml` show the values.
 
+### Branches and previews
+
+- `main` is production: every push to it deploys to smcqfec.com.
+- `dev` is where work happens. Merge `dev` into `main` to go live.
+- Every push to any other branch (including `dev` and pull-request branches) builds a preview on Cloudflare Pages at `https://<branch>.quant-rush.pages.dev` (branch name lower-cased, other characters turned into hyphens). Pull requests get a comment with the link. Preview builds show a "Preview build" bar at the top and carry `noindex`.
+
+Cloudflare Pages settings (project `quant-rush`): build command `npm run build`, output directory `dist`, environment variables `SITE_URL=https://smcqfec.com`, `BASE_PATH=/`, `NODE_VERSION=22`. Production branch `main` with automatic production deployments turned off; previews for all other branches. Cloudflare never serves smcqfec.com.
+
 ## Contributing
 
 This is a club project. If you are a QFE Club member and want to help, reach out to the organizers.

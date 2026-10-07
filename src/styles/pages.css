@@ -160,3 +160,19 @@
 .nf .mono { color: var(--gold-300); letter-spacing: .2em; }
 .nf .engraving--medallion { --size: 180px; box-shadow: 4px 4px 0 var(--gold-700); }
 .nf .engraving__credit { color: color-mix(in srgb, var(--paper-200) 60%, transparent); }
+
+/* ---- Preview bar (Cloudflare Pages preview builds only) ------------------ */
+.preview-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px 16px;
+  padding: 6px var(--gutter);
+  background: var(--rust-500);
+  color: var(--paper-50);
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.preview-bar a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

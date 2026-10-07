@@ -27,6 +27,13 @@ const { title, description = SITE.description, noindex = false } = Astro.props;
 const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} — ${SITE.subtitle}`;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
 const ogImage = Astro.site ? new URL(withBase(SITE.ogImage), Astro.site).href : withBase(SITE.ogImage);
+
+// Production is GitHub Pages; any Cloudflare Pages build is a preview. Label it and keep it out of search.
+const preview =
+  process.env.CF_PAGES === '1'
+    ? { branch: process.env.CF_PAGES_BRANCH ?? '', sha: (process.env.CF_PAGES_COMMIT_SHA ?? '').slice(0, 7) }
+    : null;
+const liveSite = Astro.site?.href ?? 'https://smcqfec.com/';
 ---
 
 <!doctype html>
@@ -40,7 +47,7 @@ const ogImage = Astro.site ? new URL(withBase(SITE.ogImage), Astro.site).href : 
     <meta name="theme-color" content="#1C1208" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={withBase('/brand/emblem.svg')} type="image/svg+xml" />
-    {noindex && <meta name="robots" content="noindex" />}
+    {(noindex || preview) && <meta name="robots" content="noindex" />}
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -56,6 +63,13 @@ const ogImage = Astro.site ? new URL(withBase(SITE.ogImage), Astro.site).href : 
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    {preview && (
+      <div class="preview-bar" role="note">
+        <span>Preview build</span>
+        <span>{preview.branch}{preview.sha && ` · ${preview.sha}`}</span>
+        <a href={liveSite}>Live site: {new URL(liveSite).host} →</a>
+      </div>
+    )}
     <Ticker />
     <Nav />
     <main id="main">
