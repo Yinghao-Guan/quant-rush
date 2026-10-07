@@ -8,6 +8,9 @@ Newest decisions go at the top of each section.
 
 | Topic | Decision |
 |---|---|
+| Community | A Discord server ("QFEC") is linked from the nav, the mobile menu, the footer, the FAQ, and the rules page. The invite URL lives in `SITE.links.discord`; it must be an invite set to never expire. |
+| Share image | `public/brand/og.jpg` (1200×630), rendered from the unlisted `/og/` page by `npm run og`. Pages declare it with Open Graph and `summary_large_image` Twitter tags. |
+| Hero motion | The static gold flecks became a canvas particle field (`GoldDust.astro`): fine rising dust, out-of-focus motes, and occasional glints. |
 | Repository split | The website and the competition are separate repositories (decided 2026-10-06). This one is public (GitHub Pages); the competition repository is private. Public facts flow one way, from the competition into `src/config/site.ts`, `src/data/*.json`, and `src/pages/rules.astro`. |
 | Deployment | GitHub Pages via `.github/workflows/deploy.yml` from the public repository `Yinghao-Guan/quant-rush`, served on the custom domain **smcqfec.com** (so `BASE_PATH` is `/`). Internal links still go through `withBase()` in `src/lib/paths.ts` in case the site ever moves back under a sub-path. |
 | Style guide | `/styleguide` (unlinked, `noindex`) shows every token and component. It replaced the earlier static `docs/design-preview/`, which was removed once the Astro site existed. |
@@ -26,7 +29,6 @@ Newest decisions go at the top of each section.
 ## Open
 
 - Kaggle competition URL
-- HTTPS on smcqfec.com: certificate pending; tick "Enforce HTTPS" in Settings → Pages once it is issued
+- HTTPS on smcqfec.com works (since 2026-10-06); tick "Enforce HTTPS" in Settings → Pages if it is not already
 - `www.smcqfec.com`: needs a CNAME record to `yinghao-guan.github.io` if the www address should work
-- Social preview (Open Graph) image
 - Rule details that the competition repository still has to decide (team size, metric, submission limits, AI and external data policies). They show as "To be finalized" until then.

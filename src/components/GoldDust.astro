@@ -1,0 +1,285 @@
+---
+/**
+ * Floating gold dust: a canvas particle field for dark sections.
+ * Two layers: fine dust that rises slowly with a gentle sway and twinkles (now and
+ * then one catches the light and glints), and a few large, soft, out-of-focus
+ * motes in front for depth. Deeper dust is smaller, dimmer, and slower; a fine
+ * pointer shifts the layers a little for parallax. Paused when off screen;
+ * a single still frame under prefers-reduced-motion.
+ * Place inside a `position: relative` section.
+ */
+interface Props {
+  /** Multiplier on the particle count (1 = default density). */
+  density?: number;
+  class?: string;
+}
+const { density = 1, class: className = '' } = Astro.props;
+---
+
+<canvas class={`dust ${className}`.trim()} data-dust data-density={density} aria-hidden="true"></canvas>
+
+<script>
+  type Particle = {
+    x: number;
+    y: number;
+    z: number; // depth: 0.25 (far) … 1 (near)
+    r: number;
+    vy: number;
+    sway: number;
+    swayF: number;
+    tw: number;
+    ph: number;
+    sprite: number;
+    dx: number; // last drawn position and fade, used by glints
+    dy: number;
+    da: number;
+  };
+  type Glint = { p: Particle; start: number; dur: number };
+
+  // [core, glow] RGB triplets; the last sprite is the soft bokeh disc.
+  const TINTS: [string, string][] = [
+    ['255,238,186', '232,196,90'], // pale gold
+    ['250,214,110', '212,160,23'], // gold
+    ['255,250,236', '240,206,110'], // white-gold spark
+  ];
+
+  function dustSprite([core, glow]: [string, string]): HTMLCanvasElement {
+    const s = 64;
+    const c = document.createElement('canvas');
+    c.width = c.height = s;
+    const g = c.getContext('2d')!;
+    const grad = g.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);
+    grad.addColorStop(0, `rgba(${core},1)`);
+    grad.addColorStop(0.2, `rgba(${core},.95)`);
+    grad.addColorStop(0.36, `rgba(${glow},.45)`);
+    grad.addColorStop(1, `rgba(${glow},0)`);
+    g.fillStyle = grad;
+    g.fillRect(0, 0, s, s);
+    return c;
+  }
+
+  function bokehSprite(): HTMLCanvasElement {
+    const s = 128;
+    const c = document.createElement('canvas');
+    c.width = c.height = s;
+    const g = c.getContext('2d')!;
+    const grad = g.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);
+    grad.addColorStop(0, 'rgba(255,232,170,.85)');
+    grad.addColorStop(0.55, 'rgba(236,198,96,.6)');
+    grad.addColorStop(0.82, 'rgba(212,160,23,.18)');
+    grad.addColorStop(1, 'rgba(212,160,23,0)');
+    g.fillStyle = grad;
+    g.fillRect(0, 0, s, s);
+    return c;
+  }
+
+  const smooth = (a: number, b: number, x: number) => {
+    const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+    return t * t * (3 - 2 * t);
+  };
+
+  const reducedQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const sprites = TINTS.map(dustSprite);
+  const bokeh = bokehSprite();
+
+  document.querySelectorAll<HTMLCanvasElement>('[data-dust]').forEach((canvas) => {
+    const ctx = canvas.getContext('2d');
+    const host = canvas.parentElement;
+    if (!ctx || !host) return;
+
+    const density = Number(canvas.dataset.density ?? 1) || 1;
+    let w = 0;
+    let h = 0;
+    let t = 0;
+    let last = 0;
+    let raf = 0;
+    let onScreen = true;
+    let nextGlint = 0.6;
+    const dust: Particle[] = [];
+    const motes: Particle[] = [];
+    const glints: Glint[] = [];
+    const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+
+    const spawnDust = (p: Partial<Particle> = {}, atBottom = false): Particle => {
+      const z = 0.25 + Math.pow(Math.random(), 1.3) * 0.75;
+      return Object.assign(p, {
+        x: Math.random() * w,
+        y: atBottom ? h + 8 + Math.random() * 50 : Math.random() * h,
+        z,
+        r: 0.7 + z * 2.1,
+        vy: 6 + z * 18,
+        sway: 4 + Math.random() * 12 * z,
+        swayF: 0.25 + Math.random() * 0.5,
+        tw: 0.8 + Math.random() * 2.2,
+        ph: Math.random() * Math.PI * 2,
+        sprite: Math.random() < 0.14 ? 2 : Math.random() < 0.5 ? 0 : 1,
+        dx: 0,
+        dy: 0,
+        da: 0,
+      }) as Particle;
+    };
+
+    const spawnMote = (p: Partial<Particle> = {}, atBottom = false): Particle => {
+      const r = 9 + Math.random() * 16;
+      return Object.assign(p, {
+        x: Math.random() * w,
+        y: atBottom ? h + r + Math.random() * 80 : Math.random() * h,
+        z: 1.6,
+        r,
+        vy: 2 + Math.random() * 5,
+        sway: 12 + Math.random() * 20,
+        swayF: 0.06 + Math.random() * 0.12,
+        tw: 0.2 + Math.random() * 0.4,
+        ph: Math.random() * Math.PI * 2,
+        sprite: 0,
+        dx: 0,
+        dy: 0,
+        da: 0,
+      }) as Particle;
+    };
+
+    const resize = () => {
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      w = canvas.clientWidth;
+      h = canvas.clientHeight;
+      if (!w || !h) return;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const nDust = Math.round(Math.min(140, Math.max(36, (w * h) / 9000)) * density);
+      const nMotes = Math.max(4, Math.round(nDust * 0.08));
+      while (dust.length < nDust) dust.push(spawnDust());
+      dust.length = nDust;
+      while (motes.length < nMotes) motes.push(spawnMote());
+      motes.length = nMotes;
+      for (const p of [...dust, ...motes]) if (p.x > w) p.x = Math.random() * w;
+    };
+
+    const draw = (dt: number) => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'lighter';
+      const k = Math.min(1, dt * 2.5);
+      pointer.x += (pointer.tx - pointer.x) * k;
+      pointer.y += (pointer.ty - pointer.y) * k;
+
+      // Out-of-focus motes, drawn first.
+      for (const p of motes) {
+        p.y -= p.vy * dt;
+        if (p.y < -p.r * 2) spawnMote(p, true);
+        const x = p.x + Math.sin(t * p.swayF + p.ph) * p.sway + pointer.x * 36;
+        const y = p.y + pointer.y * 22;
+        const fade = smooth(-p.r, h * 0.3, p.y) * (1 - smooth(h * 0.78, h + p.r, p.y));
+        const a = (0.075 + 0.05 * Math.sin(t * p.tw + p.ph)) * fade;
+        if (a < 0.01) continue;
+        const d = p.r * 2.6;
+        ctx.globalAlpha = a;
+        ctx.drawImage(bokeh, x - d / 2, y - d / 2, d, d);
+      }
+
+      // Fine dust.
+      for (const p of dust) {
+        p.y -= p.vy * dt;
+        if (p.y < -12) spawnDust(p, true);
+        const x = p.x + Math.sin(t * p.swayF + p.ph) * p.sway + pointer.x * p.z * 22;
+        const y = p.y + pointer.y * p.z * 14;
+        const fade = smooth(0, h * 0.18, p.y) * (1 - smooth(h * 0.88, h + 8, p.y));
+        const twinkle = 0.6 + 0.4 * Math.sin(t * p.tw + p.ph);
+        const a = (0.35 + 0.65 * p.z) * twinkle * fade;
+        p.dx = x;
+        p.dy = y;
+        p.da = fade;
+        if (a < 0.02) continue;
+        const d = p.r * 8;
+        ctx.globalAlpha = Math.min(1, a);
+        ctx.drawImage(sprites[p.sprite], x - d / 2, y - d / 2, d, d);
+      }
+
+      // Glints: a four-point star on a near particle, now and then.
+      if (dt > 0 && t > nextGlint && dust.length) {
+        const pick = dust[Math.floor(Math.random() * dust.length)];
+        if (pick.z > 0.5 && pick.da > 0.6) glints.push({ p: pick, start: t, dur: 0.8 + Math.random() * 0.5 });
+        nextGlint = t + 0.35 + Math.random() * 1.1;
+      }
+      for (let i = glints.length - 1; i >= 0; i--) {
+        const g = glints[i];
+        const u = (t - g.start) / g.dur;
+        if (u >= 1) {
+          glints.splice(i, 1);
+          continue;
+        }
+        const e = Math.sin(Math.PI * u);
+        const { dx: x, dy: y } = g.p;
+        const L = (8 + 13 * g.p.z) * e;
+        ctx.globalAlpha = e * g.p.da;
+        ctx.lineWidth = 1.2;
+        for (const [ax, ay] of [[1, 0], [0, 1], [0.7, 0.7], [0.7, -0.7]] as const) {
+          const len = ax && ay ? L * 0.42 : L;
+          const grad = ctx.createLinearGradient(x - ax * len, y - ay * len, x + ax * len, y + ay * len);
+          grad.addColorStop(0, 'rgba(255,246,214,0)');
+          grad.addColorStop(0.5, 'rgba(255,246,214,1)');
+          grad.addColorStop(1, 'rgba(255,246,214,0)');
+          ctx.strokeStyle = grad;
+          ctx.beginPath();
+          ctx.moveTo(x - ax * len, y - ay * len);
+          ctx.lineTo(x + ax * len, y + ay * len);
+          ctx.stroke();
+        }
+        const d = 12 + 10 * e;
+        ctx.drawImage(sprites[2], x - d / 2, y - d / 2, d, d);
+      }
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
+    };
+
+    const loop = (now: number) => {
+      const dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
+      last = now;
+      t += dt;
+      draw(dt);
+      raf = requestAnimationFrame(loop);
+    };
+
+    const start = () => {
+      if (raf || reducedQuery.matches || !onScreen || document.hidden) return;
+      last = 0;
+      raf = requestAnimationFrame(loop);
+    };
+    const stop = () => {
+      cancelAnimationFrame(raf);
+      raf = 0;
+    };
+    const still = () => {
+      stop();
+      glints.length = 0;
+      draw(0);
+    };
+
+    new ResizeObserver(() => {
+      resize();
+      if (!raf) draw(0);
+    }).observe(canvas);
+    resize();
+
+    new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      onScreen ? start() : stop();
+    }).observe(canvas);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    reducedQuery.addEventListener('change', () => (reducedQuery.matches ? still() : start()));
+
+    if (finePointer) {
+      host.addEventListener('pointermove', (e) => {
+        const r = host.getBoundingClientRect();
+        pointer.tx = (e.clientX - r.left) / r.width - 0.5;
+        pointer.ty = (e.clientY - r.top) / r.height - 0.5;
+      });
+      host.addEventListener('pointerleave', () => {
+        pointer.tx = 0;
+        pointer.ty = 0;
+      });
+    }
+
+    reducedQuery.matches ? still() : start();
+  });
+</script>

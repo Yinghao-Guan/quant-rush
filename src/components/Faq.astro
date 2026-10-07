@@ -1,9 +1,13 @@
 ---
+import { SITE } from '../config/site';
+
 interface Item {
   q: string;
   a: string;
   tbd?: boolean;
   home?: boolean;
+  /** 'discord' appends a link to the Discord invite. */
+  cta?: string;
 }
 interface Props {
   items: Item[];
@@ -33,6 +37,9 @@ const pad = (n: number) => String(n).padStart(2, '0');
         <div class="faq__body">
           {item.a}
           {item.tbd && <span class="badge badge--tbd" style="--tilt:-2deg;margin-left:6px">To be finalized</span>}
+          {item.cta === 'discord' && SITE.links.discord && (
+            <> <a class="link" href={SITE.links.discord} target="_blank" rel="noopener">Join the Discord →</a></>
+          )}
         </div>
       </details>
     ))}

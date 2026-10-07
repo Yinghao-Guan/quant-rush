@@ -36,6 +36,9 @@ const year = new Date().getFullYear();
         <ul>
           <li><a class="contact" href={`mailto:${SITE.organizer.email}`}><Icon name="envelope" />{SITE.organizer.email}</a></li>
           <li><a class="contact" href={`https://instagram.com/${SITE.organizer.instagram}`} rel="noopener"><Icon name="instagram" />@{SITE.organizer.instagram}</a></li>
+          {SITE.links.discord && (
+            <li><a class="contact" href={SITE.links.discord} target="_blank" rel="noopener"><Icon name="discord" />Discord server</a></li>
+          )}
           <li><span class="contact"><Icon name="calendar" />{SITE.organizer.meeting}</span></li>
         </ul>
       </div>

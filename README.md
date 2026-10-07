@@ -34,7 +34,7 @@ Then open <http://localhost:4321>. `npm run build` writes the static site to `di
 
 | What | Where |
 |---|---|
-| Names, dates, links (form, Kaggle), contact, logo path | `src/config/site.ts` |
+| Names, dates, links (form, Kaggle, Discord), contact, logo path | `src/config/site.ts` |
 | Schedule: workshops, deadline, wrap-up, materials links | `src/data/schedule.json` |
 | FAQ | `src/data/faq.json` |
 | Awards | `src/data/awards.json` |
@@ -43,6 +43,14 @@ Then open <http://localhost:4321>. `npm run build` writes the static site to `di
 | Colors, type, spacing | `src/styles/tokens.css` (spec in `docs/design.md`) |
 
 Every token and component is visible at `/styleguide` (unlinked, not indexed).
+
+The social share image is `public/brand/og.jpg`. Its source is the unlisted page `/og/` (`src/pages/og.astro`). After changing the card, regenerate the image with the dev server running:
+
+```bash
+npm run og
+```
+
+This needs Google Chrome or Chromium installed; set `CHROME_PATH` if it is somewhere unusual.
 
 ## Repository Layout
 

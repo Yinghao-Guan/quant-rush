@@ -3,6 +3,7 @@ import Icon from './Icon.astro';
 import Candles from './Candles.astro';
 import Countdown from './Countdown.astro';
 import Engraving from './Engraving.astro';
+import GoldDust from './GoldDust.astro';
 import TornEdge from './TornEdge.astro';
 import { SITE } from '../config/site';
 import { withBase } from '../lib/paths';
@@ -11,9 +12,8 @@ import sluice from '../assets/engravings/sandham-the-sluice-1883.jpg';
 ---
 
 <section class="hero on-dark" id="top">
-  <div class="hero__flecks hero__flecks--a" aria-hidden="true"></div>
-  <div class="hero__flecks hero__flecks--b" aria-hidden="true"></div>
   <Engraving src={sluice} variant="gold" shape="backdrop" pos="center 40%" opacity={0.34} width={1400} quality={38} eager />
+  <GoldDust />
 
   <div class="hero__inner">
     <p class="eyebrow hero__eyebrow" style="--i:0">{SITE.organizer.school} · {SITE.organizer.short} presents</p>

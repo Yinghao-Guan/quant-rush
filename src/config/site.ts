@@ -34,7 +34,13 @@ export const SITE = {
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeJfHn5vExdE1IlgXa7wPINWSvlRPj38gL2LPaqWYdXqkK4rQ/viewform',
     /** Kaggle competition page. Empty = "coming soon" badge. */
     kaggleUrl: '',
+    /** Discord invite. Use an invite set to "never expire"; empty = Discord links are hidden. */
+    discord: 'https://discord.gg/MUPdvSAV4M',
   },
+
+  /** Social share image (1200×630) under public/. Regenerate with `npm run og`. */
+  ogImage: '/brand/og.jpg',
+  ogImageAlt: 'Quant Rush: Strike signal in the noise. An online quant competition for SMC students, Oct 13 to Nov 22, 2026.',
 
   /** Path under public/ to the club logo (transparent PNG, teal mark). Empty = text badge. */
   logoPath: '/brand/logo-qfe.png',

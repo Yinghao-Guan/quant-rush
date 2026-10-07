@@ -1,0 +1,235 @@
+---
+/**
+ * The 1200×630 social share card. Unlinked and noindex: `npm run og` screenshots
+ * this page with headless Chrome into public/brand/og.jpg. Edit here, then re-run.
+ */
+import '@fontsource/alfa-slab-one';
+import '@fontsource-variable/oswald';
+import '@fontsource-variable/source-serif-4';
+import '@fontsource-variable/source-serif-4/wght-italic.css';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/components.css';
+
+import Candles from '../components/Candles.astro';
+import Emblem from '../components/Emblem.astro';
+import ticker from '../data/ticker.json';
+import { SITE } from '../config/site';
+import { stamp } from '../lib/dates';
+import sluice from '../assets/engravings/sandham-the-sluice-1883.jpg';
+
+const host = (Astro.site ? new URL(Astro.site).host : 'smcqfec.com').replace(/^localhost.*/, 'smcqfec.com');
+const year = new Date(SITE.dates.deadline).getFullYear();
+
+// Static gold dust, seeded so the card is identical on every render.
+let s = 1849;
+const rnd = () => ((s = (Math.imul(s, 1664525) + 1013904223) >>> 0) / 4294967296);
+const dust = Array.from({ length: 46 }, () => ({
+  x: Math.round(rnd() * 1200),
+  y: Math.round(60 + rnd() * 560),
+  d: (1.5 + rnd() * 4.5).toFixed(1),
+  a: (0.35 + rnd() * 0.6).toFixed(2),
+}));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1200" />
+    <meta name="robots" content="noindex" />
+    <title>Share card · {SITE.name}</title>
+  </head>
+  <body class="og on-dark">
+    <div class="og__card">
+      <div class="og__glow" aria-hidden="true"></div>
+      <figure class="engraving engraving--gold engraving--backdrop og__art" aria-hidden="true">
+        <img src={sluice.src} alt="" width={sluice.width} height={sluice.height} loading="eager" decoding="sync" />
+      </figure>
+      <div class="og__dust" aria-hidden="true">
+        {dust.map((p) => <i style={`left:${p.x}px;top:${p.y}px;width:${p.d}px;height:${p.d}px;opacity:${p.a}`}></i>)}
+      </div>
+      <Candles class="og__candles" count={44} seed={1849} />
+
+      <div class="og__ticker" aria-hidden="true">
+        <span class="og__pin">★ {stamp(SITE.dates.opens)} → {stamp(SITE.dates.deadline)}</span>
+        {ticker.slice(0, 6).map(([sym, dir, val]) => (
+          <span class="og__tick">
+            {sym} <span class={dir === '▲' ? 'up' : 'down'}>{dir} {val}</span>
+          </span>
+        ))}
+      </div>
+
+      <div class="og__content">
+        <p class="og__eyebrow">{SITE.organizer.school} · {SITE.organizer.short} presents</p>
+        <h1 class="wordmark og__wordmark"><span>Quant</span><span>Rush</span></h1>
+        <p class="og__tagline">{SITE.tagline}</p>
+        <ul class="og__facts">
+          <li>{stamp(SITE.dates.opens)} → {stamp(SITE.dates.deadline)}, {year}</li>
+          <li>100% online</li>
+          <li>Free for SMC students</li>
+        </ul>
+      </div>
+
+      <div class="og__seal" aria-hidden="true"><Emblem size={212} /></div>
+      <div class="og__url">{host}</div>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  html,
+  body.og {
+    width: 1200px;
+    height: 630px;
+    margin: 0;
+    overflow: hidden;
+  }
+  .og .candle { animation: none; }
+  /* Keep Astro's dev toolbar out of the screenshot. */
+  astro-dev-toolbar { display: none !important; }
+
+  .og__card {
+    position: relative;
+    isolation: isolate;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: var(--ink-900);
+  }
+  .og__glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 48% 62% at 80% 52%, rgba(212, 160, 23, .24), transparent 70%),
+      radial-gradient(ellipse 46% 50% at 18% 88%, rgba(212, 160, 23, .12), transparent 70%);
+  }
+  /* The original scan, not an optimized copy, so the screenshot never waits on image processing. */
+  .og__art {
+    --opacity: .42;
+    --pos: center 45%;
+    left: 30%;
+    top: 44px;
+    height: auto;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 48%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 48%);
+  }
+  .og__dust { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+  .og__dust i {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FFF4CF 0 30%, rgba(232, 196, 90, .55) 45%, rgba(212, 160, 23, 0) 72%);
+  }
+  .og__candles {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    height: 92px;
+    padding: 0 24px;
+    opacity: .4;
+  }
+
+  .og__ticker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    height: 44px;
+    padding: 0 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #140D05;
+    border-bottom: 1px solid rgba(166, 124, 14, .55);
+    font-family: var(--font-mono);
+    font-size: 17px;
+    color: var(--paper-200);
+  }
+  .og__pin {
+    padding: 3px 10px;
+    border-radius: 2px;
+    background: var(--gold-500);
+    color: var(--ink-900);
+    font-weight: 700;
+  }
+  .og__tick .up { color: var(--green-400); }
+  .og__tick .down { color: var(--rust-300); }
+
+  .og__content { position: absolute; left: 72px; top: 92px; z-index: 2; width: 760px; }
+  .og__eyebrow {
+    font-family: var(--font-label);
+    font-weight: 500;
+    font-size: 21px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold-300);
+  }
+  .og__wordmark {
+    margin-top: 14px;
+    font-size: 160px;
+    line-height: .9;
+    -webkit-text-stroke: 2px var(--gold-500);
+    text-shadow:
+      1px 1px 0 var(--gold-700), 2px 2px 0 var(--gold-700), 3px 3px 0 var(--gold-700), 4px 4px 0 var(--gold-700),
+      5px 5px 0 var(--gold-700), 6px 6px 0 var(--gold-700), 7px 7px 0 var(--gold-700), 8px 8px 0 var(--gold-700);
+  }
+  .og__wordmark span { display: block; }
+  .og__tagline {
+    margin-top: 26px;
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 40px;
+    line-height: 1.2;
+    color: var(--paper-100);
+  }
+  .og__facts { display: flex; gap: 12px; margin-top: 28px; }
+  .og__facts li {
+    white-space: nowrap;
+    padding: 8px 15px;
+    border: 2px solid rgba(217, 195, 151, .65);
+    border-radius: 999px;
+    background: rgba(28, 18, 8, .82);
+    font-family: var(--font-mono);
+    font-size: 17px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--paper-50);
+  }
+
+  .og__seal {
+    position: absolute;
+    right: 84px;
+    top: 112px;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    color: var(--gold-500);
+    background: radial-gradient(circle, rgba(28, 18, 8, .94) 56%, rgba(28, 18, 8, 0) 71%);
+    transform: rotate(-8deg);
+  }
+  .og__seal svg { filter: drop-shadow(0 0 16px rgba(212, 160, 23, .4)); }
+  .og__url {
+    position: absolute;
+    right: 72px;
+    bottom: 40px;
+    z-index: 3;
+    padding: 8px 16px;
+    border: 1px solid rgba(166, 124, 14, .65);
+    border-radius: 4px;
+    background: rgba(28, 18, 8, .88);
+    font-family: var(--font-mono);
+    font-size: 24px;
+    letter-spacing: .06em;
+    color: var(--gold-300);
+  }
+</style>

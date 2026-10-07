@@ -101,7 +101,7 @@ Items come from config: `QNTR ▲ 18.49`, `ALPHA ▲ 4.20%`, `SIGNAL ▲ 2.45%`,
 
 ### 5.2 Nav (sticky)
 
-64px (56px mobile), ink-900. A gold-700 at 40% bottom border fades in after 8px of scroll. Left: emblem 28px + "QUANT RUSH" in Alfa `1.125rem` paper-50. Links: Oswald 500 caps `.875rem` tracking .12em paper-200; hover and active state gold-300 with a 2px gold underline growing from the left. Right: a small primary button "REGISTER". Below 900px: a hamburger (bars → X) opens a full-screen ink-900 overlay with Alfa `2.5rem` links, the Register button, and a contact line; body scroll locked; Esc closes. The skip link is the first element in the DOM.
+64px (56px mobile), ink-900. A gold-700 at 40% bottom border fades in after 8px of scroll. Left: emblem 28px + "QUANT RUSH" in Alfa `1.125rem` paper-50. Links: Oswald 500 caps `.875rem` tracking .12em paper-200; hover and active state gold-300 with a 2px gold underline growing from the left. Right: an outlined Discord icon button (40px; 44px on mobile, where it sits next to the menu toggle) and a small primary button "REGISTER". Below 900px: a hamburger (bars → X) opens a full-screen ink-900 overlay with Alfa `2.5rem` links, the Register button, a secondary "Join the Discord" button, and a contact line; body scroll locked; Esc closes. The skip link is the first element in the DOM.
 
 ### 5.3 Buttons
 
@@ -166,7 +166,7 @@ A cross-section. The section background is six hard-stopped strata from paper-10
 
 ### 5.16 Corkboard (register)
 
-Cork brown (`#7E5633`) with two speckle patterns and a noise overlay, framed by a wooden border drawn with inset box-shadows. Headings use paper-50 with an ink text-shadow; the WANTED poster is rotated −1.2° with a soft shadow in addition to the hard one, and its nails become pushpins. At ≥ 1200px two extra scraps are pinned beside the poster: a ruled index card ("Need a team?") and a dashed ticket for the Kaggle page.
+Cork brown (`#7E5633`) with two speckle patterns and a noise overlay, framed by a wooden border drawn with inset box-shadows. Headings use paper-50 with an ink text-shadow; the WANTED poster is rotated −1.2° on computers (straight on phones and tablets: below 900px or with a coarse pointer, so the form is easy to read and tap) with a soft shadow in addition to the hard one, and its nails become pushpins. At ≥ 1200px two extra scraps are pinned beside the poster: a ruled index card ("Need a team?") and a dashed ticket for the Kaggle page.
 
 ### 5.17 Map sheet (timeline)
 
@@ -184,12 +184,22 @@ Each award is a rosette (16-scallop SVG outline, two concentric discs, an icon i
 
 The accordion sits on a ruled ledger sheet: paper-50 with horizontal rules every 28px, a double rust margin line on the left, a mono header line ("Prospector's ledger · Q & A", page number), and a mono question number (`Q.01`) in the margin for each row. Summary and answer line heights are 28px so the text sits on the rules. Used on the home page and on the full FAQ in the rules page.
 
+### 5.21 Gold dust (hero)
+
+A full-bleed `<canvas>` (`GoldDust.astro`) between the hero engraving and the content, blended with `screen`.
+
+- **Fine dust:** about one particle per 9,000 px² (36–140). Each has a depth z (0.25–1): radius 0.7–2.8px, rise speed 6–24 px/s, a slow sine sway, and a twinkle. Drawn from three pre-rendered radial sprites (pale gold, gold, white-gold) with additive blending, so overlaps glow. Particles fade in from the bottom and out toward the top, and respawn below the edge.
+- **Motes:** about 8% as many large, soft, out-of-focus discs (18–50px, 5–12% opacity) drifting slowly in front, for depth.
+- **Glints:** every 0.35–1.45s a near particle flashes a four-point star (tapered gradient strokes) for about a second.
+- **Pointer:** with a fine pointer, layers shift up to ~22px (motes ~36px) toward the cursor for parallax.
+- **Cost:** device-pixel-ratio capped at 2; the loop stops when the canvas is off screen or the tab is hidden. Under `prefers-reduced-motion` it draws one still frame.
+
 ## 6. Home page composition
 
 ### Hero (`.on-dark`)
 
 - Min-height `calc(100svh − ticker − nav)`, capped at 880px; centered column, max 880px.
-- Background stack: ink-900 → radial gold glow (ellipse at 50% 70%, gold-500 at 10% to transparent) → engraving backdrop (miners at a long tom), gold-masked, bottom-anchored, faded out above 40% height → gold flecks (two pseudo-element layers of about eight radial-gradient dots each, twinkling 3–6s with different delays) → candlestick row along the bottom edge.
+- Background stack: ink-900 → radial gold glow (ellipse at 50% 70%, gold-500 at 10% to transparent) → engraving backdrop (miners at a long tom), gold-masked, bottom-anchored, faded out above 40% height → gold dust (§5.21) → candlestick row along the bottom edge.
 - Content, top to bottom, with an 80ms staggered reveal: eyebrow `SANTA MONICA COLLEGE · QFE CLUB PRESENTS` (gold-300, with `— ◆ —` ornaments) → wordmark → tagline → facts stamps → countdown → buttons → scroll cue → engraving credit (bottom-right, mono `.6875rem`, paper at 60%).
 - **Wordmark:** "QUANT RUSH", Alfa, `--fs-display`, fill paper-50, `-webkit-text-stroke: 1.5px gold-500`, block extrusion via a `::before` duplicate (`attr(data-text)`) in gold-700 offset 6px/6px (4px on mobile). Breaks to two lines below 640px. Nice-to-have: a diagonal glint sweep every 7s.
 - **Tagline:** "Strike signal in the noise." in Source Serif italic, `--fs-lead`, paper-200. Below it, Oswald caps `.8125rem` paper-200 at 80%: `SMC'S FIRST ONLINE QUANT COMPETITION · OPEN TO ALL SMC STUDENTS`.
@@ -265,7 +275,7 @@ Below: a faint candlestick strip, a hairline, then mono `.75rem`: "© 2026 QFE C
 
 Easing `cubic-bezier(.2, .8, .2, 1)`; durations: micro 150ms, standard 300ms, reveal 500ms.
 
-- Hero load: elements fade up 12px with an 80ms stagger; candlesticks grow (600ms, 25ms stagger); flecks twinkle.
+- Hero load: elements fade up 12px with an 80ms stagger; candlesticks grow (600ms, 25ms stagger); gold dust drifts continuously (§5.21).
 - Scroll reveals: `.reveal` elements via `IntersectionObserver` (threshold .15, once).
 - Timeline: line draws in over 1.2s, nodes pop, the current node pulses on a 2s loop.
 - Ticker loops over 60s; buttons and cards lift and press; accordion content fades in over 200ms.
@@ -287,7 +297,7 @@ Processing: keep each image ≤ 1800px wide and ≤ 300KB (JPEG or WebP); three 
 
 - `public/brand/emblem.svg` — a circular stamp: outer ring text `QUANT RUSH · SMC · 2026 ·`, center a pickaxe crossed with a rising candlestick and a nugget at the crossing. Monochrome, so it works in ink or gold. The crossing alone is the favicon.
 - `src/assets/icons/sprite.svg` — 24px grid, 2px stroke, round caps, `currentColor`: pickaxe, shovel, cart, nugget, claim-stake, lantern, scales, map, candlestick, trophy, calendar, laptop, team, question, envelope, instagram.
-- Social preview image (not made yet) → a 1200×630 PNG in `public/brand/`: dark background, wordmark, tagline, dates, candlestick row.
+- Social preview image: `public/brand/og.jpg` (1200×630). Its source is the unlisted page `/og/` (`src/pages/og.astro`): ticker strip, eyebrow, the wordmark, tagline, three date/format pills, the gold emblem on the right, the Sluice engraving gold-masked behind, static gold dust, a candlestick row, and the domain. With the dev server running, `npm run og` screenshots it with headless Chrome. The engraving on the card uses the original file rather than an optimized copy so the screenshot never waits on image processing.
 
 ## 10. Accessibility and responsive rules
 

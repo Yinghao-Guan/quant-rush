@@ -24,11 +24,18 @@ const registerHref = withBase('/#register');
         <a class="nav__link" href={l.href} aria-current={current === l.route ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>
-    <a class="btn btn--primary btn--sm nav__cta" href={registerHref}>Register</a>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" data-nav-toggle>
-      <Icon name="menu" class="i-menu" />
-      <Icon name="close" class="i-close" />
-    </button>
+    <div class="nav__actions">
+      {SITE.links.discord && (
+        <a class="nav__discord" href={SITE.links.discord} target="_blank" rel="noopener" aria-label="Join the Discord server" title="Discord">
+          <Icon name="discord" />
+        </a>
+      )}
+      <a class="btn btn--primary btn--sm nav__cta" href={registerHref}>Register</a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" data-nav-toggle>
+        <Icon name="menu" class="i-menu" />
+        <Icon name="close" class="i-close" />
+      </button>
+    </div>
   </div>
 </header>
 <div class="nav__overlay" id="menu" data-nav-overlay>
@@ -36,6 +43,9 @@ const registerHref = withBase('/#register');
     <a class="big" href={l.href}>{l.label}</a>
   ))}
   <a class="btn btn--primary btn--block" href={registerHref}>Stake your claim</a>
+  {SITE.links.discord && (
+    <a class="btn btn--secondary btn--block" href={SITE.links.discord} target="_blank" rel="noopener"><Icon name="discord" />Join the Discord</a>
+  )}
   <p class="contact">{SITE.organizer.email} · @{SITE.organizer.instagram} · {SITE.organizer.meeting}</p>
 </div>
 

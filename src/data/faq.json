@@ -31,6 +31,12 @@
     "home": true
   },
   {
+    "q": "Where do I ask questions?",
+    "a": "On our Discord, any time, or in person on Tuesdays. You can also email qfec.smc@gmail.com.",
+    "cta": "discord",
+    "home": true
+  },
+  {
     "q": "What if I can't make it on Tuesdays?",
     "a": "The competition itself is fully online. Workshop materials are posted on the Workshops page after each session, and you can email us questions any time."
   },
