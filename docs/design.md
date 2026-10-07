@@ -241,9 +241,9 @@ Header "From greenhorn to prospector, four levels down" on the paper-colored sur
 The medal shelf (§5.19). Names are placeholders, editable in `src/data/awards.json` (which also sets each medal's tone and icon):
 
 - **Mother Lode** — 1st, 2nd, 3rd on the private leaderboard (three medal dots: gold, silver, bronze).
-- **Greenhorn's Luck** — Best beginner: top finisher among self-declared first-timers.
-- **Assayer's Choice** — Best write-up: the clearest explanation of a method, judged by the board.
-- **Fool's Gold** (`award--joke`) — Biggest drop from the public to the private leaderboard. A joke award with written rules.
+- **Greenhorn's Luck** — Best beginner team: the best-placed team whose members are all first-timers.
+- **The Prospector's Report** — Best memo, judged by the board: an optional one-to-two-page memo on how the team attacked the problem; rank doesn't matter.
+- **Fool's Gold** (`award--joke`) — Biggest drop from the public to the private leaderboard among the public top 10.
 
 Notice box below: "Prizes are real. We'll announce what they are at Kickoff."
 
@@ -353,7 +353,7 @@ Quant Rush is a six-week online competition where SMC students build models on a
 - Can I team up? — Yes, in teams of up to N (to be finalized). Solo is fine too. Need teammates? Say so on the form and we'll match you at Kickoff.
 - Do I need to be a finance major? — No. If you can run a Python notebook, or want to learn, you're in.
 - What is Kaggle? — A free platform for data-science competitions. You upload predictions, it scores them and ranks everyone on a leaderboard. We walk you through it at Kickoff.
-- What do I win? — Prizes for the top of the private leaderboard, the best beginner, the best write-up, and one joke award. The actual prizes are announced at Kickoff.
+- What do I win? — Prizes for the top three on the private leaderboard, the best beginner team, the best memo, and one joke award. The actual prizes are announced at Kickoff.
 
 **Footer blurb**
 A student club at Santa Monica College for people who like markets, math, and building things. Meetings every Tuesday; everyone is welcome.

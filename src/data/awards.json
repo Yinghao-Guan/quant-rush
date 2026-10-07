@@ -8,23 +8,23 @@
     "icon": "trophy"
   },
   {
-    "category": "Best beginner",
+    "category": "Best beginner team",
     "name": "Greenhorn's Luck",
-    "blurb": "Top finisher among self-declared first-timers.",
+    "blurb": "The best-placed team on the private leaderboard whose members are all first-timers.",
     "tone": "green",
     "icon": "shovel"
   },
   {
-    "category": "Best write-up",
-    "name": "Assayer's Choice",
-    "blurb": "The clearest explanation of a method, judged by the board.",
+    "category": "Best memo · judged by the board",
+    "name": "The Prospector's Report",
+    "blurb": "Optional. Send us a one-to-two-page memo on how you attacked the problem. The board picks the clearest, most thoughtful one. Your rank doesn't matter.",
     "tone": "rust",
-    "icon": "scales"
+    "icon": "map"
   },
   {
     "category": "Public → private drop",
     "name": "Fool's Gold",
-    "blurb": "Biggest fall from the public to the private leaderboard. A joke award with written rules.",
+    "blurb": "Biggest fall from the public to the private leaderboard among the public top 10. It's a joke, and it's a real prize.",
     "joke": true,
     "tone": "tarnish",
     "icon": "nugget"

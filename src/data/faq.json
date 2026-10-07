@@ -11,8 +11,7 @@
   },
   {
     "q": "Can I team up?",
-    "a": "Yes, in teams of up to N. Solo is fine too. Need teammates? Say so on the form and we'll match you at Kickoff.",
-    "tbd": true,
+    "a": "Yes, in teams of up to 4, and solo is fine too. Teams can merge on Kaggle until Nov 15. Need teammates? Say so on the form or ask on Discord, and we'll match you at Kickoff.",
     "home": true
   },
   {
@@ -27,7 +26,7 @@
   },
   {
     "q": "What do I win?",
-    "a": "Prizes for the top of the private leaderboard, the best beginner, the best write-up, and one joke award. The actual prizes are announced at Kickoff.",
+    "a": "Prizes for the top three on the private leaderboard, the best beginner team, the best memo, and one joke award. The actual prizes are announced at Kickoff.",
     "home": true
   },
   {
@@ -46,8 +45,15 @@
   },
   {
     "q": "Can I use AI tools like ChatGPT?",
-    "a": "The policy is being finalized and will be announced at Kickoff. Whatever the answer, your write-up must explain what your model does in your own words.",
-    "tbd": true
+    "a": "Yes, to learn and to write code. If you send a memo for The Prospector's Report, the ideas must be yours; end it with one line on how you used AI."
+  },
+  {
+    "q": "Can I use outside data?",
+    "a": "No. Train only on the files from the competition page. Libraries like pandas, scikit-learn, and LightGBM are fine: they are software, not data."
+  },
+  {
+    "q": "When does my daily submission limit reset?",
+    "a": "Each team gets 5 submissions a day. The count resets at midnight UTC: 5 p.m. Pacific until Nov 1, 4 p.m. after."
   },
   {
     "q": "When are the results announced?",

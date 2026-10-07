@@ -32,4 +32,5 @@ Newest decisions go at the top of each section.
 - Kaggle competition URL
 - HTTPS on smcqfec.com works (since 2026-10-06); tick "Enforce HTTPS" in Settings → Pages if it is not already
 - `www.smcqfec.com`: needs a CNAME record to `yinghao-guan.github.io` if the www address should work
-- Rule details that the competition repository still has to decide (team size, metric, submission limits, AI and external data policies). They show as "To be finalized" until then.
+- Evaluation metric (decided in the competition repository with the dataset); it shows as "To be finalized" on the rules page until then
+- Kaggle competition URL goes on the website (`SITE.links.kaggleUrl`) once the competition exists; it then appears in the footer, the corkboard, and step 2 of "How it works"
