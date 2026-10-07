@@ -52,6 +52,12 @@ npm run og
 
 This needs Google Chrome or Chromium installed; set `CHROME_PATH` if it is somewhere unusual.
 
+The registration form is a Google Form embedded in a fixed-height frame. Whenever the form's questions change, measure it again and copy the printed heights into the `.wanted iframe` rules in `src/styles/components.css`:
+
+```bash
+npm run form-height
+```
+
 ## Repository Layout
 
 ```

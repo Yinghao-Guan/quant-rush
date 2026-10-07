@@ -899,11 +899,17 @@
   border-radius: var(--r-md);
   color: var(--fg-muted);
 }
-.wanted iframe { width: 100%; height: 2000px; border: 0; }
+/* Heights fit the live form at each iframe width, plus ~110px for "required" messages.
+   Re-measure with `npm run form-height` whenever the form changes. */
+.wanted iframe { width: 100%; height: 2380px; border: 0; }
+@media (max-width: 877px) { .wanted iframe { height: 2510px; } }
+@media (max-width: 639px) { .wanted iframe { height: 2710px; } }
+@media (max-width: 479px) { .wanted iframe { height: 2890px; } }
+@media (max-width: 399px) { .wanted iframe { height: 3070px; } }
+@media (max-width: 359px) { .wanted iframe { height: 3450px; } }
 .wanted__fallback { margin-top: var(--s-4); font-family: var(--font-mono); font-size: .8125rem; }
 @media (max-width: 639px) {
   .wanted { padding: var(--s-6) var(--s-4); box-shadow: 6px 6px 0 var(--ink-800); }
-  .wanted iframe { height: 2750px; }
   .wanted .rule-double { width: 90%; }
 }
 

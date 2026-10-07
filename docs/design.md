@@ -249,7 +249,7 @@ Notice box below: "Prizes are real. We'll announce what they are here and on Dis
 
 ### Register — "Stake Your Claim" WANTED poster on the corkboard (§5.16)
 
-A poster, max 760px, on paper-50: outer 3px ink-800 border, inner 1px border inset 8px, four small rust-500 "nail" dots in the corners, shadow `8px 8px 0 ink-800`. Inside, top to bottom: "WANTED" (Alfa, `clamp(3rem, 8vw, 5rem)`, tracking .04em) → "PROSPECTORS" (Oswald 600, tracking .3em, rust-500) → a 96px engraving medallion → the italic line "Reward: prizes, bragging rights, and a project for your résumé." → double rule → the Google Form iframe (100% width; height 1400px desktop / 1700px mobile, tuned against the real form; `loading="lazy"`; `title="Quant Rush registration form"`) → mono link "Form not loading? Open it in a new tab →". When no form URL is configured: a dashed placeholder box with a `REGISTRATION OPENS OCT 13` stamp.
+A poster, max 760px, on paper-50: outer 3px ink-800 border, inner 1px border inset 8px, four small rust-500 "nail" dots in the corners, shadow `8px 8px 0 ink-800`. Inside, top to bottom: "WANTED" (Alfa, `clamp(3rem, 8vw, 5rem)`, tracking .04em) → "PROSPECTORS" (Oswald 600, tracking .3em, rust-500) → a 96px engraving medallion → the italic line "Reward: prizes, bragging rights, and a project for your résumé." → double rule → the Google Form iframe (100% width; heights in six width tiers, from 2380px on desktop to 3450px below 360px, measured against the live form with `npm run form-height`; `loading="lazy"`; `title="Quant Rush registration form"`) → mono link "Form not loading? Open it in a new tab →". When no form URL is configured: a dashed placeholder box with a `REGISTRATION OPENS OCT 13` stamp.
 
 ### FAQ (short) — paper-100
 
