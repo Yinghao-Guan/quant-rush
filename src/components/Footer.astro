@@ -39,7 +39,7 @@ const year = new Date().getFullYear();
           {SITE.links.discord && (
             <li><a class="contact" href={SITE.links.discord} target="_blank" rel="noopener"><Icon name="discord" />Discord server</a></li>
           )}
-          <li><span class="contact"><Icon name="calendar" />{SITE.organizer.meeting}</span></li>
+          <li><span class="contact"><Icon name="calendar" />SMC meetings: {SITE.organizer.meeting}</span></li>
         </ul>
       </div>
       <div>
@@ -61,7 +61,7 @@ const year = new Date().getFullYear();
     <Candles class="footer__candles" count={36} seed={1856} />
     <div class="footer__legal">
       <span>© {year} {SITE.organizer.short} · {SITE.organizer.school}</span>
-      <span>{SITE.name} is student-run and not affiliated with Kaggle. Engravings are public domain; see CREDITS.md.</span>
+      <span>{SITE.name} is student-run and not affiliated with Kaggle. All engravings are in the public domain; the one behind this footer shows San Francisco Harbor during the gold rush (J. P. Young, 1912).</span>
     </div>
   </div>
 </footer>

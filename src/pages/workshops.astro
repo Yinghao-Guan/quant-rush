@@ -42,11 +42,11 @@ const materials = (m: (typeof schedule)[number]) =>
                   <span class="trail__badge" data-badge set:html={workshopBadgeHTML(status[i], m.kind)} />
                 </div>
                 <p>{m.summary}</p>
-                <div class="materials">
+                {m.kind !== 'deadline' && <div class="materials">
                   {materials(m).map((x) =>
                     x.url ? <a class="link" href={x.url} rel="noopener">{x.label}</a> : <span class="is-empty" title="Coming soon">{x.label}</span>,
                   )}
-                </div>
+                </div>}
               </div>
             </article>
           );

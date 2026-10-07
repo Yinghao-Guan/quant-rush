@@ -263,7 +263,7 @@ Three columns (stacked on mobile):
 2. Contact — `qfec.smc@gmail.com`, Instagram `@qfecsmc`, "Meetings: Tuesdays 11:15–12:15, MSB 207".
 3. Quick links — Workshops, Rules & FAQ, Kaggle page (`COMING SOON` badge), Register.
 
-Below: a faint candlestick strip, a hairline, then mono `.75rem`: "© 2026 QFE Club · Santa Monica College · Quant Rush is student-run and not affiliated with Kaggle. Engravings are public domain; see credits."
+Below: a faint candlestick strip, a hairline, then mono `.75rem`: "© 2026 QFE Club · Santa Monica College · Quant Rush is student-run and not affiliated with Kaggle. All engravings are in the public domain; the one behind this footer shows San Francisco Harbor during the gold rush (J. P. Young, 1912)." Every engraving on the site carries a visible credit; `CREDITS.md` in the repository is for maintainers only and is never referenced on the site.
 
 ## 7. Other pages
 
@@ -319,7 +319,7 @@ The Astro site implements this spec. Where things live:
 - `src/assets/engravings/` and `CREDITS.md` — the engravings and their licenses
 - `public/brand/emblem.svg`, `src/assets/icons/sprite.svg` — brand assets (§9)
 
-Every token and component is on one page at `/styleguide` (unlinked, `noindex`). Fonts are self-hosted via `@fontsource` packages; the variable families register as "Oswald Variable", "Source Serif 4 Variable", and "JetBrains Mono Variable".
+Every token and component is on one page at `/styleguide`, available on the dev server and on Cloudflare previews but never published to production. Fonts are self-hosted via `@fontsource` packages; the variable families register as "Oswald Variable", "Source Serif 4 Variable", and "JetBrains Mono Variable".
 
 ## Appendix A — Where the copy lives
 
