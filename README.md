@@ -42,7 +42,7 @@ Then open <http://localhost:4321>. `npm run build` writes the static site to `di
 | Rules text | `src/pages/rules.astro` |
 | Colors, type, spacing | `src/styles/tokens.css` (spec in `docs/design.md`) |
 
-Every token and component is visible at `/styleguide` (unlinked, not indexed).
+Every token and component is visible at `/styleguide` on the dev server and on Cloudflare previews. It and the share-card source `/og` are left out of production builds.
 
 The social share image is `public/brand/og.jpg`. Its source is the unlisted page `/og/` (`src/pages/og.astro`). After changing the card, regenerate the image with the dev server running:
 
@@ -72,7 +72,7 @@ npm run form-height
 │   ├── data/            # JSON content
 │   ├── layouts/         # Base layout
 │   ├── lib/             # Small helpers (paths, dates, status)
-│   ├── pages/           # Routes: /, /workshops, /rules, /404, /styleguide
+│   ├── pages/           # Routes: /, /workshops, /rules, /404 (+ /styleguide and /og, dev and previews only)
 │   └── styles/          # tokens, base, components, pages
 ├── CREDITS.md           # Sources and licenses for every engraving
 └── astro.config.mjs

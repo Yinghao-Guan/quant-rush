@@ -29,7 +29,7 @@ Care point: the real Gold Rush history includes harm to Native Californians and 
 
 ## Visual Design
 
-The full visual spec lives in **`design.md`** (concept, color tokens, typography, components, page compositions, motion, engravings, accessibility). Every token and component is visible at `/styleguide` on the site. Summary of what was decided:
+The full visual spec lives in **`design.md`** (concept, color tokens, typography, components, page compositions, motion, engravings, accessibility). Every token and component is visible at `/styleguide` on the dev server and on Cloudflare previews. Summary of what was decided:
 
 - Dark hero and ticker → torn-paper edge → parchment content sections → dark footer.
 - Poster typography (Alfa Slab One, Oswald, Source Serif 4, JetBrains Mono) and line icons built in code, plus duotoned public-domain 19th-century engravings (credits in `CREDITS.md`).
