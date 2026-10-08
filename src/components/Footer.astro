@@ -4,6 +4,7 @@ import Candles from './Candles.astro';
 import Engraving from './Engraving.astro';
 import { SITE } from '../config/site';
 import { withBase } from '../lib/paths';
+import { stamp } from '../lib/dates';
 import harbor from '../assets/engravings/san-francisco-harbor-1849.jpg';
 
 const year = new Date().getFullYear();
@@ -51,7 +52,7 @@ const year = new Date().getFullYear();
             {SITE.links.kaggleUrl ? (
               <a href={SITE.links.kaggleUrl} rel="noopener">Kaggle page</a>
             ) : (
-              <span>Kaggle page <span class="badge badge--soon" style="margin-left:6px">Coming soon</span></span>
+              <span>Kaggle page <span class="badge badge--soon" style="margin-left:6px">Opens {stamp(SITE.dates.opens)}</span></span>
             )}
           </li>
           <li><a href={withBase('/#register')}>Register</a></li>

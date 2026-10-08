@@ -10,7 +10,13 @@ import { SITE } from '../config/site';
 
 const levels = [
   { depth: 'Level 01 · Surface', icon: 'stake', title: 'Stake your claim', text: 'Fill in the form below. Two minutes.' },
-  { depth: 'Level 02 · 50 ft', icon: 'shovel', title: 'Get your gear', text: 'Make a free Kaggle account and join the Quant Rush competition page.', href: SITE.links.kaggleUrl, cta: 'Open the Kaggle page →' },
+  {
+    depth: 'Level 02 · 50 ft', icon: 'shovel', title: 'Get your gear',
+    text: SITE.links.kaggleUrl
+      ? 'Make a free Kaggle account and join the Quant Rush competition page.'
+      : `Make a free Kaggle account now. The Quant Rush competition page opens on Kaggle on ${longDay(SITE.dates.opens)}, and its link appears here.`,
+    href: SITE.links.kaggleUrl, cta: 'Open the Kaggle page →',
+  },
   { depth: 'Level 03 · 120 ft', icon: 'cart', title: 'Dig', text: 'Download the data, train models, submit predictions. Questions go to our Discord, any time.' },
   { depth: 'Level 04 · Bedrock', icon: 'scales', title: 'The Assay', text: `${longDay(SITE.dates.deadline)}: submissions close. The private leaderboard shows who struck real gold.` },
 ];

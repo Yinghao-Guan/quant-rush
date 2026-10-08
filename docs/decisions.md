@@ -34,4 +34,4 @@ Newest decisions go at the top of each section.
 
 - HTTPS on smcqfec.com works (since 2026-10-06); tick "Enforce HTTPS" in Settings → Pages if it is not already
 - `www.smcqfec.com`: needs a CNAME record to `yinghao-guan.github.io` if the www address should work
-- Kaggle competition URL: set `SITE.links.kaggleUrl` to the invitation link when the competition launches; it then appears in the footer, the corkboard, and step 2 of "How it works"
+- Kaggle competition URL: set `SITE.links.kaggleUrl` to the invitation link when the competition launches; it then appears in the footer, the corkboard, and step 2 of "How it works". Until then those three places say the Kaggle page opens on `SITE.dates.opens`, and the FAQ "When can I see the competition on Kaggle?" names the date and time in plain text. At launch, rewrite or drop that FAQ entry; if the launch date moves, edit it along with `SITE.dates.opens`

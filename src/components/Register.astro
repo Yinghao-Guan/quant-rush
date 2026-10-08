@@ -15,7 +15,7 @@ const { formEmbedUrl, formUrl, kaggleUrl } = SITE.links;
   <aside class="scrap scrap--ticket" aria-hidden="true">
     <i class="pin"></i>
     <b>Kaggle</b>
-    {kaggleUrl ? 'Competition page · live' : 'Competition page · coming soon'}
+    {kaggleUrl ? 'Competition page · live' : `Competition page · opens ${stamp(SITE.dates.opens)}`}
   </aside>
 
   <div class="wanted reveal">

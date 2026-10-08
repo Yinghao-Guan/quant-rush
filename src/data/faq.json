@@ -34,6 +34,11 @@
     "home": true
   },
   {
+    "q": "When can I see the competition on Kaggle?",
+    "a": "On opening day, Tuesday, Oct 13, at 11:15 a.m. Pacific. That is when the Kaggle page goes live and its link appears on this site. Until then, register here and make a free Kaggle account.",
+    "home": true
+  },
+  {
     "q": "What do I win?",
     "a": "Prizes for the top three on the private leaderboard, the best beginner team, the best memo, and one joke award. We'll announce the actual prizes here and on Discord.",
     "home": true
