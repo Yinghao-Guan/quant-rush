@@ -7,7 +7,7 @@ export const SITE = {
   tagline: 'Strike signal in the noise.',
   subtitle: "SMC's first online quant competition",
   description:
-    'Quant Rush is a six-week online quant competition open to all California community college students, hosted by the Quantitative Finance & Entrepreneurship Club at Santa Monica College. No experience needed.',
+    'Quant Rush is a six-week online quant competition open to California community college students 18 and over, hosted by the Quantitative Finance & Entrepreneurship Club at Santa Monica College. No experience needed.',
 
   organizer: {
     name: 'Quantitative Finance & Entrepreneurship Club',

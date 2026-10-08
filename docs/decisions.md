@@ -8,6 +8,7 @@ Newest decisions go at the top of each section.
 
 | Topic | Decision |
 |---|---|
+| Eligibility and rules copy | Updated 2026-10-08 to match the Kaggle competition rules:<br>**Age:** participants must be 18 or older (Kaggle's rules require it). This appears on the rules page, in the FAQ, in the hero, in the registration lead, and in the site description.<br>**Deadlines:** registration closes Sun Nov 15, 11:59 p.m. PT, which is the entry deadline. Teams that merge after Nov 15 are not eligible for awards.<br>**Rules page:** names the score (mean per-era Spearman correlation) and says code checks cover all three leaderboard awards, including reviewing and rerunning the code. The Miner's Code bans using the test set's structure to work out other rows' answers.<br>**Registration form:** gained an 18+ confirmation, and the iframe heights were re-measured with `npm run form-height`. |
 | Audience | **All California community college students** (changed from SMC-only on 2026-10-07, limited to California the same day). The competition is fully online; the Tuesday workshops are separate, in person, and for SMC students. Competition copy (rules, FAQ, how it works) never depends on attending a workshop or a meeting, and announcements go to the site and Discord. |
 | Dataset wording | The site never describes how the dataset was prepared. It says only that the data comes from a legitimate, lawful source and that tracing it back to the original is against the rules. |
 | Branches and previews | `main` is production (GitHub Pages, smcqfec.com); day-to-day work happens on `dev` and is merged into `main` to go live. Cloudflare Pages (project `quant-rush`) builds previews of every other branch and of pull requests; its production auto-deploys are off. Preview builds are detected through `CF_PAGES`, show a "Preview build" bar, and are `noindex`. GitHub Pages has no public preview-deployment feature (the `preview` input of `actions/deploy-pages` is private alpha as of 2026-10). |
@@ -31,8 +32,6 @@ Newest decisions go at the top of each section.
 
 ## Open
 
-- Kaggle competition URL
 - HTTPS on smcqfec.com works (since 2026-10-06); tick "Enforce HTTPS" in Settings → Pages if it is not already
 - `www.smcqfec.com`: needs a CNAME record to `yinghao-guan.github.io` if the www address should work
-- Evaluation metric (decided in the competition repository with the dataset); it shows as "To be finalized" on the rules page until then
-- Kaggle competition URL goes on the website (`SITE.links.kaggleUrl`) once the competition exists; it then appears in the footer, the corkboard, and step 2 of "How it works"
+- Kaggle competition URL: set `SITE.links.kaggleUrl` to the invitation link when the competition launches; it then appears in the footer, the corkboard, and step 2 of "How it works"

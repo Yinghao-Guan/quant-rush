@@ -40,9 +40,9 @@ const sections = [
       <div class="rules__body">
         <section id="eligibility">
           <h2><span class="sect">§1</span>Eligibility</h2>
-          <p>Quant Rush is open to every student currently enrolled at a California community college, in any major, at any level of experience.</p>
+          <p>Quant Rush is open to every student 18 or older who is currently enrolled at a California community college, in any major, at any level of experience. The age limit comes from Kaggle's competition rules.</p>
           <ul class="list">
-            <li>Register with your college email. Before prizes are awarded, we match Kaggle usernames against the registration list.</li>
+            <li>Register with your college email by <strong>Sunday, Nov 15, 11:59 p.m. Pacific</strong>, when registration closes. Before prizes are awarded, we match Kaggle usernames against the registration list.</li>
             <li>Anyone with the link can join the competition on Kaggle, but only registered California community college students are eligible for awards and prizes.</li>
             <li>Members of the QFE Club board and anyone who helps design the problem cannot compete.</li>
           </ul>
@@ -50,7 +50,7 @@ const sections = [
 
         <section id="teams">
           <h2><span class="sect">§2</span>Teams</h2>
-          <p>Compete solo or in a team of up to 4. Teams are formed on Kaggle, and teams can merge until <strong>Sunday, Nov 15, 11:59 p.m. Pacific</strong>.</p>
+          <p>Compete solo or in a team of up to 4. Teams are formed on Kaggle, and teams can merge until <strong>Sunday, Nov 15, 11:59 p.m. Pacific</strong>. Teams that merge after that are not eligible for awards.</p>
           <ul class="list">
             <li>One Kaggle account per person. Multiple accounts lead to disqualification, on Kaggle and here.</li>
             <li>Need teammates? Say so on the registration form or ask on Discord.</li>
@@ -72,7 +72,7 @@ const sections = [
           <h3>Data</h3>
           <ul class="list">
             <li><strong>No outside data.</strong> Train only on the files from the competition page. Open-source libraries such as pandas, scikit-learn, and LightGBM are fine: they are software, not data.</li>
-            <li>Evaluation metric <span class="badge badge--tbd" style="--tilt:1deg">To be finalized</span></li>
+            <li><strong>Score:</strong> the mean per-era Spearman correlation between your prediction and the target. Within each era, it measures how well you order the assets; the score averages over all eras. Details are on the Kaggle competition page.</li>
           </ul>
           <div class="notice">
             <span class="notice__label">On the record</span>
@@ -95,7 +95,7 @@ const sections = [
           <h3>How the joke award is decided</h3>
           <p>Among the teams finishing in the top 10 of the public leaderboard, Fool's Gold goes to the team with the largest drop in rank on the private leaderboard. It comes with a real prize.</p>
           <h3>Claiming a prize</h3>
-          <p>After the deadline we contact the winners of Mother Lode and Greenhorn's Luck. To claim the prize, send the board the code that produced your two final submissions within 5 days. If the code is missing or breaks the rules, the award goes to the next eligible team.</p>
+          <p>After the deadline we contact the winners of Mother Lode, Greenhorn's Luck, and Fool's Gold. To claim the prize, send the board the code that produced your two final submissions within 5 days. We check the code, which can include reviewing its logic and rerunning it with only the competition files, to make sure the rules were followed. If the code is missing or breaks the rules, the award goes to the next eligible team.</p>
         </section>
 
         <section id="code">
@@ -104,7 +104,7 @@ const sections = [
             <div class="code-box__title">Rules of the camp</div>
             <ol>
               <li><div><strong>Dig your own claim.</strong><p>One account per person. Your team's work is your team's work.</p></div></li>
-              <li><div><strong>Don't salt the mine.</strong><p>Use only the data we give you. No outside data, no attempts to trace it back to its original source, and no looking up the answers.</p></div></li>
+              <li><div><strong>Don't salt the mine.</strong><p>Use only the data we give you. No outside data, no attempts to trace it back to its original source, no looking up the answers, and no using the structure of the test set to work out other rows' answers.</p></div></li>
               <li><div><strong>Share at the campfire, not in the dark.</strong><p>Public sharing on Kaggle is welcome. Private sharing between teams is not.</p></div></li>
               <li><div><strong>Be good to the other prospectors.</strong><p>Help beginners. Be kind in discussions. Organizers can remove anyone who isn't.</p></div></li>
               <li><div><strong>Ask for a lantern.</strong><p>Stuck? Ask on {SITE.links.discord ? <a class="link" href={SITE.links.discord} target="_blank" rel="noopener">Discord</a> : 'Discord'} or email <a class="link" href={`mailto:${SITE.organizer.email}`}>{SITE.organizer.email}</a>. Nobody mines alone.</p></div></li>
