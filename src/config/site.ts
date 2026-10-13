@@ -32,8 +32,8 @@ export const SITE = {
     formEmbedUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeJfHn5vExdE1IlgXa7wPINWSvlRPj38gL2LPaqWYdXqkK4rQ/viewform?embedded=true',
     /** Google Form share URL for the "open in a new tab" fallback. */
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeJfHn5vExdE1IlgXa7wPINWSvlRPj38gL2LPaqWYdXqkK4rQ/viewform',
-    /** Kaggle competition page. Empty = "coming soon" badge. */
-    kaggleUrl: '',
+    /** Kaggle invitation link (the competition is Restricted: only this link can join). Empty = "opens on" badge. */
+    kaggleUrl: 'https://www.kaggle.com/t/2955e0bf14804ee3a4940461bb21ed9c',
     /** Discord invite. Use an invite set to "never expire"; empty = Discord links are hidden. */
     discord: 'https://discord.gg/MUPdvSAV4M',
   },
@@ -46,5 +46,5 @@ export const SITE = {
   logoPath: '/brand/logo-qfe.png',
 
   /** Pinned chip at the front of the ticker. Empty = none. */
-  tickerPin: '★ OPENS OCT 13 · 100% ONLINE',
+  tickerPin: '★ OCT 13 → NOV 22 · 100% ONLINE',
 } as const;
