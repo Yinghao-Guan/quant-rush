@@ -22,7 +22,7 @@ export const SITE = {
 
   /** ISO timestamps with explicit Pacific offsets (PDT until Nov 1, 2026, then PST). */
   dates: {
-    opens: '2026-10-13T11:15:00-07:00',
+    opens: '2026-10-13T11:00:00-07:00',
     deadline: '2026-11-22T23:59:00-08:00',
     results: '2026-12-01T11:15:00-08:00',
   },
