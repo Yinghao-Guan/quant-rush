@@ -46,6 +46,7 @@ const liveSite = Astro.site?.href ?? 'https://smcqfec.com/';
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#1C1208" />
     {!noindex && <link rel="canonical" href={canonical} />}
+    <link rel="icon" href={withBase('/favicon.ico')} sizes="48x48" />
     <link rel="icon" href={withBase('/brand/emblem.svg')} type="image/svg+xml" />
     {(noindex || preview) && <meta name="robots" content="noindex" />}
     <meta property="og:title" content={fullTitle} />
