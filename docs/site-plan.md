@@ -102,7 +102,7 @@ Embedded on Home. Final decision: Google Form only, no custom backend.
 | Item | Placeholder in v1 |
 |---|---|
 | QFE logo | Done: `public/brand/logo-qfe.png` in the footer |
-| Kaggle competition URL | "Coming soon" badge |
+| Kaggle competition URL | Done: the invitation link in `src/config/site.ts` (2026-10-13) |
 | Google Form URL | Done: embedded on the home page (URLs in `src/config/site.ts`) |
 | Submission deadline time | Countdown assumes 11:59 p.m. Pacific on Sun 11/22 |
 | Prizes | "Prizes exist, details to be announced" |

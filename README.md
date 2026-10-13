@@ -2,7 +2,7 @@
 
 Official website for **Quant Rush**, the online Kaggle competition hosted by the **Quantitative Finance & Entrepreneurship (QFE) Club** at **Santa Monica College**.
 
-> 🚧 **Status: building v1.** The site structure, design, and copy are in place; the dataset, Kaggle page, and registration form are still being prepared. See `docs/` for plans and decisions.
+> **Status: live at <https://smcqfec.com>.** The competition runs Oct 13 – Nov 22, 2026 on Kaggle, with registration through the form on the home page. See `docs/` for plans and decisions.
 
 ## About
 
@@ -34,12 +34,13 @@ Then open <http://localhost:4321>. `npm run build` writes the static site to `di
 
 | What | Where |
 |---|---|
-| Names, dates, links (form, Kaggle, Discord), contact, logo path | `src/config/site.ts` |
+| Names, dates, links (form, Kaggle invitation link, Discord), contact, logo path | `src/config/site.ts` |
 | Schedule: workshops, deadline, wrap-up, materials links | `src/data/schedule.json` |
 | FAQ | `src/data/faq.json` |
 | Awards | `src/data/awards.json` |
 | Ticker jokes | `src/data/ticker.json` |
 | Rules text | `src/pages/rules.astro` |
+| Search engines: crawl rules and page list | `public/robots.txt`, `public/sitemap.xml` (add a `<url>` when a page is added) |
 | Colors, type, spacing | `src/styles/tokens.css` (spec in `docs/design.md`) |
 
 Every token and component is visible at `/styleguide` on the dev server and on Cloudflare previews. It and the share-card source `/og` are left out of production builds.
@@ -64,7 +65,7 @@ npm run form-height
 .
 ├── .github/workflows/   # GitHub Pages deploy
 ├── docs/                # Planning notes, decisions, design spec
-├── public/              # Served as-is (emblem, favicon)
+├── public/              # Served as-is (brand images, favicon.ico, robots.txt, sitemap.xml)
 ├── src/
 │   ├── assets/          # Engravings and the icon sprite (processed at build)
 │   ├── components/      # Astro components
