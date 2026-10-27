@@ -45,7 +45,7 @@ const materials = (m: (typeof schedule)[number]) =>
                 <p>{m.summary}</p>
                 {m.kind !== 'deadline' && <div class="materials">
                   {materials(m).map((x) =>
-                    x.url ? <a class="link" href={x.url.startsWith('/') ? withBase(x.url) : x.url} rel="noopener">{x.label}</a> : <span class="is-empty" title="Coming soon">{x.label}</span>,
+                    x.url ? <a class="link" href={x.url.startsWith('/') ? withBase(x.url) : x.url} rel="noopener" download={x.url.endsWith('.ipynb') ? '' : undefined}>{x.label}</a> : <span class="is-empty" title="Coming soon">{x.label}</span>,
                   )}
                 </div>}
               </div>

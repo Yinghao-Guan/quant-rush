@@ -35,7 +35,7 @@
     "summary": "Exploratory analysis: distributions, missing values, what the target actually measures, and what the evaluation metric rewards and punishes.",
     "materials": {
       "slides": "/materials/workshop-2-slides.pdf",
-      "notebook": null
+      "notebook": "/materials/workshop-2-notebook.ipynb"
     }
   },
   {
