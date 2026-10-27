@@ -21,8 +21,8 @@
     "blurb": "Python, pandas, your first Kaggle notebook. Leave with a baseline submitted.",
     "summary": "Zero to a submitted baseline. Loading the data with pandas, a first look at the columns, a trivial model, and the exact clicks to submit on Kaggle.",
     "materials": {
-      "slides": null,
-      "notebook": null
+      "slides": "/materials/workshop-1-slides.pdf",
+      "notebook": "/materials/workshop-1-notebook.ipynb"
     }
   },
   {
