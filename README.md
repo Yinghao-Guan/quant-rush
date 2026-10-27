@@ -36,6 +36,7 @@ Then open <http://localhost:4321>. `npm run build` writes the static site to `di
 |---|---|
 | Names, dates, links (form, Kaggle invitation link, Discord), contact, logo path | `src/config/site.ts` |
 | Schedule: workshops, deadline, wrap-up, materials links | `src/data/schedule.json` |
+| Workshop slides (PDF) and notebooks (`.ipynb`) | `public/materials/`, linked as `/materials/<file>` from `schedule.json` |
 | FAQ | `src/data/faq.json` |
 | Awards | `src/data/awards.json` |
 | Ticker jokes | `src/data/ticker.json` |
