@@ -6,6 +6,7 @@ import schedule from '../data/schedule.json';
 import { computeStatus, workshopBadgeHTML } from '../lib/status';
 import { dateBlock } from '../lib/dates';
 import { SITE } from '../config/site';
+import { withBase } from '../lib/paths';
 import diggers from '../assets/engravings/california-gold-diggers-c1850.jpg';
 
 const status = computeStatus(schedule.map((m) => m.date));
@@ -44,7 +45,7 @@ const materials = (m: (typeof schedule)[number]) =>
                 <p>{m.summary}</p>
                 {m.kind !== 'deadline' && <div class="materials">
                   {materials(m).map((x) =>
-                    x.url ? <a class="link" href={x.url} rel="noopener">{x.label}</a> : <span class="is-empty" title="Coming soon">{x.label}</span>,
+                    x.url ? <a class="link" href={x.url.startsWith('/') ? withBase(x.url) : x.url} rel="noopener">{x.label}</a> : <span class="is-empty" title="Coming soon">{x.label}</span>,
                   )}
                 </div>}
               </div>

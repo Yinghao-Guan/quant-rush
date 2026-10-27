@@ -8,7 +8,7 @@
     "blurb": "Rules, Kaggle setup, team formation. The competition opens.",
     "summary": "What the competition is, how Kaggle works, and how to register. Bring a laptop: we make Kaggle accounts together and form teams on the spot. The dataset and the competition page go live.",
     "materials": {
-      "slides": "https://claude.ai/artifact/9eC5giJdvaQdqrWpKQk1Wc",
+      "slides": "/materials/kickoff-slides.pdf",
       "notebook": "https://www.kaggle.com/code/guaguaaaa/quant-rush-getting-started"
     }
   },
@@ -34,7 +34,7 @@
     "blurb": "Exploring the data and understanding the metric.",
     "summary": "Exploratory analysis: distributions, missing values, what the target actually measures, and what the evaluation metric rewards and punishes.",
     "materials": {
-      "slides": null,
+      "slides": "/materials/workshop-2-slides.pdf",
       "notebook": null
     }
   },
