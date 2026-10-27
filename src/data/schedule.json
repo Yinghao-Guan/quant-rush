@@ -8,8 +8,8 @@
     "blurb": "Rules, Kaggle setup, team formation. The competition opens.",
     "summary": "What the competition is, how Kaggle works, and how to register. Bring a laptop: we make Kaggle accounts together and form teams on the spot. The dataset and the competition page go live.",
     "materials": {
-      "slides": null,
-      "notebook": null
+      "slides": "https://claude.ai/artifact/9eC5giJdvaQdqrWpKQk1Wc",
+      "notebook": "https://www.kaggle.com/code/guaguaaaa/quant-rush-getting-started"
     }
   },
   {
